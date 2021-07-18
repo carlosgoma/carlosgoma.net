@@ -1,0 +1,21 @@
+
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('~/assets/fonts/source-sans-pro-v14-latin-regular.woff2') format('woff2'), 
+        url('~/assets/fonts/source-sans-pro-v14-latin-regular.woff') format('woff');
+}
+
+
+:root {
+    --space: 1.8rem;
+    --windowsHeight: 100vh;
+
+
+    --white: #fff;
+    --black: #111;
+}

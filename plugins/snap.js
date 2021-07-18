@@ -1,0 +1,1 @@
+import Snap from "snapsvg-cjs";
