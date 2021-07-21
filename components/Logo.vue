@@ -43,7 +43,9 @@
 
     .c-logo {
         position: relative;
-        margin: $space;
+        z-index: 3;
+        pointer-events: auto;
+        margin: space(m);
         width: 70px;
 
         &__link {

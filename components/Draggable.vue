@@ -87,11 +87,11 @@ export default {
 
 			interact(selector).draggable({
 				inertia: true,
-				// inertia: {
-				// 	resistance: 5,
-				// 	minSpeed: 100,
-				// 	endSpeed: 50
-				// },
+				inertia: {
+					resistance: 3,
+					minSpeed: 500,
+					endSpeed: 2
+				},
 				restrict: { // keep on parent
 					restriction: "parent",
 					endOnly: true,
@@ -127,7 +127,7 @@ export default {
 		startAnime: function(event) {
 			this.$anime({
 				targets: event.target,
-				opacity: .9,
+				opacity: .6,
 				d: {value: event.target.getAttribute('dAnim')},
 				duration: 500,
 				begin: this.biggestIndex(event),
@@ -136,7 +136,7 @@ export default {
 		endAnime: function(event) {
 			this.$anime({
 				targets: event.target,
-				opacity: .6,
+				opacity: .4,
 				d: {value: event.target.getAttribute('dInit')},
 				duration: 500,
 			})
@@ -154,20 +154,30 @@ export default {
 <style lang="scss">
 
 .c-draggable {
-	height: 100%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	overflow: hidden;
-	position: relative;
-	opacity: .6;
 	
 	&__item {
-		width: calc(15vw + 30vh);
-		height: calc(15vw + 30vh);
+		width: calc(15vw + 25vh);
+		height: calc(15vw + 25vh);
 		position: absolute;
 		pointer-events: none;
 
+		&-svg {
+			margin-top: -4.4%;
+			margin-left: -4.4%;
+			margin-bottom: -4.4%;
+			margin-right: -4.4%;
+		}
+
 		&-path {
 			cursor: grab;
-			opacity: .6;
+			opacity: .4;
 			pointer-events: auto;
 			
 			&:active {
@@ -178,13 +188,13 @@ export default {
 				fill: url(#figure-g-pattern);
 			}
 			&-o {
-				fill: #29ABE2;
+				fill: $blue;
 			}
 			&-m {
-				fill: #FC2727;
+				fill: $red;
 			}
 			&-a {
-				fill: #F4EF3B;
+				fill: $yellow;
 			}
 		}
 	}

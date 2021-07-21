@@ -4,8 +4,8 @@
             to="/this" 
             active-class="" 
             exact-active-class="c-nav__link--active"> 
-            <span class="c-nav__link-text">This</span>
-            <div class="c-nav__link-shape" @mouseover="animateButton" @mouseleave="animateButton">
+            <span class="c-nav__link-title">This</span>
+            <div class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
                 <svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
                     <path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
                 </svg>
@@ -15,8 +15,8 @@
             to="/you" 
             active-class="" 
             exact-active-class="c-nav__link--active">
-            <span class="c-nav__link-text">You</span>
-            <div class="c-nav__link-shape" @mouseover="animateButton" @mouseleave="animateButton">
+            <span class="c-nav__link-title">You</span>
+            <div class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
                 <svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
                     <path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
                 </svg>
@@ -26,8 +26,8 @@
             to="/me" 
             active-class="" 
             exact-active-class="c-nav__link--active">
-            <span class="c-nav__link-text">Me</span>
-            <div class="c-nav__link-shape" @mouseover="animateButton" @mouseleave="animateButton">
+            <span class="c-nav__link-title">Me</span>
+            <div class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
                 <svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
                     <path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
                 </svg>
@@ -41,40 +41,66 @@
     export default {
         
         methods: {
-            animateButton: function (event) {
+
+            rotation: function (event) {
                 
                 let radian = Math.atan2(event.offsetX - event.target.offsetWidth / 2, event.offsetY - event.target.offsetHeight / 2);
                 let rotation = (radian * (180/ Math.PI) * -1) + 0;
                 event.target.getElementsByTagName("svg")[0].style.transform = `rotate(${Math.floor(rotation)}deg)`;
+            },
 
-                if (event.type === "mouseover") {
-                    this.$anime({
-                        targets: event.target.getElementsByTagName("path")[0],
-                        d: [
-                            { easing: "easeInOutBack", value: "M83,45c0,8.8,-6.3,16.9,-11.6,23c-6.4,7.4,-15.9,1,-26.4,1s-20,6.4,-26.4,-1c-5.3,-6.1,-11.6,-14.2,-11.6,-23c0,-19.3,18.7,-35,38,-35s38,15.7,38,35z"},
-                            { easing: "easeOutBounce", value: "M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"},
-                        ],
-                        opacity: [
-                            {value: 0.1}, 
-                            {value: 1}
-                        ],
-                        duration: 400,
-                    })
-                } else if (event.type === "mouseleave") {
-                    this.$anime({
-                        targets: event.target.getElementsByTagName("path")[0],
-                        d: [
-                            { easing: "easeOutBack", value: "M78,45c0,8.8,-5.3,16.9,-10.6,23c-6.4,7.4,-11.9,19,-22.4,19s-16,-11.6,-22.4,-19c-5.3,-6.1,-10.6,-14.2,-10.6,-23c0,-19.3,13.7,-35,33,-35s33,15.7,33,35z"},
-                            { value: "M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"},
-                        ],
-                        opacity: [
-                            {duration: 250, value: 1}, 
-                            {duration: 150, easing: "linear", value: 0.1}
-                        ],
-                        duration: 400,
-                    })
-                }
+            mouseover: function (event) {
+                
+                this.rotation(event);
 
+                const timeline = this.$anime.timeline({
+                    targets: event.target.getElementsByTagName("path")[0],
+                    d: [
+                        { easing: "easeInOutBack", value: "M83,45c0,8.8,-6.3,16.9,-11.6,23c-6.4,7.4,-15.9,1,-26.4,1s-20,6.4,-26.4,-1c-5.3,-6.1,-11.6,-14.2,-11.6,-23c0,-19.3,18.7,-35,38,-35s38,15.7,38,35z"},
+                        { easing: "easeOutElastic(1, .6)", value: "M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"},
+                    ],
+                    fill: [
+                        {value: '#fff'}, 
+                        {value: '#000'}
+                    ],
+                    stroke: [
+                        {value: '#888'},
+                        {value: '#000'}
+                    ],
+                    duration: 400,
+                });
+                timeline.add({
+                    targets: event.target.previousElementSibling,
+                    color: "#fff",
+                })
+            },
+
+            mouseleave: function (event) {
+
+                this.rotation(event);
+
+                this.$anime.running.length = 0;
+
+                const timeline = this.$anime.timeline({
+                    targets: event.target.getElementsByTagName("path")[0],
+                    d: [
+                        { duration: 100, easing: "easeOutBack", value: "M78,45c0,8.8,-5.3,16.9,-10.6,23c-6.4,7.4,-11.9,19,-22.4,19s-16,-11.6,-22.4,-19c-5.3,-6.1,-10.6,-14.2,-10.6,-23c0,-19.3,13.7,-35,33,-35s33,15.7,33,35z"},
+                        { easing: "easeOutBack", value: "M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"},
+                    ],
+                    fill: [
+                        {value: '#000'},
+                        {value: '#fff'}
+                    ],
+                    stroke: [
+                        {value: '#000'},
+                        {value: '#888'}
+                    ],
+                    duration: 300,
+                });
+                timeline.add({
+                    targets: event.target.previousElementSibling,
+                    color: "#111",
+                })
             }
         }
     }
@@ -86,10 +112,11 @@
     .c-nav {
         display: flex;
         justify-content: space-between;
-        padding: $space;
+        padding: space(m);
 
         &__link {
             position: relative;
+            z-index: 3;
             pointer-events: auto;
             color: $black;
             width: 70px;
@@ -99,13 +126,9 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: color 0s .2s;
+            transition: color 0s .1s;
 
-            &:hover {
-                color: $white;
-            }
-
-            &-text {
+            &-title {
                 position: relative;
                 z-index: 2;
                 pointer-events: none;
@@ -130,8 +153,9 @@
             }
 
             &-path {
-                fill: $black;
-                opacity: .1;
+                fill: #fff;
+                stroke: #888;
+                stroke-width: 1px;
             }
         }
     }

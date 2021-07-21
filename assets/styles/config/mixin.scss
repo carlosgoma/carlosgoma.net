@@ -1,0 +1,18 @@
+
+
+
+// Sizes
+
+@function space($s) {
+	@return map-get($spaces, $s);
+}
+
+
+@function font-size($n) {
+	@return map-get($font-scale, $n);
+}
+
+
+@function indentation() {
+	@return $line-height - 1em / 2;
+}

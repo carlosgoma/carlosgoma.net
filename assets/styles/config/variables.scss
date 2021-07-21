@@ -3,14 +3,41 @@
 // ---------------------------- FONTS
 
 
-$font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+$font-family: 'Noto Serif';
 $font-size: 1em;
-$line-height: 1.8;
+$line-height: var(--line-height);
+
+$font-ratio: 0.5;
+
+$font-scale: (
+	xs: .7em,
+	s: .85em,
+	m: 1em,
+	l: 1em + ($font-ratio * 1),
+	xl: 1em + ($font-ratio * 2),
+
+	jumbo: 1em + ($font-ratio * 3),
+	ljumbo: 1em + ($font-ratio * 4)
+);
+
+$font-indent: -.5em;
+
 
 
 // ---------------------------- SPACE
 
-$space: var(--space);
+
+$spaces: (
+    s: calc(var(--space) / 2),
+    m: var(--space),
+    l: calc(var(--space) * 2),
+    xl: calc(var(--space) * 3),
+    xxl: calc(var(--space) * 4),
+
+	vh: 10vh,
+	lvh: 20vh
+);
+
 
 
 // ---------------------------- COLORS
@@ -18,5 +45,23 @@ $space: var(--space);
 
 $white: #fefefe;
 $black: #222;
+$gray-dark: #666;
+$gray: #aaa;
+$gray-light: #eee; 
 
 
+$red: #FC2727;
+$blue: #29ABE2;
+$yellow: #F4EF3B;
+
+
+$font-color: $black;
+$font-color-light: $gray;
+$font-color-superlight: $gray-light;
+
+
+
+// ---------------------------- QUERIES
+
+
+$mobile : 700px;

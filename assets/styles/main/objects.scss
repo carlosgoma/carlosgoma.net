@@ -1,0 +1,48 @@
+
+
+.o-grid {
+    display: grid;
+    padding-left: space(m);
+    padding-right: space(m);
+    gap: space(xl) 0;
+
+    @media ( min-width: $mobile ) {
+        grid-template-columns: 1fr repeat(6, minmax(0, 12em)) 1fr;
+    }
+
+    &__header {
+        grid-column: 1/-1;
+        padding-top: space(lvh);
+        padding-bottom: space(lvh);
+    }
+}
+
+.o-text {
+    margin-top: $font-indent;
+    margin-bottom: $font-indent;    
+    
+    display: grid;
+    gap: space(m);
+
+}
+
+.o-title {
+
+    margin-top: $font-indent;
+    margin-bottom: $font-indent;
+
+    &--main {
+        font-size: font-size(jumbo);
+        line-height: 1.3;
+    }
+
+    &--light {
+        position: absolute;
+        z-index: -1;
+        left: -2ch;
+        bottom: calc( 100% - 1.2rem);
+        font-size: font-size(ljumbo);
+        color: $font-color-superlight;
+        margin-bottom: $font-indent;
+    }
+}
