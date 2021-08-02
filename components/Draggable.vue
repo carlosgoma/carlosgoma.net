@@ -1,7 +1,10 @@
 <template>
-    <div class="c-draggable">
+	<transition>
+    <div class="c-draggable" :class="isLoaded ? 'is-loaded c-draggable-'+this.$route.name : 'c-draggable-'+this.$route.name" >
 
-		<div ref="dragG" class="c-draggable__item" style="z-index:1">
+		<div ref="dragG"
+		class="c-draggable__item" 
+		style="z-index:1">
 			<svg class="c-draggable__item-svg" 
 				viewBox="0 0 600 600" 
 				preserveAspectRatio="xMinYMax meet">
@@ -21,7 +24,9 @@
 			</svg>
 		</div>
 		
-		<div ref="dragO" class="c-draggable__item" style="z-index:1">
+		<div ref="dragO" 
+		class="c-draggable__item c-draggable__item-this" 
+		style="z-index:1">
 			<svg class="c-draggable__item-svg" 
 				viewBox="0 0 600 600" 
 				preserveAspectRatio="xMinYMax meet">
@@ -35,7 +40,9 @@
 			</svg>
 		</div>
 
-		<div ref="dragM" class="c-draggable__item" style="z-index:1">
+		<div ref="dragM"
+			class="c-draggable__item c-draggable__item-you" 
+			style="z-index:1">
 			<svg class="c-draggable__item-svg"
 				viewBox="0 0 600 600" 
 				preserveAspectRatio="xMinYMax meet">
@@ -49,7 +56,9 @@
 			</svg>
 		</div>
 
-		<div ref="dragA" class="c-draggable__item" style="z-index:1">
+		<div ref="dragA" 
+			class="c-draggable__item c-draggable__item-me" 
+			style="z-index:1">
 			<svg class="c-draggable__item-svg"
 				viewBox="0 0 600 600" 
 				preserveAspectRatio="xMinYMax meet">
@@ -64,6 +73,7 @@
 		</div>
 
     </div>
+	</transition>
 </template>
 
 
@@ -73,11 +83,37 @@ import interact from "interactjs";
 
 export default {
 
+	data() {
+		return {
+
+			isLoaded: false
+
+	// 		g: {
+	// 			x: null,
+	// 			y: null
+	// 		},
+	// 		o: {
+	// 			x: null,
+	// 			y: null
+	// 		},
+	// 		m: {
+	// 			x: null,
+	// 			y: null
+	// 		},
+	// 		a: {
+	// 			x: null,
+	// 			y: null
+	// 		}
+		}
+	},
+
 	mounted: function() {
 		this.initInteract( this.$refs.dragG );
 		this.initInteract( this.$refs.dragO );
 		this.initInteract( this.$refs.dragM );
 		this.initInteract( this.$refs.dragA );
+
+		this.isLoaded = true;
 	},
 
 	methods: {
@@ -97,42 +133,41 @@ export default {
 					endOnly: true,
 					elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
 				},
-				// autoScroll: false,
 				
-				onmove: this.dragMoveListener, // On Move event
-				// onend: this.onDragEnd // On End event
+				onmove: this.dragMoveListener,
+				// onend: this.onDragEnd
 			}).styleCursor(false);
 		},
+
 		dragMoveListener: function(event) {
-			// keep the dragged position in the data-x/data-y attributes
 			var x = (parseFloat(event.target.getAttribute("data-x")) || 0) + event.dx;
 			var y = (parseFloat(event.target.getAttribute("data-y")) || 0) + event.dy;
 
-			event.target.style.transform = "translate(" + x + "px, " + y + "px)"; // transform
-			event.target.setAttribute("data-x", x); // update the posiion attributes
-			event.target.setAttribute("data-y", y);
+			this.targetUpdate(event.target, x, y);
 		},
+
 		// onDragEnd: function(event) {
 		// 	this.screenX = event.target.getBoundingClientRect().left; // update state
 		// 	this.screenY = event.target.getBoundingClientRect().top; // update state
 		// },
+
 		randomPosition: function(selector) {
 			var x = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetWidth - selector.offsetWidth + 1));
 			var y = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetHeight - selector.offsetHeight + 1));
 
-			selector.style.transform = "translate(" + x + "px, " + y + "px)"; // transform
-			selector.setAttribute("data-x", x); // update the posiion attributes
-			selector.setAttribute("data-y", y);
+			this.targetUpdate(selector, x, y)
 		},
+
 		startAnime: function(event) {
 			this.$anime({
 				targets: event.target,
 				opacity: .6,
 				d: {value: event.target.getAttribute('dAnim')},
 				duration: 500,
-				begin: this.biggestIndex(event),
+				begin: this.targetIndex(event.target),
 			})
 		},
+
 		endAnime: function(event) {
 			this.$anime({
 				targets: event.target,
@@ -141,10 +176,17 @@ export default {
 				duration: 500,
 			})
 		},
-		biggestIndex: function(event) {
+
+		targetIndex: function(selector) {
 			const zIndex = [];
 			document.querySelectorAll('.c-draggable__item').forEach( element => zIndex.push(element.style.zIndex ));
-			event.target.closest('.c-draggable__item').style.zIndex = Math.max(...zIndex) + 1;
+			selector.closest('.c-draggable__item').style.zIndex = Math.max(...zIndex) + 1;
+		},
+
+		targetUpdate: function (selector, x, y) {
+			selector.style.transform = "translate(" + x + "px, " + y + "px)"; // transform
+			selector.setAttribute("data-x", x); // update the posiion attributes
+			selector.setAttribute("data-y", y);
 		}
 	}
 };
@@ -154,6 +196,20 @@ export default {
 <style lang="scss">
 
 .c-draggable {
+	-ms-touch-action: none;
+	touch-action: none;
+
+	& * {
+		-ms-touch-action: none;
+		touch-action: none;
+	}
+
+	opacity: 0;
+	&.is-loaded {
+		transition: opacity .5s;
+		opacity: 1;
+	}
+
 	position: absolute;
 	z-index: 1;
 	top: 0;
@@ -167,6 +223,7 @@ export default {
 		height: calc(15vw + 25vh);
 		position: absolute;
 		pointer-events: none;
+		transition: opacity .5s .6s;
 
 		&-svg {
 			margin-top: -4.4%;
@@ -198,6 +255,24 @@ export default {
 			}
 		}
 	}
-}
 
+	&-this {
+		.c-draggable__item:not(.c-draggable__item-this) {
+			opacity: 0;
+			transition: opacity .5s;
+		}
+	}
+	&-you {
+		.c-draggable__item:not(.c-draggable__item-you) {
+			opacity: 0;
+			transition: opacity .5s;
+		}
+	}
+	&-me {
+		.c-draggable__item:not(.c-draggable__item-me) {
+			opacity: 0;
+			transition: opacity .5s;
+		}
+	}
+}
 </style>

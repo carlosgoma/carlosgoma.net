@@ -1,5 +1,5 @@
 
-
+@use "sass:math";
 
 // Sizes
 
@@ -13,6 +13,62 @@
 }
 
 
-@function indentation() {
-	@return $line-height - 1em / 2;
+@function indentation( $h ) {
+	$calc: math.div($h * 1em - 1em, -2.1);
+	@return $calc;
+}
+
+
+
+@mixin line( $l, $from, $to, $isIndented: false ) {
+
+	$indent: 1px;
+	@if $isIndented {
+		$indent : $font-indent-pos;
+	}
+
+	@if $l == top {
+		&:before {
+			content:'';
+			pointer-events: none;
+			position: absolute;
+			top: $indent;
+			left: $from;
+			right: $to;
+			border-top: $line;
+		}
+	}
+	@else if $l == left {
+		&:before {
+			content:'';
+			pointer-events: none;
+			position: absolute;
+			left: 0;
+			top: $from;
+			bottom: $to;
+			border-left: $line;
+		}
+	}
+	@else if $l == bottom {
+		&:after {
+			content:'';
+			pointer-events: none;
+			position: absolute;
+			bottom: $indent;
+			left: $from;
+			right: $to;
+			border-bottom: $line;
+		}
+	}
+	@else if $l == right {
+		&:after {
+			content:'';
+			pointer-events: none;
+			position: absolute;
+			right: 0;
+			top: $from;
+			bottom: $to;
+			border-right: $line;
+		}
+	}
 }

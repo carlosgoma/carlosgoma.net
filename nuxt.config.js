@@ -26,7 +26,8 @@ export default {
   // -------------------------------------------------- Plugins to run before rendering page: 
   // https://go.nuxtjs.dev/config-plugins
   
-  plugins: [],
+  plugins: [
+  ],
 
   // -------------------------------------------------- Auto import components (components folder): 
   // https://go.nuxtjs.dev/config-components
@@ -38,30 +39,27 @@ export default {
   
   buildModules: [
     '@nuxtjs/style-resources', // sass
-    'nuxt-animejs' // anime
+    'nuxt-animejs', // anime
+    '@nuxtjs/device'
   ],
+
+  device: {
+    defaultUserAgent: 'Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Mobile Safari/537.36',
+    refreshOnResize: true
+  },
 
   styleResources: {
     scss: './assets/styles/config.scss',
     hoistUseStatements: true  // "@use" imports sass.
   },
 
+  
   // -- Modules
 
-  modules: [
-    // '@nuxtjs/pwa', // PWA --> https://go.nuxtjs.dev/pwa
-  ],
-
-  // pwa: {
-  //   manifest: {
-  //     lang: 'en'
-  //   }
-  // },
+  modules: [],
 
   // -------------------------------------------------- Build Configuration:
   // https://go.nuxtjs.dev/config-build
 
-  build: {
-    // transpile: ['vue-drag-resize'],
-  }
+  build: {}
 }

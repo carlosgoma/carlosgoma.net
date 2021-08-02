@@ -1,23 +1,25 @@
 
 
-@font-face {
-    font-family: 'Noto Serif';
-    font-style: normal;
-    font-weight: 400;
-    src: local(''),
-        url('~/assets/fonts/noto-serif-v11-latin-regular.woff2') format('woff2'),
-        url('~/assets/fonts/noto-serif-v11-latin-regular.woff') format('woff');
-}
-
-
 :root {
-    --space: 1.85rem;
-    --line-height: 1.85;
+    --space: 1.9rem;
+    --column-w: 11em;
+    --line-height: 1.9;
 
     --windowsHeight: 100vh;
 
-    --white: #fff;
-    --black: #111;
+    --white: #fefefe;
+    --black: #222;
+    --gray-dark: #666;
+    --gray: #aaa;
+    --gray-light: #eee; 
+    --red: #FC2727;
+    --red-light: #fda8a8;
+    --blue: #29ABE2;
+    --blue-light: #a8dcf2;
+    --yellow: #F4EF3B;
+    --yellow-light: #faf8b0;
+
+    --page-color: #bbb;
 }
 
 
@@ -27,14 +29,25 @@ body,
     height: 100%;
 }
 
-body {
-    overflow-y: scroll;
-}
-
 html {
     height: 100%;
     font-family: $font-family; 
     color: $font-color;
     line-height: var(--line-height);
+    background-color: $white;
 }
 
+body {
+    overflow-y: scroll;
+    font-size: 0.9em;
+    @media (min-width: 24em) {
+        font-size: calc(0.9em + (1.1 - 0.9) * ((100vw - 24em) / (66 - 24)));
+    }
+    @media (min-width: 66em) {
+        font-size: 1.1em;
+    }
+}
+
+img {
+    max-width: 100%;
+}

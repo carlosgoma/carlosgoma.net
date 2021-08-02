@@ -2,24 +2,24 @@
 
     <article class="p-me o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
         <header class="p-me__header o-grid__header">
-            <h2 class="p-me__title o-title o-title--main">
+            <h2 class="p-me__title o-title o-title--main t-title">
                 <span>Hi! My name is Carlos.</span>
                 <span>I’m a creative front-end developer.</span>
             </h2>
         </header>
         
-        <picture class="p-me__picture">
-			imagen
+        <picture class="p-me__picture .o-picture t-section">
+			<img src="~assets/images/portrait.jpg" alt="Carlos portrait">
         </picture>
         
-        <div class="p-me__intro">
+        <div class="p-me__intro t-section">
 			<div class="o-text">
 				<p>I design and program interfaces for digital products that improve the user experience.</p>
 				<p>In my work I pursue two things. On one side, write “clean code”, for real, code easily readable and maintainable. On the other side, a fully detailed and meaningful design.</p>
 			</div>
 		</div>
 
-        <div class="p-me__past">
+        <div class="p-me__past t-section">
 			<h3 class="p-me__past-title o-title o-title--light">Past</h3>
 			<div class="o-text">
 				<p>I started to do websites in 2013. Since then I've been improving my skills in programming, web design, UX and marketing online.</p>
@@ -27,17 +27,21 @@
 			</div>
 		</div>
 
-		<blockquote class="p-me__quote">
+		<blockquote class="p-me__quote t-section">
 			<p class="p-me__quote-text">
-				<svg class="p-me__quote-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/></svg>	
+				<img src="~/assets/images/blade_runner.jpg" class="p-me__quote-img" v-show="isQuoteOver" alt="Blade Runner">
+				<svg @mouseenter="isQuoteOver=true" @mouseleave="isQuoteOver=false" class="p-me__quote-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+					<title>Blade Runner</title>
+					<path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/>
+				</svg>	
 				I've seen bugs you people wouldn't believe.
 			</p>
 		</blockquote>
 
-        <div class="p-me__present">
+        <div class="p-me__present t-section">
 			<h3 class="p-me__present-title o-title o-title--light">Present</h3>
 			<div class="o-text">
-				<p>Currently I’m working in <a href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiple webapp around the booking process experience. I work with React, Redux and Axios.</p>
+				<p>Currently I’m working in <a class="p-me__link o-link" href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiples webapps around the hotel's booking process experience. I work with <cite>React</cite>, <cite>Redux</cite> and <cite>Axios</cite>.</p>
 			</div>
 		</div>
 
@@ -45,17 +49,24 @@
 
 </template>
 
+<script>
+	export default {
+		data() {
+			return{
+				isQuoteOver: false
+			}
+		}
+	}
+</script>
+
 
 <style lang="scss">
 
 	.p-me {
+		--page-color: var(--yellow-light);
+
 		position: relative;
 		z-index: 2;
-
-		&__title {
-			display: flex;
-			flex-direction: column;
-		}
 
 		&__picture {
 			@media ( min-width: $mobile ) {
@@ -65,10 +76,28 @@
 		}
 
 		&__intro {
+			position: relative;
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 2;
+				
+				@include line(left, 0, calc(var(--space) * -3));
+
+				&::after {
+					content: "";
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					right: 33%;
+					border-bottom: $line-black;
+				}
+
+				p + p  {
+					position: relative;
+					@include line(top, calc( var(--space) * -1), 85%, true);
+				}
 			}
+			
 		}
 
 		&__past {
@@ -76,34 +105,61 @@
 			@media ( min-width: $mobile ) {
 				grid-column: 5/8;
 				grid-row: 3;
+
+				@include line(right, calc(var(--space) * -3), 50%);
+				@include line(top, -75%, calc(var(--space) * -1));
 			}
 		}
 		&__quote {
-			display: flex;
-			justify-content: flex-end;
 			@media ( min-width: $mobile ) {
-				grid-column: 2/-1;
+				grid-column: 3/-1;
 				grid-row: 4;
+				position: relative;
+				margin-top: space(m);
+				margin-bottom: space(m);
+				@include line(bottom, calc( var(--space) * -2), calc(90%));
 			}
 
 			&-text {
 				font-size: font-size(jumbo);
 				font-style: italic;
+				line-height: 1.3;
+				margin-top: indentation(1.4);
+				margin-bottom: indentation(1.45);
 				color: $font-color-light;
 				position: relative;
+				margin-left: space(m);
+
+				@media ( min-width: $mobile ) {
+					margin-left: space(l);
+				}
 			}
 			&-svg {
 				position: absolute;
 				top: 50%;
 				left: 0;
-				width: 3.5em;
-				height: 3.5em;
+				width: 2.7em;
+				height: 2.7em;
 				opacity: .6;
-				transform: translate(-50%,-50%);
-				z-index: -1;
+				transform: translate(calc(var(--space) * -1.4),-50%);
+				mix-blend-mode: darken;
+				cursor: help;
 				path {
 					fill: $yellow;
 				}
+				&:hover {
+					mix-blend-mode: overlay;
+				}
+				@media ( min-width: $mobile ) {
+					transform: translate(-50%,-50%);
+				}
+			}
+			&-img {
+				position: absolute;
+				z-index: -1;
+				bottom: .26em;
+				left: 0;
+				transform: translateX(-50%);
 			}
 		}
 		&__present {
@@ -111,12 +167,12 @@
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 5;
+				
+				@include line(left, calc(var(--space) * -3), 0);
+				@include line(bottom, calc(var(--space) * -1), 50%);
 			}
 		}
 
 	}
 
-	picture {
-		background-color: #eee;
-	}
 </style>

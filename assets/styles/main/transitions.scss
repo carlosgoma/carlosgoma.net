@@ -1,0 +1,47 @@
+
+
+
+.page {
+
+    &-leave-to,
+    &-enter {
+        .t-title span {
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            transform: translateY(80%);
+        }
+        .t-section {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+    }
+    
+    &-leave,
+    &-enter-to {
+        .t-title span {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transform: translateY(0);
+        }
+        .t-section {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &-leave-active,
+    &-enter-active {
+        .t-title span {
+            transition: .5s cubic-bezier(.47,1.64,.41,.8);
+        }
+        .t-section {
+            transition: .5s ease-in-out;
+        }
+        transition: .5s;
+    }
+    &-enter-active {
+        .t-title span + span,
+        .t-section + .t-section {
+            transition-delay: .15s;
+        }
+    }
+
+}

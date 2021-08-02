@@ -7,7 +7,7 @@
                 <span>personal website.</span>
             </h2>
         </header>
-        <p class="p-home__message">
+        <p class="p-home__message" v-if="$device.isDesktop">
             Based in actual events. More information in your browser <strong>console</strong>.
         </p>
     </article>
@@ -45,7 +45,7 @@
             font-size: font-size(xs);
             transform: rotate(180deg);
             letter-spacing: 0.05em;
-            margin-right: space(s);
+            margin-right: space(xs);
         }
     }
 

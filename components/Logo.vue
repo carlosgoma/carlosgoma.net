@@ -45,8 +45,15 @@
         position: relative;
         z-index: 3;
         pointer-events: auto;
-        margin: space(m);
-        width: 70px;
+        margin-top: space(s);
+        margin-left: space(s);
+        width: 55px;
+
+        @media ( min-width: $mobile ) {
+            width: 60px;
+            margin-top: space(m);
+            margin-left: space(m);
+        }
 
         &__link {
             display: flex;
@@ -61,6 +68,9 @@
             opacity: 0;
             pointer-events: none;
             text-decoration: none;
+            font-size: .75em;
+            color: $black;
+            letter-spacing: 0.02em;
 
             .c-logo:hover & {
                 transition: .6s;
