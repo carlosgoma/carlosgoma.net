@@ -1,25 +1,24 @@
 <template>
+	<article class="p-me o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
+		<header class="p-me__header o-grid__header">
+			<h2 class="p-me__title o-title o-title--main t-title">
+				<span>Hi! My name is Carlos.</span>
+				<span>I’m a creative front-end developer.</span>
+			</h2>
+		</header>
 
-    <article class="p-me o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
-        <header class="p-me__header o-grid__header">
-            <h2 class="p-me__title o-title o-title--main t-title">
-                <span>Hi! My name is Carlos.</span>
-                <span>I’m a creative front-end developer.</span>
-            </h2>
-        </header>
-        
-        <picture class="p-me__picture .o-picture t-section">
+		<picture class="p-me__picture .o-picture t-section">
 			<img src="~assets/images/portrait.jpg" alt="Carlos portrait">
-        </picture>
-        
-        <div class="p-me__intro t-section">
+		</picture>
+
+		<div class="p-me__intro t-section">
 			<div class="o-text">
 				<p>I design and program interfaces for digital products that improve the user experience.</p>
 				<p>In my work I pursue two things. On one side, write “clean code”, for real, code easily readable and maintainable. On the other side, a fully detailed and meaningful design.</p>
 			</div>
 		</div>
 
-        <div class="p-me__past t-section">
+		<div class="p-me__past t-section">
 			<h3 class="p-me__past-title o-title o-title--light">Past</h3>
 			<div class="o-text">
 				<p>I started to do websites in 2013. Since then I've been improving my skills in programming, web design, UX and marketing online.</p>
@@ -33,20 +32,19 @@
 				<svg @mouseenter="isQuoteOver=true" @mouseleave="isQuoteOver=false" class="p-me__quote-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<title>Blade Runner</title>
 					<path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/>
-				</svg>	
+				</svg>
 				I've seen bugs you people wouldn't believe.
 			</p>
 		</blockquote>
 
-        <div class="p-me__present t-section">
+		<div class="p-me__present t-section">
 			<h3 class="p-me__present-title o-title o-title--light">Present</h3>
 			<div class="o-text">
 				<p>Currently I’m working in <a class="p-me__link o-link" href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiples webapps around the hotel's booking process experience. I work with <cite>React</cite>, <cite>Redux</cite> and <cite>Axios</cite>.</p>
 			</div>
 		</div>
 
-    </article>
-
+	</article>
 </template>
 
 <script>
@@ -80,7 +78,7 @@
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 2;
-				
+
 				@include line(left, 0, calc(var(--space) * -3));
 
 				&::after {
@@ -97,7 +95,7 @@
 					@include line(top, calc( var(--space) * -1), 85%, true);
 				}
 			}
-			
+
 		}
 
 		&__past {
@@ -167,7 +165,7 @@
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 5;
-				
+
 				@include line(left, calc(var(--space) * -3), 0);
 				@include line(bottom, calc(var(--space) * -1), 50%);
 			}

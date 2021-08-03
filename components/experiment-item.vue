@@ -1,24 +1,22 @@
 <template>
 
     <section class="p-this__experiment">
-        <a v-if="experiment.isOut"
-            :href="experiment.url"
-            target="_blank"
+        <nuxt-link
+            :to="experiment.url"
             class="p-this__experiment-link">
-            <!-- <header class="p-this__experiment-header"> -->
-                <h2 class="p-this__experiment-title">{{experiment.name}}</h2>
-                <time class="p-this__experiment-time" :datetime="experiment.year">{{experiment.year}}</time>
-                <svg :class="['p-this__experiment-arrow', {'p-this__experiment-arrow--out': experiment.isOut}]"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
-                </svg>
-            <!-- </header> -->
+
+            <h2 class="p-this__experiment-title">{{experiment.name}}</h2>
+            <time class="p-this__experiment-time" :datetime="experiment.year">{{experiment.year}}</time>
+            <svg :class="['p-this__experiment-arrow', {'p-this__experiment-arrow--out': experiment.isOut}]"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
+            </svg>
             <picture class="p-this__experiment-figure">
                 <source :srcset="require(`~/assets/images/${experiment.img.desktop}`)" media="(min-width: 500px)">
                 <img class="p-this__experiment-img" loading="lazy" :src="require(`~/assets/images/${experiment.img.mobile}`)" 
                     :alt="experiment.name">
             </picture>
-        </a>
+        </nuxt-link>
         <ul class="p-this__experiment-list">
             <li v-for="item in experiment.info" :key="item">
                 <cite>{{item}}</cite>

@@ -1,17 +1,15 @@
 <template>
-
-    <article class="p-home" role="article" itemscope itemtype="http://schema.org/WebPage">
-        <header class="p-home__header">
-            <h2 class="p-home__title">
-                <span>Just another</span>
-                <span>personal website.</span>
-            </h2>
-        </header>
-        <p class="p-home__message" v-if="$device.isDesktop">
-            Based in actual events. More information in your browser <strong>console</strong>.
-        </p>
-    </article>
-
+	<article class="p-home" role="article" itemscope itemtype="http://schema.org/WebPage">
+		<header class="p-home__header">
+			<h2 class="p-home__title t-title">
+				<span>Just another</span>
+				<span>personal website.</span>
+			</h2>
+		</header>
+		<p class="p-home__message t-fade" v-if="$device.isDesktop">
+			Based in actual events. More information in your browser <strong>console</strong>.
+		</p>
+	</article>
 </template>
 
 <style lang="scss">
@@ -19,6 +17,7 @@
     .p-home {
         display: grid;
         align-items: flex-end;
+		height: 100%;
 
         &__header {
             padding: space(vh) space(m);

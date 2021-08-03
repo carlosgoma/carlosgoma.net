@@ -1,9 +1,9 @@
 <template>
     <nav class="c-nav" :class="$device.isDesktop ? 'c-nav--desktop' : 'c-nav--mobile'">
-        <nuxt-link class="c-nav__link" 
-            to="/this" 
-            active-class="" 
-            exact-active-class="c-nav__link--active"> 
+        <nuxt-link class="c-nav__link"
+            to="/this"
+            active-class=""
+            exact-active-class="c-nav__link--active">
             <span class="c-nav__link-title">This</span>
             <div class="c-nav__link-shape" v-if="$device.isDesktop" @mouseover="mouseover" @mouseleave="mouseleave">
                 <svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
@@ -11,9 +11,9 @@
                 </svg>
             </div>
         </nuxt-link>
-        <nuxt-link class="c-nav__link" 
-            to="/you" 
-            active-class="" 
+        <nuxt-link class="c-nav__link"
+            to="/you"
+            active-class=""
             exact-active-class="c-nav__link--active">
             <span class="c-nav__link-title">You</span>
             <div class="c-nav__link-shape" v-if="$device.isDesktop"  @mouseover="mouseover" @mouseleave="mouseleave">
@@ -22,9 +22,9 @@
                 </svg>
             </div>
         </nuxt-link>
-        <nuxt-link class="c-nav__link" 
-            to="/me" 
-            active-class="" 
+        <nuxt-link class="c-nav__link"
+            to="/me"
+            active-class=""
             exact-active-class="c-nav__link--active">
             <span class="c-nav__link-title">Me</span>
             <div class="c-nav__link-shape" v-if="$device.isDesktop" @mouseover="mouseover" @mouseleave="mouseleave">
@@ -39,11 +39,11 @@
 <script>
 
     export default {
-        
+
         methods: {
 
             rotation: function (event) {
-                
+
                 let radian = Math.atan2(event.offsetX - event.target.offsetWidth / 2, event.offsetY - event.target.offsetHeight / 2);
                 let rotation = (radian * (180/ Math.PI) * -1) + 0;
                 event.target.getElementsByTagName("svg")[0].style.transform = `rotate(${Math.floor(rotation)}deg)`;
@@ -52,7 +52,7 @@
             mouseover: function (event) {
 
 				this.rotation(event);
-	
+
 				const timeline = this.$anime.timeline({
 					targets: event.target.getElementsByTagName("path")[0],
 					d: [
@@ -60,7 +60,7 @@
 						{ easing: "easeOutElastic(1, .6)", value: "M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"},
 					],
 					fill: [
-						{value: '#fff'}, 
+						{value: '#fff'},
 						{ value: '#000'}
 					],
 					stroke: [
@@ -117,7 +117,7 @@
 		justify-content: space-between;
 		padding: space(s);
 		overflow: hidden;
-		
+
 		@media (min-width: $mobile ) {
 			padding: space(m);
 		}
@@ -141,16 +141,16 @@
 				height: 4em;
 			}
 
-			.c-nav--mobile &:not(.c-nav__link--active) {
-				background: $black;
-				color: $white;
-			}
+			// .c-nav--mobile &:not(.c-nav__link--active) {
+			// 	background: $black;
+			// 	color: $white;
+			// }
 
 			&-title {
                 position: relative;
                 z-index: 2;
                 pointer-events: none;
-                
+
             }
 
             &-shape {
@@ -162,6 +162,7 @@
                 border-radius: 50%;
             }
             &-svg {
+				transform-origin: 50%;
                 position: absolute;
                 top: -15%;
                 left: -15%;

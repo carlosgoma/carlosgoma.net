@@ -15,19 +15,19 @@
 		<div class="p-you__hiring t-section">
 			<div class="o-text">
 				<h3 class="p-you__past-title o-title o-title--secundary">Are you hiring in Ho Chi Minh City?</h3>
-				<p>I’m living here! If you are looking for an appasionated front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you already have some doubts please click <a href="/hirehim/index.html" class="o-link" target="_blank" title="Do it!">here</a>.</p>			
+				<p>I’m living here! If you are looking for an appasionated front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you already have some doubts please click <a href="/hirehim/index.html" class="o-link" target="_blank" title="Do it!">here</a>.</p>
 				<div class="p-you__email">
 					<span v-if="isLabelShown" ref="label" class="p-you__email-label">{{labelText}}</span>
 					<button
 						v-if="$device.isDesktop"
-						@click="copyToClipboard('carlosgoma@gmail.com')" 
-						@mouseenter="isLabelShown = true" 
-						@mouseleave="labelReset" 
-						@mousemove="labelMove" 
+						@click="copyToClipboard('carlosgoma@gmail.com')"
+						@mouseenter="isLabelShown = true"
+						@mouseleave="labelReset"
+						@mousemove="labelMove"
 						class="p-you__email-link o-link">
 						carlosgoma@gmail.com
 					</button>
-					<a v-else 
+					<a v-else
 						href="mailto:carlosgoma@gmaill.com"
 						target="_blank"
 						class="p-you__email-link o-link">
@@ -42,7 +42,6 @@
 				<p>Otherwise, if you are a friend, call me after the lockdown. I’m wishing to have a coffee with you.</p>
 			</div>
 		</div>
-
 	</article>
 </template>
 

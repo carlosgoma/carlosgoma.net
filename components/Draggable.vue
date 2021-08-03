@@ -79,31 +79,11 @@
 
 <script>
 
-import interact from "interactjs";
-
 export default {
 
 	data() {
 		return {
-
 			isLoaded: false
-
-	// 		g: {
-	// 			x: null,
-	// 			y: null
-	// 		},
-	// 		o: {
-	// 			x: null,
-	// 			y: null
-	// 		},
-	// 		m: {
-	// 			x: null,
-	// 			y: null
-	// 		},
-	// 		a: {
-	// 			x: null,
-	// 			y: null
-	// 		}
 		}
 	},
 

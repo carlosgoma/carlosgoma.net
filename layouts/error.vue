@@ -10,7 +10,7 @@
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .p-error {
         display: grid;
         align-items: flex-end;

@@ -1,5 +1,7 @@
 export default {
 
+  target: 'static', // Static hosting
+
   // -------------------------------------------------- Global page headers:
   // https://go.nuxtjs.dev/config-head
 
@@ -13,7 +15,15 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {
+        hid: 'interactjs',
+        src: '/scripts/interact.min.js',
+        defer: true
+      }
     ]
+    
   },
 
   // -------------------------------------------------- Global CSS: 
@@ -27,6 +37,7 @@ export default {
   // https://go.nuxtjs.dev/config-plugins
   
   plugins: [
+    '~/plugins/v-toolip.js'
   ],
 
   // -------------------------------------------------- Auto import components (components folder): 
@@ -40,7 +51,7 @@ export default {
   buildModules: [
     '@nuxtjs/style-resources', // sass
     'nuxt-animejs', // anime
-    '@nuxtjs/device'
+    '@nuxtjs/device',
   ],
 
   device: {
