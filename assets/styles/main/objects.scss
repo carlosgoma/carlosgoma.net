@@ -29,8 +29,8 @@
 
 .o-text {
 	margin-top: $font-indent;
-	margin-bottom: $font-indent;    
-	
+	margin-bottom: $font-indent;
+
 	display: grid;
 	gap: space(m);
 
@@ -63,7 +63,7 @@
 		color: $font-color-superlight;
 		line-height: 1;
 		text-indent: -0.1em;
-		
+
 		@media ( min-width: $mobile ) {
 			position: absolute;
 			line-height: 0.7;
@@ -109,12 +109,83 @@
 
 
 
+.c-nav {
+	overflow: hidden;
+	padding: space(s);
+
+	&__link {
+		position: relative;
+		z-index: 3;
+		pointer-events: auto;
+		color: $black;
+		width: 4em;
+		height: 4em;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		transition: color 0s .1s;
+
+		&-title {
+			position: relative;
+			z-index: 2;
+			pointer-events: none;
+			.is-over & {
+				color: $white;
+			}
+		}
+
+		&-shape {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 50%;
+		}
+		&-svg {
+			transform-origin: 50%;
+			position: absolute;
+			top: -15%;
+			left: -15%;
+			right: -15%;
+			bottom: -15%;
+			pointer-events: none;
+		}
+
+		&-path {
+			fill: #fff;
+			stroke: #888;
+			stroke-width: 1px;
+			.is-over & {
+				fill: $black;
+				stroke: $black;
+			}
+		}
+
+		&:disabled,
+		&--active {
+			pointer-events: none;
+			background: $gray-light;
+			.c-nav__link-title {
+				color: $black;
+			}
+			.c-nav__link-shape {
+				display: none;
+			}
+			svg {
+				stroke: $gray;
+			}
+		}
+	}
+}
+
+
+
 
 .v-popover {
-
-	.trigger {
-		width: 100%;
-	}
+	display: grid;
 }
 
 .tooltip {

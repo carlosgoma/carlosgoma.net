@@ -6,8 +6,6 @@
 			<svg id="space"
 				xmlns="http://www.w3.org/2000/svg"
 				xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-				width="1300px"
-				height="900px"
 				viewBox="0 0 1300 900"
 				enable-background="new 0 0 1300 900"
 				xml:space="preserve">
@@ -439,6 +437,7 @@
 			13% 87%, 13% 70%, 0% 62%,   8% 50%,  0% 37%,   13% 30%
 		);
 		animation: rotate 6s infinite linear;
+		transform-origin: 50%;
 		@keyframes rotate {
 			100% {
 				transform: rotate(90deg);

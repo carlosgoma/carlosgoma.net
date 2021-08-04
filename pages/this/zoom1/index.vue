@@ -358,6 +358,11 @@
 
 		</client-only>
 
+		<div class="c-alert-landscape">
+			<svg class="c-alert-landscape__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" ><path d="M18 24h-12c-1.104 0-2-.896-2-2v-20c0-1.104.896-2 2-2h12c1.104 0 2 .896 2 2v20c0 1.104-.896 2-2 2zm1-5.083h-14v3.083c0 .552.449 1 1 1h12c.552 0 1-.448 1-1v-3.083zm-7 3c-.553 0-1-.448-1-1s.447-1 1-1c.552 0 .999.448.999 1s-.447 1-.999 1zm7-17h-14v13h14v-13zm-1-3.917h-12c-.551 0-1 .449-1 1v1.917h14v-1.917c0-.551-.448-1-1-1zm-4.5 1.917h-3c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h3c.276 0 .5.224.5.5s-.224.5-.5.5z"/></svg>
+			<p class="c-alert-landscape__text">Sorry! this experiment only works in landscape resolutions</p>
+		</div>
+
 	</article>
 </template>
 
@@ -394,13 +399,18 @@
 
 .p-zoom1 {
 	background-color: #eaeae8;
+    height: 100%;
+	position: relative;
+	overflow: hidden;
 
     img {
         height: 100%;
     }
+
+	@media (orientation: portrait) {
+		max-height: calc(var(--windowsHeight) - 6.2em);
+	}
 }
-
-
 .zoomViewport {
 	opacity: 0;
 }
@@ -411,17 +421,14 @@
 		100% { opacity: 1;}
 	}
 }
-
-
-
 .level0, .level1, .level2 {
 	position: relative;
 }
 .level0 {
-	height: 100vh;
 	overflow: hidden;
 	background: #d5eaef;
 	text-align: center;
+	height: 100vh;
 }
 #cara {
 	position: absolute;
@@ -509,6 +516,39 @@
     width: 70vh;
     transform: translateX(-50%);
 }
-
+.c-alert-landscape {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+	gap: space(m);
+	padding: space(m);
+	flex-direction: column;
+	opacity: .5;
+	&__text {
+		max-width: 30ch;
+		font-size: calc( 1em + 1.2vw);
+		line-height: 1.6;
+		text-align: center;
+	}
+	&__svg {
+		width: 15vw;
+		height: 15vw;
+		opacity: .6;
+		animation: landscape 1s 1s forwards;
+		transform-origin: 50% 50%;
+		@keyframes landscape {
+			0% { transform: rotate(0);}
+			100% { transform: rotate(90deg);}
+		}
+	}
+	&.is-active {
+		display: flex;
+	}
+}
 
 </style>

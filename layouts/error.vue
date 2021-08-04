@@ -14,6 +14,7 @@
     .p-error {
         display: grid;
         align-items: flex-end;
+		height: 100%;
 
         &__header {
             padding: space(vh) space(m);

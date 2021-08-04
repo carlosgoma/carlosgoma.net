@@ -8,7 +8,7 @@
 		</header>
 
 		<picture class="p-me__picture .o-picture t-section">
-			<img src="~assets/images/portrait.jpg" alt="Carlos portrait">
+			<img src="~assets/images/portrait.jpg" width="400" height="472" alt="Carlos portrait">
 		</picture>
 
 		<div class="p-me__intro t-section">
@@ -28,8 +28,8 @@
 
 		<blockquote class="p-me__quote t-section">
 			<p class="p-me__quote-text">
-				<img src="~/assets/images/blade_runner.jpg" class="p-me__quote-img" v-show="isQuoteOver" alt="Blade Runner">
-				<svg @mouseenter="isQuoteOver=true" @mouseleave="isQuoteOver=false" class="p-me__quote-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<img src="~/assets/images/blade_runner.jpg" class="p-me__quote-img" v-show="isQuoteOver" width="250" height="141" alt="Blade Runner">
+				<svg @mouseenter="isQuoteOver=true" @mouseleave="isQuoteOver=false" class="p-me__quote-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 					<title>Blade Runner</title>
 					<path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/>
 				</svg>

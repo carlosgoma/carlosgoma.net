@@ -5,9 +5,6 @@
 			<h1 class="p-this__title o-title o-title--main t-title">
 				<span>This is my sandbox</span>
 			</h1>
-			<figure v-if="$device.isDesktop" class="p-this__ascii t-section">
-				<pre>{{ascii}}</pre>
-			</figure>
 		</header>
 
 		<div class="p-this__intro t-section">
@@ -21,6 +18,12 @@
 				v-for="experiment in experiments"
 				:key="experiment.id"
 				:experiment="experiment" />
+
+			<div class="p-this__experiment">
+				<figure v-if="$device.isDesktop" class="p-this__ascii">
+					<pre>{{ascii}}</pre>
+				</figure>
+			</div>
 		</div>
 	</article>
 </template>
@@ -133,23 +136,23 @@ __  /  _,-----._      )           |  \\ \\.
 
 		}
 
-		// &__header {
-		// 	position: relative;
-		// }
-
 		&__ascii {
-			position: absolute;
-			top: space(m);
-			right: space(m);
 			overflow: hidden;
 			max-width: 100%;
+			display: flex;
+			justify-content: flex-end;
 
 			pre {
-				margin-top: -1ex;
 				line-height: 1.2;
-				color: $blue;
-				opacity: .5;
-				font-size: .8vw;
+				color: $gray;
+				font-size: 2.24vw;
+
+				@media (min-width: $mobile) {
+					font-size: 1.47vw;
+				}
+				@media (min-width: 76rem) {
+					font-size: 1.3em;
+				}
 			}
 		}
 

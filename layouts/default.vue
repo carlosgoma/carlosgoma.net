@@ -17,20 +17,22 @@
 <script>
 
 export default {
+	name: "default",
 
 	created() {
 		// this.hello();
 	},
 
 	mounted () {
-		window.vue = this
+		window.carlosgoma = this;
+		document.body.style.setProperty('--windowheight', window.innerHeight + "px" );
 	},
 
 	methods: {
 
 		runDevMode: function() {
 			// this.$auth.$storage
-			console.log(this.$store);
+			console.log('Running!');
 		},
 
 		hello: function() {

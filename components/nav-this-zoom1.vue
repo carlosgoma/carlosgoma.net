@@ -14,11 +14,12 @@
 		<div class="t-fade">
 			<button class="c-nav__link c-nav__control zoomButton" title="Zoom in" data-type="next" data-root=".zoomViewport" disabled>
 				<svg class="c-nav__control-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					width="20" height="20"
 					viewBox="0 0 20 20" xml:space="preserve">
 					<line x1="10.1" y1="1" x2="10.1" y2="19.1"/>
 					<line x1="19.1" y1="10.1" x2="1" y2="10.1"/>
 				</svg>
-				<span class="c-nav__link-shape" v-if="$device.isDesktop" @mouseover="mouseover" @mouseleave="mouseleave">
+				<span class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
 					<svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
 						<path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
 					</svg>
@@ -28,10 +29,11 @@
 		<div class="t-fade">
 			<button class="c-nav__link c-nav__control zoomButton" title="Zoom out" data-type="prev" data-root=".zoomViewport">
 				<svg class="c-nav__control-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					width="20" height="20"
 					viewBox="0 0 20 20" xml:space="preserve">
 					<line x1="19.1" y1="10.1" x2="1" y2="10.1"/>
 				</svg>
-				<span class="c-nav__link-shape" v-if="$device.isDesktop" @mouseover="mouseover" @mouseleave="mouseleave">
+				<span class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
 					<svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
 						<path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
 					</svg>
@@ -43,7 +45,7 @@
 			active-class=""
 			exact-active-class="c-nav__link--active">
 			<span class="c-nav__link-title">This</span>
-			<span class="c-nav__link-shape" v-if="$device.isDesktop" @mouseover="mouseover" @mouseleave="mouseleave">
+			<span class="c-nav__link-shape" @mouseover="mouseover" @mouseleave="mouseleave">
 				<svg class="c-nav__link-svg" viewBox="0 0 90 90" preserveAspectRatio="xMinYMax meet">
 					<path class="c-nav__link-path" d="M80,45c0,8.8,-3.3,16.9,-8.6,23c-6.4,7.4,-15.9,12,-26.4,12s-20,-4.6,-26.4,-12c-5.3,-6.1,-8.6,-14.2,-8.6,-23c0,-19.3,15.7,-35,35,-35s35,15.7,35,35z"></path>
 				</svg>
@@ -107,124 +109,58 @@
 
 <style lang="scss" scoped>
 
-	.c-nav {
-		display: flex;
-		height: 100%;
+.c-nav {
+	display: flex;
+	height: 100%;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+	gap: space(s);
+
+
+	@media (orientation: landscape) {
 		flex-direction: column;
-		justify-content: flex-end;
-		gap: space(s);
+	}
+
+	@media (min-width: $mobile ) {
 		padding: space(m) space(s);
-		overflow: hidden;
+	}
 
-		&__link {
+	&__control {
+
+		&-svg {
 			position: relative;
-			z-index: 3;
-			pointer-events: auto;
-			color: $black;
-			width: 65px;
-			height: 65px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-decoration: none;
-			transition: color 0s .1s;
-
-			@media (min-width: $mobile ) {
-				width: 4em;
-				height: 4em;
-			}
-
-			&-title {
-				position: relative;
-				z-index: 2;
-				pointer-events: none;
-				.is-over & {
-					color: $white;
-				}
-			}
-
-			&-shape {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				border-radius: 50%;
-			}
-
-			&-svg {
-			    transform-origin: 50% 50%;
-				position: absolute;
-				top: -15%;
-				left: -15%;
-				right: -15%;
-				bottom: -15%;
-				pointer-events: none;
-			}
-
-			&-path {
-				fill: $white;
-				stroke: $gray-dark;
-				transition: fill .1s;
-				stroke-width: 1px;
-
-				.is-over & {
-					fill: $black;
-					stroke: $black;
-				}
-			}
-
-			&:disabled,
-			&--active {
-				pointer-events: none;
-				background-color: $gray-light;
-				color: $black;
-				.c-nav__link-shape {
-					display: none;
-				}
-				svg {
-					stroke: $gray;
-				}
-			}
-
-
+			z-index: 2;
+			pointer-events: none;
+			width: 1.5em;
+			height: 1.5em;
+			stroke-width: 1;
+			stroke: $white;
 		}
 
-		&__control {
-
-			&-svg {
-				position: relative;
-				z-index: 2;
-				pointer-events: none;
-				width: 1.5em;
-				height: 1.5em;
-				stroke-width: 1;
-				stroke: $white;
-			}
-
-			.c-nav__link-path {
-				fill: $black;
-				stroke: $black;
-			}
-			&.is-active {
-				.c-nav__link-path {
-					fill: #ed1c24;
-					stroke: #ed1c24;
-				}
-			}
-
-		}
-
-		&__info {
-			padding: space(xs) 0;
-			width: 100%;
-
-			.open &,
-			&:hover {
-				text-decoration: underline;
-			}
+		.c-nav__link-path {
+			fill: $black;
+			stroke: $black;
 		}
 	}
+
+	&__info {
+		padding: space(xs);
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@media (orientation: landscape) {
+			padding: space(xs) 0;
+		}
+
+		.open &,
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+}
 
 </style>

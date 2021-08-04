@@ -2,10 +2,9 @@
     <div :class="['c-logo', 'c-logo--' + $route.name]" v-on:mouseenter="startAnime">
         <nuxt-link class="c-logo__link" to="/" active-class="" exact-active-class="c-logo__link--active">
             <svg class="c-logo__svg"
-                xmlns="http://www.w3.org/2000/svg" 
-                xmlns:xlink="http://www.w3.org/1999/xlink" 
                 x="0px" y="0px"
-                viewBox="0 0 140 140" 
+				width="60" height="60"
+                viewBox="0 0 140 140"
                 xml:space="preserve"
                 style="overflow: visible">
                 <path class="c-logo__svg-g" d="M70,35c0,19.3-15.7,35-35,35S0,54.3,0,35S15.7,0,35,0v35H70z"/>
@@ -13,7 +12,7 @@
                 <polygon class="c-logo__svg-m" points="70,140 0,140 0,70 35,105 70,70 "/>
                 <polygon class="c-logo__svg-a" points="105,70 70,140 140,140 "/>
             </svg>
-            <h1 v-if="this.$route.name == 'index'" class="c-logo__title">
+            <h1 v-if="this.$route.name == 'index'" class="c-logo__title c-logo__title--horizontal">
                 carlosgoma.net
             </h1>
             <span v-else :class="['c-logo__title',  isExperimentPage ? 'c-logo__title--vertical': 'c-logo__title--horizontal']">
@@ -71,15 +70,23 @@
             line-height: 1;
         }
 
+		&__svg {
+			width: 100%;
+			height: auto;
+		}
+
         &__title {
             position: absolute;
             opacity: 0;
             pointer-events: none;
-            
+
             &--vertical {
                 top: calc(100% + var(--space) / 2);
                 writing-mode: vertical-lr;
                 transform: translateY(20px);
+				@media (min-width: $mobile) {
+					display: none;
+				}
 
                 .c-logo:hover & {
                     transform: translateY(0);
@@ -117,6 +124,13 @@
                     fill: #ed1c24;
                 }
             }
+
+			@media (orientation: portrait) {
+				color: $white;
+				svg {
+					fill: $white
+				}
+			}
         }
         &--this-zoom1 {
             &:hover {
