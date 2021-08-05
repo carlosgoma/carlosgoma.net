@@ -1,6 +1,13 @@
 
 <template>
-	<div class="l-layout" :class="['l-layout--' + $route.name, {'is-desktop': $device.isDesktop }]">
+	<div class="l-layout"
+		:class="['l-layout--' + $route.name, {
+			'is-desktop': $device.isDesktop,
+			'is-developer-view': this.$store.getters.developerView
+		}]">
+		<div class="l-layout__view-tag" v-if="this.$store.getters.developerView">
+			Developer view
+		</div>
 		<header class="l-layout__header">
 			<logo/>
 		</header>
@@ -19,35 +26,10 @@
 export default {
 	name: "default",
 
-	created() {
-		// this.hello();
-	},
-
 	mounted () {
-		window.carlosgoma = this;
-		document.body.style.setProperty('--windowheight', window.innerHeight + "px" );
+		window.runDeveloperView = this.$runDeveloperView;
+		window.stopDeveloperView = this.$stopDeveloperView;
 	},
-
-	methods: {
-
-		runDevMode: function() {
-			// this.$auth.$storage
-			console.log('Running!');
-		},
-
-		hello: function() {
-
-			console.warn('Parental Advisory : explicit content.');
-			console.log('%cHere you are!', 'font-size: 3em; padding: 30px 10px 10px; line-height: 1.5;');
-			console.log('%c ', 'background: url("http://carlosgoma.net/images/bill_murray.jpg") center no-repeat; margin: 30px 10px; padding: 125px 100px; background-size: 100% 100%;')
-			console.log('%cThis website is done with NuxtJS (A VueJS framework).', 'font-size: 1.1em; padding: 10px 10px 10px; line-height: 1.5; font-weight:bold');
-			console.group('%cThese are the libraries I have used:', 'margin-left: 10px; padding: 10px; background: #caffcc; display: block; width: 600px');
-			console.info('%canimejs: For the svg morphing animation.', 'font-size: 1.1em; margin-left: 10px; padding: 10px; background: #ebffe2; display: block; width: 600px');
-			console.info('%cinteractjs: For the inertia effects in the drag and drop.', 'font-size: 1.1em; margin-left: 10px; padding: 10px; background: #ebffe2; display: block; width: 600px');
-			console.groupEnd();
-
-		}
-	}
 };
 </script>
 
@@ -84,6 +66,7 @@ export default {
 			}
 		}
 
+		background-color: $white;
 		min-height: 100%;
 		display: grid;
 		grid-template-rows: max-content 1fr max-content;
@@ -105,6 +88,17 @@ export default {
 			position: sticky;
 			bottom: 0;
 			z-index: 3;
+		}
+
+		&__view-tag {
+			position: fixed;
+			z-index: 3;
+			top: 0;
+			right: space(m);
+			padding: 0.1em .8em;
+			background-color: $gray-light;
+			border-radius: 0 0 .3em .3em;
+			font-size: font-size(xs);
 		}
 	}
 </style>

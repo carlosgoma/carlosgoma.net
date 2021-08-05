@@ -1,9 +1,9 @@
 <template>
 	<article class="p-you o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
 		<header class="p-you__header o-grid__header">
-			<h2 class="p-you__title o-title o-title--main t-title">
+			<h1 class="p-you__title o-title o-title--main t-title">
 				<span>You are wellcome!</span>
-			</h2>
+			</h1>
 		</header>
 
 		<div class="p-you__intro t-section">

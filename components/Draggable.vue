@@ -144,7 +144,7 @@ export default {
 		startAnime: function(event) {
 			this.$anime({
 				targets: event.target,
-				opacity: .6,
+				opacity: .7,
 				d: {value: event.target.getAttribute('dAnim')},
 				duration: 500,
 				begin: this.targetIndex(event.target),
@@ -154,7 +154,7 @@ export default {
 		endAnime: function(event) {
 			this.$anime({
 				targets: event.target,
-				opacity: .4,
+				opacity: .5,
 				d: {value: event.target.getAttribute('dInit')},
 				duration: 500,
 			})
@@ -218,7 +218,7 @@ export default {
 
 	&__path {
 		cursor: grab;
-		opacity: .4;
+		opacity: .5;
 		pointer-events: auto;
 
 		&:active {
@@ -240,21 +240,30 @@ export default {
 	}
 
 	&-this {
-		.c-draggable__item:not(.c-draggable__item-this) {
-			opacity: 0;
+		.c-draggable__item{
+			opacity: .8;
 			transition: opacity .5s;
+			&:not(.c-draggable__item-this) {
+				opacity: 0;
+			}
 		}
 	}
 	&-you {
-		.c-draggable__item:not(.c-draggable__item-you) {
-			opacity: 0;
+		.c-draggable__item{
+			opacity: .8;
 			transition: opacity .5s;
+			&:not(.c-draggable__item-you) {
+				opacity: 0;
+			}
 		}
 	}
 	&-me {
-		.c-draggable__item:not(.c-draggable__item-me) {
-			opacity: 0;
+		.c-draggable__item{
+			opacity: .8;
 			transition: opacity .5s;
+			&:not(.c-draggable__item-me) {
+				opacity: 0;
+			}
 		}
 	}
 }

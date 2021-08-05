@@ -390,6 +390,11 @@
 				isScriptLoaded: false
 			}
 		},
+
+		mounted() {
+			document.body.style.setProperty('--windowheight', window.innerHeight + "px" );
+		}
+
     }
 </script>
 

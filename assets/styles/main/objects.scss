@@ -155,8 +155,8 @@
 		}
 
 		&-path {
-			fill: #fff;
-			stroke: #888;
+			fill: $white;
+			stroke: $gray;
 			stroke-width: 1px;
 			.is-over & {
 				fill: $black;

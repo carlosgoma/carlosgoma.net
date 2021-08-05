@@ -1,10 +1,10 @@
 <template>
 	<article class="p-me o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
 		<header class="p-me__header o-grid__header">
-			<h2 class="p-me__title o-title o-title--main t-title">
+			<h1 class="p-me__title o-title o-title--main t-title">
 				<span>Hi! My name is Carlos.</span>
 				<span>I’m a creative front-end developer.</span>
-			</h2>
+			</h1>
 		</header>
 
 		<picture class="p-me__picture .o-picture t-section">
