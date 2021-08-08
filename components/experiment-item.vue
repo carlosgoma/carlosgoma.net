@@ -1,6 +1,6 @@
 <template>
 
-    <section class="p-this__experiment">
+    <section class="p-this__experiment t-section">
         <nuxt-link
             :to="experiment.url"
 			class="p-this__experiment-link">
@@ -85,6 +85,13 @@
 <style lang="scss">
 
     .p-this__experiment {
+
+		@media (min-width: $mobile) {
+			grid-column: 2/6;
+			&:nth-child(odd) {
+				grid-column: 4/8;
+			}
+		}
 
 		display: grid;
 		gap: space(s);

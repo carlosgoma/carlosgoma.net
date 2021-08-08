@@ -211,7 +211,7 @@
 	}
 
 	&[x-placement^="top"] {
-		margin-bottom: 5px;
+		margin-bottom: space(m);
 
 		.tooltip-arrow {
 			border-width: 5px 5px 0 5px;
@@ -226,7 +226,7 @@
 	}
 
 	&[x-placement^="bottom"] {
-		margin-top: 5px;
+		margin-top: space(m);
 
 		.tooltip-arrow {
 			border-width: 0 5px 5px 5px;

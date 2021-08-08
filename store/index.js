@@ -15,6 +15,15 @@ export const mutations = {
 	}
 }
 
+export const actions =  {
+	runView(context, payload) {
+		context.commit('runView', payload)
+	},
+	stopView(context, payload) {
+		context.commit('stopView', payload)
+	}
+}
+
 export const getters = {
 	developerView(state) {
 		return state.views.developer;

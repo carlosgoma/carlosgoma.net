@@ -13,17 +13,15 @@
 			</div>
 		</div>
 
-		<div class="p-this__experiments t-section">
-			<experiment-item
-				v-for="experiment in experiments"
-				:key="experiment.id"
-				:experiment="experiment" />
+		<experiment-item
+			v-for="experiment in experiments"
+			:key="experiment.id"
+			:experiment="experiment" />
 
-			<div class="p-this__experiment">
-				<figure v-if="$device.isDesktop" class="p-this__ascii">
-					<pre>{{ascii}}</pre>
-				</figure>
-			</div>
+		<div class="p-this__experiment t-section">
+			<figure v-if="$device.isDesktop" class="p-this__ascii">
+				<pre>{{ascii}}</pre>
+			</figure>
 		</div>
 	</article>
 </template>
@@ -156,24 +154,24 @@ __  /  _,-----._      )           |  \\ \\.
 			}
 		}
 
-		&__experiments {
+		// &__experiments {
 
-			display: grid;
-			gap: space(vh) 0;
+		// 	display: grid;
+		// 	gap: space(vh) 0;
 
-			@media ( min-width: $mobile ) {
-				padding-top: space(vh);
-				grid-template-columns: repeat(3, 1fr);
-				grid-column: 2/8;
-				grid-row: 3;
+		// 	@media ( min-width: $mobile ) {
+		// 		padding-top: space(vh);
+		// 		grid-template-columns: repeat(3, 1fr);
+		// 		grid-column: 2/8;
+		// 		grid-row: 3;
 
-				& > * {
-					grid-column: 2/4;
-					&:nth-child(2n) {
-						grid-column: 1/3;
-					}
-				}
-			}
-		}
+		// 		& > * {
+		// 			grid-column: 2/4;
+		// 			&:nth-child(2n) {
+		// 				grid-column: 1/3;
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 </style>

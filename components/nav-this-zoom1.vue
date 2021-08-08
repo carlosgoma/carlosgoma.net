@@ -1,7 +1,7 @@
 <template>
 	<nav class="c-nav c-nav--experiment" :class="$device.isDesktop ? 'c-nav--desktop' : 'c-nav--mobile'">
 
-		<v-popover placement="right">
+		<v-popover :placement="popoverPlacement">
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
@@ -59,7 +59,14 @@
 	import { svgMouseOver, svgMouseLeave } from '~/assets/scripts/nav.js';
 
 	export default {
-
+		data() {
+			return {
+				popoverPlacement : 'top'
+			}
+		},
+		mounted() {
+			this.popoverPlacement = window.innerHeight > window.innerWidth ? 'top' : 'right';
+		},
 		methods: {
 
 			mouseover(event) {

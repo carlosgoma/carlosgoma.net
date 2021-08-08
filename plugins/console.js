@@ -17,7 +17,7 @@ const consoleInteraction = {
 		console.log('%cFor further information execute the folowing method: %crunDeveloperView()', 'padding: 10px 0 10px 10px; line-height: 1.5;', 'font-weight:bold; line-height: 1.5; font-size: 1.1em');
 
 		Vue.prototype.$runDeveloperView = function () {
-			$nuxt.$store.commit({
+			$nuxt.$store.dispatch({
 				type: 'runView',
 				view: 'developer'
 			});
@@ -25,7 +25,7 @@ const consoleInteraction = {
 		}
 
 		Vue.prototype.$stopDeveloperView = function () {
-			$nuxt.$store.commit({
+			$nuxt.$store.dispatch({
 				type: 'stopView',
 				view: 'developer'
 			});

@@ -214,6 +214,7 @@ export default {
 		margin-left: -4.4%;
 		margin-bottom: -4.4%;
 		margin-right: -4.4%;
+		transition: opacity .5s;
 	}
 
 	&__path {
@@ -239,30 +240,33 @@ export default {
 		}
 	}
 
+	&:not(.c-draggable-index) {
+		.c-draggable__svg {
+			opacity: .7;
+		}
+	}
+
 	&-this {
 		.c-draggable__item{
-			opacity: .8;
-			transition: opacity .5s;
 			&:not(.c-draggable__item-this) {
 				opacity: 0;
+				transition: opacity .5s;
 			}
 		}
 	}
 	&-you {
 		.c-draggable__item{
-			opacity: .8;
-			transition: opacity .5s;
 			&:not(.c-draggable__item-you) {
 				opacity: 0;
+				transition: opacity .5s;
 			}
 		}
 	}
 	&-me {
 		.c-draggable__item{
-			opacity: .8;
-			transition: opacity .5s;
 			&:not(.c-draggable__item-me) {
 				opacity: 0;
+				transition: opacity .5s;
 			}
 		}
 	}
