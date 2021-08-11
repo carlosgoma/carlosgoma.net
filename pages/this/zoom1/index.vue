@@ -521,6 +521,14 @@
     width: 70vh;
     transform: translateX(-50%);
 }
+.selectedZoomTarget > #snow {
+	animation: 12s byeSnow forwards;
+}
+@keyframes byeSnow {
+	0%   { opacity: 100%; }
+	70%  { opacity: 100%; }
+	100% { opacity: 0; }
+}
 .c-alert-landscape {
 	display: none;
 	position: absolute;

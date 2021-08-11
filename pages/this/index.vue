@@ -9,7 +9,7 @@
 
 		<div class="p-this__intro t-section">
 			<div class="o-text">
-				<p>Here you are some experiments. Things that I wanted to do before to implement in a real project or things that I wanted to do and I already haven't had the chance to use.</p>
+				<p>Here are some experiments. Things that I wanted to do before to implement in a real project or things that I wanted to do and I already haven't had the chance to use.</p>
 			</div>
 		</div>
 
@@ -18,11 +18,6 @@
 			:key="experiment.id"
 			:experiment="experiment" />
 
-		<div class="p-this__experiment t-section">
-			<figure v-if="$device.isDesktop" class="p-this__ascii">
-				<pre>{{ascii}}</pre>
-			</figure>
-		</div>
 	</article>
 </template>
 
@@ -32,7 +27,6 @@ export default {
 
 	data() {
 		return {
-			ascii: null,
 			experiments : [
 				{
 					id: 'zoom1',
@@ -58,54 +52,8 @@ export default {
 					year: '2013',
 					info: ['Zoomooz.js', 'Snap.svg', 'Illustration']
 				}
-			],
-			animeAscii: null
+			]
 		}
-	},
-
-	mounted : function() {
-		const figures = {
-			keyboard: `. -------------------------------------------------------------------.
-| [Esc] [F1][F2][F3][F4][F5][F6][F7][F8][F9][F0][F10][F11][F12] o o o|
-|                                                                    |
-| ['][1][2][3][4][5][6][7][8][9][0][-][=][_<_] [I][H][U] [N][/][*][-]|
-| [|-][Q][W][E][R][T][Y][U][I][O][P][{][}] | | [D][E][D] [7][8][9]|+||
-| [CAP][A][S][D][F][G][H][J][K][L][;]['][#]|_|           [4][5][6]|_||
-| [Shif][Z][X][C][V][B][N][M][,][.][/] [__^__]    [^]    [1][2][3]| ||
-| [c]   [a][________________________][a]   [c] [<][V][>] [ 0  ][.]|_||
-'--------------------------------------------------------------------'`,
-			fish : `					___            __________
-					/   \\          /          \\
-				__/_/_/_\\________/ / / /  /   \\
-		,,----'                 ------  / /   \\          _
-		,/  ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) \\/ /  /       ,/' \\
-	./''  ,\\ ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) \\ /      /'  /  \\
-./''  O , ,\\) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )------' / / / /
-(____ , , , |) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )----- /
-\\. \\ , , , | ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ----- \\
-	\\.   ___/ ) )_______  ) ) ) ) ) ) ) ) ) ) ) ------. \\ \\ \\ \\
-	''\\.. ) ) ) )______\ ) ) ) ) ) ) ) ) ) ) /          \\. \\  /
-			'\\..    _____/ ) ) ) ) ) ) ) ) /--__        '\\._/
-				''\________________------''' \\   \\
-					\\ \\ \\/           \\  \\  \\ \\  /
-					\\__/             \\________/ `,
-			bike: `										_
-									,-~ |
-		________________          o==]___|
-		|                |            \\ \\
-		|________________|            /\\ \\
-__  /  _,-----._      )           |  \\ \\.
-|_||/_-~         '.   /()          |  /|]_|_____
-	|//              \ |              \\/ /_-~     ~-_
-	//________________||              / //__________\\
-//__|______________| \____________/ //___/-\\ \\~-_
-((_________________/_-o___________/_//___/  /\\,\\  \\
-|__/(  ((====)o===--~~                 (  ( (o/)  )
-		\\  ''==' /                         \\  '--'  /
-		'-.__,-'                           '-.__,-' `,
-		}
-
-		this.ascii= figures.keyboard;
 	},
 }
 
@@ -133,45 +81,5 @@ __  /  _,-----._      )           |  \\ \\.
 			}
 
 		}
-
-		&__ascii {
-			overflow: hidden;
-			max-width: 100%;
-			display: flex;
-			justify-content: flex-end;
-
-			pre {
-				line-height: 1.2;
-				color: $gray;
-				font-size: 2.24vw;
-
-				@media (min-width: $mobile) {
-					font-size: 1.47vw;
-				}
-				@media (min-width: 76rem) {
-					font-size: 1.3em;
-				}
-			}
-		}
-
-		// &__experiments {
-
-		// 	display: grid;
-		// 	gap: space(vh) 0;
-
-		// 	@media ( min-width: $mobile ) {
-		// 		padding-top: space(vh);
-		// 		grid-template-columns: repeat(3, 1fr);
-		// 		grid-column: 2/8;
-		// 		grid-row: 3;
-
-		// 		& > * {
-		// 			grid-column: 2/4;
-		// 			&:nth-child(2n) {
-		// 				grid-column: 1/3;
-		// 			}
-		// 		}
-		// 	}
-		// }
 	}
 </style>

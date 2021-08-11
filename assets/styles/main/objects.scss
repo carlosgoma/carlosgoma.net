@@ -41,6 +41,7 @@
 }
 
 .o-title {
+	position: relative;
 
 	&--main {
 		font-size: font-size(jumbo);
@@ -99,7 +100,7 @@
 	}
 	&:hover {
 		transition: text-shadow .1s ease-in;
-		text-shadow: 0 1px 0 rgba(255,255,255, .5);
+		text-shadow: 0 1px 0 rgba(255,255,255, .8);
 		&::before {
 			transition: top .1s ease-in;
 			top: 53%;

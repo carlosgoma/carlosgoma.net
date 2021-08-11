@@ -3,7 +3,12 @@
 
 		<v-popover :placement="popoverPlacement">
 			<button class="c-nav__info t-fade">Info</button>
-			<div slot="popover">hola</div>
+			<div slot="popover">
+				<div class="popover-content">
+					<p>It’s an experiment with svg properties and a parallax effect.</p>
+					<p>I used the <cite>Parallax.js</cite> library for the parallax effect and <cite>Snap.svg</cite> for the svg animations. </p>
+				</div>
+			</div>
 		</v-popover>
 		<div class="t-fade">
 			<button id="js-action" class="c-nav__link c-nav__control" title="Switch on">

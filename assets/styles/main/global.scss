@@ -12,12 +12,12 @@
     --gray-dark: #666;
     --gray: #aaa;
     --gray-light: #eee;
-    --red: #FC2727;
-    --red-light: #fda8a8;
-    --blue: #29ABE2;
-    --blue-light: #a8dcf2;
-    --yellow: #F4EF3B;
-    --yellow-light: #faf8b0;
+    --red: #ff2b5e;
+    --red-light: #ff94ad;
+    --blue: #3399ff;
+    --blue-light: #98cbff;
+    --yellow: #e2ff38;
+    --yellow-light: #eeff90;
 
     --page-color: #bbb;
 }
@@ -50,6 +50,7 @@ body {
 }
 
 img {
+	display: block;
     max-width: 100%;
 	height: auto;
 }

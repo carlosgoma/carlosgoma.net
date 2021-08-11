@@ -22,7 +22,7 @@
 
 @mixin line( $l, $from, $to, $isIndented: false ) {
 
-	$indent: 1px;
+	$indent: 0;
 	@if $isIndented {
 		$indent : $font-indent-pos;
 	}

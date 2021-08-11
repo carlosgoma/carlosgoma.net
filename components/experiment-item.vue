@@ -7,7 +7,11 @@
 			<div class="p-this__experiment-grid"
 			@mouseover="$device.isDesktop ? imageRestauration() : null"
 			@mouseleave="$device.isDesktop ? imageDeform() : null">
-				<h2 class="p-this__experiment-title">{{experiment.name}}</h2>
+				<h2 class="p-this__experiment-title">
+					<span>
+						{{experiment.name}}
+					</span>
+				</h2>
 				<time class="p-this__experiment-time" :datetime="experiment.year">{{experiment.year}}</time>
 				<svg :class="['p-this__experiment-arrow', {'p-this__experiment-arrow--out': experiment.isOut}]"
 					width="24" height="24"
@@ -87,9 +91,21 @@
     .p-this__experiment {
 
 		@media (min-width: $mobile) {
-			grid-column: 2/6;
+
+			&:nth-child(even) {
+				position: relative;
+				grid-column: 2/6;
+				@include line(bottom, 100%, -50%);
+			}
 			&:nth-child(odd) {
+				position: relative;
 				grid-column: 4/8;
+				@include line(bottom, 100%, -50%);
+				@include line(bottom, 80%, calc(var(--space) * -1));
+
+				ul {
+					@include line(right, $font-indent-pos, calc(var(--space) * -5));
+				}
 			}
 		}
 
@@ -117,12 +133,17 @@
             margin-bottom: indentation(1.3);
 
             .is-desktop & {
-                position: relative;
-                z-index: 1;
-                grid-row: 1;
-                color: $white;
-                mix-blend-mode: difference;
+				grid-row: 1;
                 margin-top: space(s);
+				position: relative;
+
+				span {
+					position: relative;
+					z-index: 1;
+					color: $white;
+					display: block;
+					mix-blend-mode: difference;
+				}
             }
         }
 

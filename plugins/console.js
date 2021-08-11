@@ -3,7 +3,6 @@ import Vue from 'vue';
 
 const consoleInteraction = {
 
-
 	install(Vue) {
 
 		console.warn('Parental Advisory : explicit content.');
@@ -21,7 +20,7 @@ const consoleInteraction = {
 				type: 'runView',
 				view: 'developer'
 			});
-			return console.log('Running!');
+			return console.log('%cRunning! Stop it when you want with %cstopDeveloperView()', 'padding: 10px 0 10px 10px; line-height: 1.5;', 'font-weight:bold; line-height: 1.5;');
 		}
 
 		Vue.prototype.$stopDeveloperView = function () {
@@ -29,7 +28,7 @@ const consoleInteraction = {
 				type: 'stopView',
 				view: 'developer'
 			});
-			return console.log('Stopped!');
+			return console.log('%cStopped!', 'padding: 10px 0 10px 10px; line-height: 1.5;');
 		}
 	}
 };

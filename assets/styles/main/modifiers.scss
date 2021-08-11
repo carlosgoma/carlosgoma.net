@@ -1,0 +1,35 @@
+
+
+.is-developer-view {
+	.o-grid > * {
+		outline: $line;
+	}
+
+	.o-grid,
+	.l-layout__header {
+		border-bottom: $line;
+	}
+
+	h1, h2, h3 {
+		outline: 1px dashed magenta;
+		&::before {
+			content: "<h1>";
+			position: absolute;
+			color: magenta;
+			line-height: 1;
+			bottom: calc(100% + 0.3em);
+			left: 0;
+			font-size: 0.7rem;
+		}
+	}
+	h2::before {
+		content: "<h2>";
+	}
+	h3::before {
+		content: "<h3>";
+	}
+	.c-logo__title h1::before {
+		bottom: auto;
+		top: calc(100% + 0.3em);
+	}
+}

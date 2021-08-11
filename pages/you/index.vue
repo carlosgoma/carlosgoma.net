@@ -8,13 +8,15 @@
 
 		<div class="p-you__intro t-section">
 			<div class="o-text">
-				<p>I hope this webpage distract you a little bit. I did it with love and some humor, don’t take it too much seriously.</p>
+				<p>I hope this webpage distracts you a little bit. I did it with love and some humor, don’t take it too much seriously.</p>
 			</div>
 		</div>
 
+		<span class="p-you__divisor t-section"></span>
+
 		<div class="p-you__hiring t-section">
 			<div class="o-text">
-				<h3 class="p-you__past-title o-title o-title--secundary">Are you hiring in Ho Chi Minh City?</h3>
+				<h2 class="p-you__past-title o-title o-title--secundary">Are you hiring in Ho Chi Minh City?</h2>
 				<p>I’m living here! If you are looking for an appasionated front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you already have some doubts please click <a href="/hirehim/index.html" class="o-link" target="_blank" title="Do it!">here</a>.</p>
 				<div class="p-you__email">
 					<span v-if="isLabelShown" ref="label" class="p-you__email-label">{{labelText}}</span>
@@ -108,22 +110,22 @@
 
 		}
 
+		&__divisor {
+			display: none;
+			@media ( min-width: $mobile ) {
+				display: block;
+				grid-column: 2/4;
+				grid-row: 3;
+				align-self: flex-end;
+				border-bottom: $line-black;
+			}
+		}
+
 		&__friends {
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 4;
-				position: relative;
-
-				&:before {
-					content: "";
-					position: absolute;
-					top: -10vh;
-					left: 0;
-					right: 33%;
-					border-top: $line-black
-				}
 			}
-
 		}
 
 		&__email {

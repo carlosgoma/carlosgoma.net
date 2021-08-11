@@ -5,9 +5,9 @@
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+					<p>Inspired by Istvan Banyai’s comic book Zoom. It’s a funny effect with a lot of surprising potential.</p>
+					<p>I draw it and made the zoom out effect with the library <cite>Zoomooz.js</cite>.</p>
+					<p><cite>Snap.svg</cite> helps me with the svg animations and <cite>Snow.js</cite> with the snowing simulation.</p>
 				</div>
 			</div>
 		</v-popover>

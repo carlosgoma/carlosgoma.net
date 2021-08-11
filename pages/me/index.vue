@@ -18,8 +18,10 @@
 			</div>
 		</div>
 
+		<span class="p-me__divisor t-section"></span>
+
 		<div class="p-me__past t-section">
-			<h3 class="p-me__past-title o-title o-title--light">Past</h3>
+			<h2 class="p-me__past-title o-title o-title--light">Past</h2>
 			<div class="o-text">
 				<p>I started to do websites in 2013. Since then I've been improving my skills in programming, web design, UX and marketing online.</p>
 				<p>Before that I graduated in Fine arts from the University of Seville and I did a Official Master of Arts majoring in contemporary thoughts and visual culture in the Polytechnics University of Valencia. </p>
@@ -38,7 +40,7 @@
 		</blockquote>
 
 		<div class="p-me__present t-section">
-			<h3 class="p-me__present-title o-title o-title--light">Present</h3>
+			<h2 class="p-me__present-title o-title o-title--light">Present</h2>
 			<div class="o-text">
 				<p>Currently I’m working in <a class="p-me__link o-link" href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiples webapps around the hotel's booking process experience. I work with <cite>React</cite>, <cite>Redux</cite> and <cite>Axios</cite>.</p>
 			</div>
@@ -78,17 +80,10 @@
 			@media ( min-width: $mobile ) {
 				grid-column: 2/5;
 				grid-row: 2;
+				align-self: flex-start;
+				margin-bottom: space(m);
 
 				@include line(left, 0, calc(var(--space) * -3));
-
-				&::after {
-					content: "";
-					position: absolute;
-					left: 0;
-					bottom: 0;
-					right: 33%;
-					border-bottom: $line-black;
-				}
 
 				p + p  {
 					position: relative;
@@ -96,6 +91,17 @@
 				}
 			}
 
+		}
+
+		&__divisor {
+			display: none;
+			@media ( min-width: $mobile ) {
+				display: block;
+				grid-column: 2/4;
+				grid-row: 2;
+				align-self: flex-end;
+				border-bottom: $line-black;
+			}
 		}
 
 		&__past {
