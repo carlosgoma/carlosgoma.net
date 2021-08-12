@@ -373,7 +373,10 @@
 
         head () {
 			return {
-				title: 'Anaglyph 01 - carlosgoma.net',
+				title: 'Zoom #01',
+				meta: [
+					{ hid: 'description', name: 'description', content: 'Zoom experiment'}
+				],
 				script: [
 					{
 						hid: 'zoom1',
@@ -525,8 +528,8 @@
 	animation: 12s byeSnow forwards;
 }
 @keyframes byeSnow {
-	0%   { opacity: 100%; }
-	70%  { opacity: 100%; }
+	0%   { opacity: 1; }
+	70%  { opacity: 1; }
 	100% { opacity: 0; }
 }
 .c-alert-landscape {

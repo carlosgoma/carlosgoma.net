@@ -328,7 +328,10 @@
 
 		head () {
 			return {
-				title: 'Anaglyph 01 - carlosgoma.net',
+				title: 'Anaglyph #01',
+				meta: [
+					{ hid: 'description', name: 'description', content: 'Anaglyph experiment'}
+				],
 				script: [
 					{
 						hid: 'anaglyph1',

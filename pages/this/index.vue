@@ -23,39 +23,46 @@
 
 <script>
 
-export default {
+	export default {
 
-	data() {
-		return {
-			experiments : [
-				{
-					id: 'zoom1',
-					isOut: true,
-					url: '/this/zoom1',
-					name: 'Zoom #1',
-					img: {
-						mobile: 'zoom1-mobile.png',
-						desktop: 'zoom1-desktop.png'
+		head: {
+			title: 'This',
+			meta: [
+				{ hid: 'description', name: 'description', content: 'These are my experiments'}
+			],
+		},
+
+		data() {
+			return {
+				experiments : [
+					{
+						id: 'zoom1',
+						isOut: true,
+						url: '/this/zoom1',
+						name: 'Zoom #1',
+						img: {
+							mobile: 'zoom1-mobile.png',
+							desktop: 'zoom1-desktop.png'
+						},
+						year: '2018',
+						info: ['Parallax.js', 'Snap.svg', 'Illustration']
 					},
-					year: '2018',
-					info: ['Parallax.js', 'Snap.svg', 'Illustration']
-				},
-				{
-					id: 'anaglyph1',
-					isOut: true,
-					url: '/this/anaglyph1',
-					name: 'Anaglyph #1',
-					img: {
-						mobile: 'anaglyph1-mobile.png',
-						desktop: 'anaglyph1-desktop.png'
-					},
-					year: '2013',
-					info: ['Zoomooz.js', 'Snap.svg', 'Illustration']
-				}
-			]
-		}
-	},
-}
+					{
+						id: 'anaglyph1',
+						isOut: true,
+						url: '/this/anaglyph1',
+						name: 'Anaglyph #1',
+						img: {
+							mobile: 'anaglyph1-mobile.png',
+							desktop: 'anaglyph1-desktop.png'
+						},
+						year: '2013',
+						info: ['Zoomooz.js', 'Snap.svg', 'Illustration']
+					}
+				]
+			}
+		},
+	}
 
 </script>
 

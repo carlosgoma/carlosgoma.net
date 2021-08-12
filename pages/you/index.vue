@@ -12,7 +12,11 @@
 			</div>
 		</div>
 
-		<span class="p-you__divisor t-section"></span>
+		<span class="p-you__divisor t-section">
+			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'I\'m going to be polemic: Vue.js is much better than React... feel free to use the email if you need to threat me.' }">
+				dV
+			</button>
+		</span>
 
 		<div class="p-you__hiring t-section">
 			<div class="o-text">
@@ -49,6 +53,13 @@
 
 <script>
 	export default {
+
+		head: {
+			title: 'You',
+			meta: [
+				{ hid: 'description', name: 'description', content: 'You are wellcome'}
+			],
+		},
 		data() {
 			return {
 				isLabelShown: false,
@@ -112,6 +123,7 @@
 
 		&__divisor {
 			display: none;
+			position: relative;
 			@media ( min-width: $mobile ) {
 				display: block;
 				grid-column: 2/4;

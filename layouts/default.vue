@@ -6,7 +6,7 @@
 			'is-developer-view': this.$store.getters.developerView
 		}]">
 		<div class="l-layout__view-tag" v-if="this.$store.getters.developerView">
-			Developer view
+			dV = developer view
 		</div>
 		<header class="l-layout__header">
 			<logo/>
@@ -99,6 +99,8 @@ export default {
 			background-color: $gray-light;
 			border-radius: 0 0 .3em .3em;
 			font-size: font-size(xs);
+			border: 1px dashed $black;
+			border-top: 0;
 		}
 	}
 </style>

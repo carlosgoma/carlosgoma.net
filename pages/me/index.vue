@@ -14,11 +14,15 @@
 		<div class="p-me__intro t-section">
 			<div class="o-text">
 				<p>I design and program interfaces for digital products that improve the user experience.</p>
-				<p>In my work I pursue two things. On one side, write “clean code”, for real, code easily readable and maintainable. On the other side, a fully detailed and meaningful design.</p>
+				<p>I'm detail oriented in the design as much as in the code. I pursue to write <i>clean code</i>, easily readable and maintainable.</p>
 			</div>
 		</div>
 
-		<span class="p-me__divisor t-section"></span>
+		<span class="p-me__divisor t-section">
+			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'All the design\'s messures depends on the font size or the screen size in order to improve the accessibility and the responsive design. I invite you to change your browser font size.' }">
+				dV
+			</button>
+		</span>
 
 		<div class="p-me__past t-section">
 			<h2 class="p-me__past-title o-title o-title--light">Past</h2>
@@ -51,6 +55,13 @@
 
 <script>
 	export default {
+
+		head: {
+			title: 'Me',
+			meta: [
+				{ hid: 'description', name: 'description', content: 'I’m a creative front-end developer'}
+			],
+		},
 		data() {
 			return{
 				isQuoteOver: false
@@ -95,6 +106,7 @@
 
 		&__divisor {
 			display: none;
+			position: relative;
 			@media ( min-width: $mobile ) {
 				display: block;
 				grid-column: 2/4;

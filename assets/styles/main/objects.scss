@@ -189,6 +189,22 @@
 	display: grid;
 }
 
+.o-toolip-trigger--developer-view {
+	width: 3em;
+	height: 3em;
+	background-color: $black;
+	color: $white;
+	font-size: font-size(s);
+	border-radius: 50%;
+	position: absolute;
+
+	[class*=__divisor] & {
+		top: -1.5em;
+		left: space(m);
+	}
+}
+
+
 .tooltip {
 	display: block !important;
 	z-index: 10000;
@@ -196,8 +212,10 @@
 	.tooltip-inner {
 		background: black;
 		color: white;
-		border-radius: 16px;
-		padding: 5px 10px 4px;
+		border-radius: .4em;
+		padding: space(s);
+		max-width: 18em;
+		font-size: font-size(s);
 	}
 
 
@@ -212,7 +230,7 @@
 	}
 
 	&[x-placement^="top"] {
-		margin-bottom: space(m);
+		margin-bottom: space(s);
 
 		.tooltip-arrow {
 			border-width: 5px 5px 0 5px;
@@ -227,7 +245,7 @@
 	}
 
 	&[x-placement^="bottom"] {
-		margin-top: space(m);
+		margin-top: space(s);
 
 		.tooltip-arrow {
 			border-width: 0 5px 5px 5px;
@@ -242,7 +260,7 @@
 	}
 
 	&[x-placement^="right"] {
-		margin-left: space(m);
+		margin-left: space(s);
 
 		.tooltip-arrow {
 			border-width: 5px 5px 5px 0;
@@ -257,7 +275,7 @@
 	}
 
 	&[x-placement^="left"] {
-		margin-right: space(m);
+		margin-right: space(s);
 
 		.tooltip-arrow {
 			border-width: 5px 0 5px 5px;
@@ -273,16 +291,24 @@
 
 	&.popover {
 
+		&[x-placement^="top"] {
+			margin-bottom: space(m);
+		}
+		&[x-placement^="right"] {
+			margin-left: space(m);
+		}
+
 		.popover-inner {
 			background: $white;
-			color: black;
+			color: $black;
 			padding: space(m);
-			border-radius: 5px;
+			border-radius: .4em;
 			box-shadow: 0 5px 30px rgba(black, .1);
+			max-width: 36em;
+			font-size: font-size(m);
 		}
 
 		.popover-content {
-			max-width: 500px;
 			display: grid;
 			gap: space(s);
 			margin-top: $font-indent;
