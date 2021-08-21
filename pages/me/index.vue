@@ -14,12 +14,12 @@
 		<div class="p-me__intro t-section">
 			<div class="o-text">
 				<p>I design and program interfaces for digital products that improve the user experience.</p>
-				<p>I'm detail oriented in the design as much as in the code. I pursue to write <i>clean code</i>, easily readable and maintainable.</p>
+				<p>I'm as detail oriented in the design as in the code itself. I like to write <i>clean code</i>, easily readable and maintainable.</p>
 			</div>
 		</div>
 
 		<span class="p-me__divisor t-section">
-			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'All the design\'s messures depends on the font size or the screen size in order to improve the accessibility and the responsive design. I invite you to change your browser font size.' }">
+			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'All the design\'s measures depend on the font size or the screen size in order to improve the accessibility and the responsive design. I encourage you to try changing your browser font size.' }">
 				dV
 			</button>
 		</span>
@@ -27,8 +27,8 @@
 		<div class="p-me__past t-section">
 			<h2 class="p-me__past-title o-title o-title--light">Past</h2>
 			<div class="o-text">
-				<p>I started to do websites in 2013. Since then I've been improving my skills in programming, web design, UX and marketing online.</p>
-				<p>Before that I graduated in Fine arts from the University of Seville and I did a Official Master of Arts majoring in contemporary thoughts and visual culture in the Polytechnics University of Valencia. </p>
+				<p>I started making websites in 2013. Since then, I've been improving my skills in programming, web design, UX and online marketing.</p>
+				<p>Before that I graduated in Fine Arts in the University of Seville (Spain) and I did an Official Master of Arts majoring in contemporary thoughts and visual culture in the Polytechnic University of Valencia (Spain).</p>
 			</div>
 		</div>
 
@@ -46,7 +46,7 @@
 		<div class="p-me__present t-section">
 			<h2 class="p-me__present-title o-title o-title--light">Present</h2>
 			<div class="o-text">
-				<p>Currently I’m working in <a class="p-me__link o-link" href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiples webapps around the hotel's booking process experience. I work with <cite>React</cite>, <cite>Redux</cite> and <cite>Axios</cite>.</p>
+				<p>Currently I’m working in <a class="p-me__link o-link" href="https://mirai.com" target="_blank">Mirai</a> in the department of Front-End Development. I program new functionalities in multiple webapps around the hotels' booking process experience. I work with <cite>React</cite>, <cite>Redux</cite> and <cite>Axios</cite>.</p>
 			</div>
 		</div>
 

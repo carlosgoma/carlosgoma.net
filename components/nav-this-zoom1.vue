@@ -5,9 +5,9 @@
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
-					<p>Inspired by Istvan Banyai’s comic book Zoom. It’s a funny effect with a lot of surprising potential.</p>
-					<p>I draw it and made the zoom out effect with the library <cite>Zoomooz.js</cite>.</p>
-					<p><cite>Snap.svg</cite> helps me with the svg animations and <cite>Snow.js</cite> with the snowing simulation.</p>
+					<p>Inspired by Istvan Banyai’s comic book <cite>Zoom</cite>. It’s a funny effect with a lot of surprising potential.</p>
+					<p>I drew it and made the zoom out effect with the <cite>Zoomooz.js</cite> library.</p>
+					<p><cite>Snap.svg</cite> helps me with the svg animations and <cite>Snow.js</cite> with the snow simulation.</p>
 				</div>
 			</div>
 		</v-popover>

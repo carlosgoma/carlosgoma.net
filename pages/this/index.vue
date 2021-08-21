@@ -9,7 +9,7 @@
 
 		<div class="p-this__intro t-section">
 			<div class="o-text">
-				<p>Here are some experiments. Things that I wanted to do before to implement in a real project or things that I wanted to do and I already haven't had the chance to use.</p>
+				<p>Here are some experiments I’ve made, basically things that I wanted to implement in real projects but I haven't had the chance to use yet.</p>
 			</div>
 		</div>
 

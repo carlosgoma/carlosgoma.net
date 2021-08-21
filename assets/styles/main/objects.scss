@@ -60,23 +60,29 @@
 	}
 
 	&--light {
-		font-size: font-size(ljumbo);
+		font-size: font-size(jumbo);
 		color: $font-color-superlight;
-		line-height: 1;
+		line-height: 0.7;
 		text-indent: -0.1em;
+		margin-bottom: space(s);
 
 		@media ( min-width: $mobile ) {
 			position: absolute;
-			line-height: 0.7;
 			z-index: -1;
 			left: -1ch;
-			bottom: calc( 100% - 1.5rem);
+			bottom: calc( 100% - .8rem);
+			font-size: font-size(ljumbo);
+			margin-bottom: 0;
 		}
 	}
 }
 
 .o-picture {
 	display: flex;
+}
+
+.o-line-d {
+	position: relative;
 }
 
 .o-link {

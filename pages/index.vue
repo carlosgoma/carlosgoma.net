@@ -6,11 +6,21 @@
 				<span>personal website.</span>
 			</h2>
 		</header>
-		<p class="p-home__message t-fade" v-if="$device.isDesktop">
-			Based in actual events. More information in your browser <strong>console</strong>.
+		<p class="p-home__message t-fade" v-if="isDesktop">
+			Based on actual events. More information in your browser <strong>console</strong>.
 		</p>
 	</article>
 </template>
+
+<script>
+	export default {
+		data() {
+			return {
+				isDesktop: this.$device.isDesktop
+			}
+		}
+	}
+</script>
 
 <style lang="scss">
 
@@ -20,7 +30,10 @@
 		height: 100%;
 
         &__header {
-            padding: space(vh) space(m);
+            padding: space(vh) space(s);
+			@media ( min-width: $mobile ) {
+				padding: space(vh) space(m);
+			}
         }
         &__title {
             font-size: font-size(xl);
@@ -43,8 +56,8 @@
             color: $font-color-light;
             font-size: font-size(xs);
             transform: rotate(180deg);
+			transform-origin: 0;
             letter-spacing: 0.05em;
-            margin-right: space(xs);
         }
     }
 

@@ -13,7 +13,7 @@
 		</header>
 		<main>
 			<nuxt/>
-			<draggable/>
+			<draggable v-if="$route.name != 'hirehim'" />
 		</main>
 		<footer class="l-layout__footer">
 			<nav-main/>
@@ -29,12 +29,19 @@ export default {
 	mounted () {
 		window.runDeveloperView = this.$runDeveloperView;
 		window.stopDeveloperView = this.$stopDeveloperView;
+
+		window.addEventListener('resize', this.onResize);
+		document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
 	},
+	methods: {
+		onResize() {
+			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
+		}
+	}
 };
 </script>
 
 <style lang="scss">
-
 
 	.l-layout {
 		&--index {
@@ -65,9 +72,17 @@ export default {
 				100% { box-shadow: inset 0 -5px var(--blue);}
 			}
 		}
+		&--hirehim {
+			height: var(--windowHeight);
+			overflow: hidden;
+			position: relative;
+			main {
+				overflow: hidden;
+			}
+		}
 
 		background-color: $white;
-		min-height: 100%;
+		min-height: var(--windowHeight);
 		display: grid;
 		grid-template-rows: max-content 1fr max-content;
 		box-shadow: inset 0 -5px transparent;

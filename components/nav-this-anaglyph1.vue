@@ -5,7 +5,7 @@
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
-					<p>It’s an experiment with svg properties and a parallax effect.</p>
+					<p>Real 3D! It’s an experiment with svg properties and a parallax effect.</p>
 					<p>I used the <cite>Parallax.js</cite> library for the parallax effect and <cite>Snap.svg</cite> for the svg animations. </p>
 				</div>
 			</div>

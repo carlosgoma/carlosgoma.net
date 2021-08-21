@@ -2,18 +2,18 @@
 	<article class="p-you o-grid" role="article" itemscope itemtype="http://schema.org/WebPage">
 		<header class="p-you__header o-grid__header">
 			<h1 class="p-you__title o-title o-title--main t-title">
-				<span>You are wellcome!</span>
+				<span>Welcome!</span>
 			</h1>
 		</header>
 
 		<div class="p-you__intro t-section">
 			<div class="o-text">
-				<p>I hope this webpage distracts you a little bit. I did it with love and some humor, don’t take it too much seriously.</p>
+				<p>I hope you enjoy viewing this webpage as much as I enjoyed making it. Don’t take it too seriously, though!</p>
 			</div>
 		</div>
 
 		<span class="p-you__divisor t-section">
-			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'I\'m going to be polemic: Vue.js is much better than React... feel free to use the email if you need to threat me.' }">
+			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'I\'m going to be a bit controversial: Vue.js is much better than React... feel free to threaten me via email if you feel the need to.' }">
 				dV
 			</button>
 		</span>
@@ -21,7 +21,7 @@
 		<div class="p-you__hiring t-section">
 			<div class="o-text">
 				<h2 class="p-you__past-title o-title o-title--secundary">Are you hiring in Ho Chi Minh City?</h2>
-				<p>I’m living here! If you are looking for an appasionated front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you already have some doubts please click <a href="/hirehim/index.html" class="o-link" target="_blank" title="Do it!">here</a>.</p>
+				<p>I’m living here! If you are looking for a passionate front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you still need some convincing, please click <nuxt-link to="/hirehim" class="o-link" title="Do it!">here</nuxt-link>.</p>
 				<div class="p-you__email">
 					<span v-if="isLabelShown" ref="label" class="p-you__email-label">{{labelText}}</span>
 					<button
@@ -45,7 +45,7 @@
 
 		<div class="p-you__friends t-section">
 			<div class="o-text">
-				<p>Otherwise, if you are a friend, call me after the lockdown. I’m wishing to have a coffee with you.</p>
+				<p>Or if you just want to have a coffee, contact me after lockdown. PLEASE. I’m craving human interaction!</p>
 			</div>
 		</div>
 	</article>
@@ -57,7 +57,7 @@
 		head: {
 			title: 'You',
 			meta: [
-				{ hid: 'description', name: 'description', content: 'You are wellcome'}
+				{ hid: 'description', name: 'description', content: 'You are welcome'}
 			],
 		},
 		data() {

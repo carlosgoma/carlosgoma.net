@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'Noto Serif', serif;
+	font-style: normal;
+	font-weight: 400;
+	src: local(''),
+		url('/fonts/noto-serif-v11-latin-regular.woff2') format('woff2'),
+		url('/fonts/noto-serif-v11-latin-regular.woff') format('woff');
+}
 
 
 :root {
@@ -5,7 +13,7 @@
     --column-w: 11em;
     --line-height: 1.9;
 
-    --windowsHeight: 100vh;
+    --windowHeight: 100vh;
 
     --white: #fefefe;
     --black: #222;

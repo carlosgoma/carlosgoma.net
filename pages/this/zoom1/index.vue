@@ -395,7 +395,7 @@
 		},
 
 		mounted() {
-			document.body.style.setProperty('--windowheight', window.innerHeight + "px" );
+			document.body.style.setProperty('--windowHeight', window.innerHeight + "px" );
 		}
 
     }

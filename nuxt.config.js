@@ -55,7 +55,7 @@ export default {
 	],
 
 	device: {
-		defaultUserAgent: 'Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Mobile Safari/537.36',
+		defaultUserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36',
 		refreshOnResize: true
 	},
 
@@ -72,5 +72,9 @@ export default {
 	// -------------------------------------------------- Build Configuration:
 	// https://go.nuxtjs.dev/config-build
 
-	build: {}
+	build: {
+		loaders: {
+			file: { esModule: false }
+		}
+	}
 }
