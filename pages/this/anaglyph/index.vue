@@ -1,6 +1,6 @@
 
 <template>
-	<article class="p-anaglyph1" role="article" itemscope itemtype="http://schema.org/WebPage">
+	<article class="p-anaglyph" role="article" itemscope itemtype="http://schema.org/WebPage">
 
 		<client-only>
 			<svg id="space"
@@ -308,13 +308,13 @@
 			</svg>
 		</client-only>
 
-		<div class="p-anaglyph1__advertisement">
-			<samp class="p-anaglyph1__advertisement-background"></samp>
-			<img class="p-anaglyph1__advertisement-img" src="~/static/images/glasses.png" alt="Anaglyph glasses">
-			<h2 class="p-anaglyph1__advertisement-title">Glasses needed!</h2>
+		<div class="p-anaglyph__advertisement">
+			<samp class="p-anaglyph__advertisement-background"></samp>
+			<img class="p-anaglyph__advertisement-img" src="~/static/images/glasses.png" alt="Anaglyph glasses">
+			<h2 class="p-anaglyph__advertisement-title">Glasses needed!</h2>
 		</div>
 
-		<img class="p-anaglyph1__woman-crying" src="~/static/images/cry.gif">
+		<img class="p-anaglyph__woman-crying" src="~/static/images/cry.gif">
 	</article>
 </template>
 
@@ -328,14 +328,14 @@
 
 		head () {
 			return {
-				title: 'Anaglyph #01',
+				title: 'Anaglyph',
 				meta: [
 					{ hid: 'description', name: 'description', content: 'Anaglyph experiment'}
 				],
 				script: [
 					{
-						hid: 'anaglyph1',
-						src: '/scripts/anaglyph1.js',
+						hid: 'anaglyph',
+						src: '/scripts/anaglyph.js',
 						defer: true,
 						callback: () => { this.isScriptLoaded = true; }
 					}
@@ -354,7 +354,7 @@
 
 <style lang="scss">
 
-.p-anaglyph1 {
+.p-anaglyph {
 	position: relative;
 	overflow: hidden;
 	background: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 100%);
@@ -365,7 +365,7 @@
 	}
 }
 
-.p-anaglyph1__woman-crying {
+.p-anaglyph__woman-crying {
 	opacity: 0;
 	position: absolute;
 	bottom: 0;
@@ -379,7 +379,7 @@
 	}
 }
 
-.p-anaglyph1__advertisement {
+.p-anaglyph__advertisement {
 	position: absolute;
 	display: flex;
 	flex-direction: column;

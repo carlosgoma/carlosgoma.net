@@ -119,7 +119,7 @@
 			}
 		}
 
-		&--this-anaglyph1 {
+		&--this-anaglyph {
 			&:hover {
 				.c-logo__svg-o {
 					transition: .3s ease-out;

@@ -1,67 +1,67 @@
 
 <template>
 
-	<div class="p-hirehim">
+	<div class="p-hire-him">
 
-		<h1 class="p-hirehim__title t-fade">
+		<h1 class="p-hire-him__title t-fade">
 			<span>
 				Hire him
 			</span>
 		</h1>
 
-		<div class="p-hirehim__chat t-section">
-			<div class="p-hirehim__chat-content">
-				<p class="p-hirehim__chat-text" id="text1">
+		<div class="p-hire-him__chat t-section">
+			<div class="p-hire-him__chat-content">
+				<p class="p-hire-him__chat-text" id="text1">
 					<span>
 						He is hardworking, proactive and punctual.
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text2">
+				<p class="p-hire-him__chat-text" id="text2">
 					<span>
 						Well, usually punctual.
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text3">
+				<p class="p-hire-him__chat-text" id="text3">
 					<span>
 						Hire him. He can work under pressure.
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text4">
+				<p class="p-hire-him__chat-text" id="text4">
 					<span>
 						I’ve seen him meet deadlines while I stare fixedly at him.
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text5">
+				<p class="p-hire-him__chat-text" id="text5">
 					<span>
 						Hire him. What could go wrong?
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text6">
+				<p class="p-hire-him__chat-text" id="text6">
 					<span>
 						Well, besides… nah, forget I said anything. I’m just a cat.
 					</span>
 				</p>
-				<p class="p-hirehim__chat-text" id="text7">
+				<p class="p-hire-him__chat-text" id="text7">
 					<span>
 						Hire him.
 					</span>
 				</p>
 			</div>
 
-			<picture class="p-hirehim__chat-picture">
-				<img class="p-hirehim__chat-img" src="~/assets/images/hypnosis.gif" alt="Hypnosis">
+			<picture class="p-hire-him__chat-picture">
+				<img class="p-hire-him__chat-img" src="~/assets/images/hypnosis.gif" alt="Hypnosis">
 
-				<button v-if="isChatAnimationFinished" class="p-hirehim__chat-restart" @click="restart" aria-label="restart">
-					<svg class="p-hirehim__chat-restart-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<button v-if="isChatAnimationFinished" class="p-hire-him__chat-restart" @click="restart" aria-label="restart">
+					<svg class="p-hire-him__chat-restart-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 						<path d="M3 22v-20l18 10-18 10z"/>
 					</svg>
 				</button>
 			</picture>
 		</div>
 
-		<div class="p-hirehim__spiral t-fade">
+		<div class="p-hire-him__spiral t-fade">
 
-			<svg class="p-hirehim__spiral__svg" x="0px" y="0px"
+			<svg class="p-hire-him__spiral__svg" x="0px" y="0px"
 				viewBox="0 0 1400 1400" style="enable-background:new 0 0 1400 1400;" xml:space="preserve">
 
 				<defs>
@@ -105,10 +105,10 @@
 						c0,515.6,411.9,932.8,920.9,932.8s920.9-417.2,920.9-932.8c0-529.2-422.7-957.4-945.1-957.4s-945.1,428.2-945.1,957.4
 						c0,542.8,433.6,981.9,969.4,981.9s969.4-439.2,969.4-981.9c0-556.3-444.4-1006.5-993.6-1006.5S-293.6,156-293.6,712.3"/>
 
-					<use href="#spiral" class="p-hirehim__spiral__svg-black" />
-					<use href="#spiral" class="p-hirehim__spiral__svg-red" />
-					<use href="#spiral" class="p-hirehim__spiral__svg-blue" />
-					<use href="#spiral" class="p-hirehim__spiral__svg-blur" />
+					<use href="#spiral" class="p-hire-him__spiral__svg-black" />
+					<use href="#spiral" class="p-hire-him__spiral__svg-red" />
+					<use href="#spiral" class="p-hire-him__spiral__svg-blue" />
+					<use href="#spiral" class="p-hire-him__spiral__svg-blur" />
 				</g>
 			</svg>
 
@@ -218,7 +218,7 @@
 
 <style lang="scss">
 
-.p-hirehim {
+.p-hire-him {
 	height: 100%;
 
 	&__title {

@@ -63,7 +63,7 @@
 			],
 		},
 		data() {
-			return{
+			return {
 				isQuoteOver: false
 			}
 		}

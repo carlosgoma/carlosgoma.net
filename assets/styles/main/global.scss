@@ -1,12 +1,13 @@
+
 @font-face {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Noto Serif';
 	font-style: normal;
 	font-weight: 400;
-	src: local(''),
-		url('/fonts/noto-serif-v11-latin-regular.woff2') format('woff2'),
-		url('/fonts/noto-serif-v11-latin-regular.woff') format('woff');
+	font-display: swap;
+	src: local('Noto Serif'),
+		url('~assets/fonts/noto-serif-v11-latin-regular.woff2') format('woff2'),
+		url('~assets/fonts/noto-serif-v11-latin-regular.woff') format('woff');
 }
-
 
 :root {
     --space: 1.9rem;

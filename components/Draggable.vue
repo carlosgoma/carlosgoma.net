@@ -2,14 +2,13 @@
 	<div>
 		<div class="c-draggable" :class="['c-draggable-'+this.$route.name, {'is-loaded': isLoaded}]" >
 
-			<div ref="dragG"
-			class="c-draggable__item"
-			data-item="g"
-			style="z-index:1">
-				<svg class="c-draggable__svg"
-					viewBox="0 0 600 600"
-					preserveAspectRatio="xMinYMax meet"
-					style="overflow: visible">
+			<interact data-item="g"
+				class="c-draggable__item"
+				draggable
+				:dragOption="dragOption"
+				@dragmove="dragmove"
+				:style="{ transform: `translate(${coordinates.g.x}px, ${coordinates.g.y}px)` }">
+				<svg class="c-draggable__svg" viewBox="0 0 600 600" preserveAspectRatio="xMinYMax meet" style="overflow: visible">
 					<defs>
 						<pattern id="figure-g-pattern" patternUnits="userSpaceOnUse" width="10" height="10">
 							<rect fill="#959599" width="5" height="5"/>
@@ -25,19 +24,18 @@
 					</path>
 				</svg>
 				<div class="c-draggable__coordinates" v-if="this.$route.name == 'index' && this.$store.getters.developerView">
-					<span>x : {{Math.round(coordinates.g.x)}}</span>
-					<span>y : {{Math.round(coordinates.g.y)}}</span>
+					<span>x : {{coordinates.g.x}}</span>
+					<span>y : {{coordinates.g.y}}</span>
 				</div>
-			</div>
+			</interact>
 
-			<div ref="dragO"
-			class="c-draggable__item c-draggable__item-this"
-			data-item="o"
-			style="z-index:1">
-				<svg class="c-draggable__svg"
-					viewBox="0 0 600 600"
-					preserveAspectRatio="xMinYMax meet"
-					style="overflow: visible">
+			<interact data-item="o"
+				class="c-draggable__item c-draggable__item-this"
+				draggable
+				:dragOption="dragOption"
+				@dragmove="dragmove"
+				:style="{ transform: `translate(${coordinates.o.x}px, ${coordinates.o.y}px)` }">
+				<svg class="c-draggable__svg" viewBox="0 0 600 600" preserveAspectRatio="xMinYMax meet" style="overflow: visible">
 					<path class="c-draggable__path c-draggable__path-o"
 						@mousedown="startAnime"
 						@mouseup="endAnime"
@@ -47,19 +45,18 @@
 					</path>
 				</svg>
 				<div class="c-draggable__coordinates" v-if="this.$route.name == 'index' && this.$store.getters.developerView">
-					<span>x : {{Math.round(coordinates.o.x)}}</span>
-					<span>y : {{Math.round(coordinates.o.y)}}</span>
+					<span>x : {{coordinates.o.x}}</span>
+					<span>y : {{coordinates.o.y}}</span>
 				</div>
-			</div>
+			</interact>
 
-			<div ref="dragM"
+			<interact data-item="m"
 				class="c-draggable__item c-draggable__item-you"
-				data-item="m"
-				style="z-index:1">
-				<svg class="c-draggable__svg"
-					viewBox="0 0 600 600"
-					preserveAspectRatio="xMinYMax meet"
-					style="overflow: visible">
+				draggable
+				:dragOption="dragOption"
+				@dragmove="dragmove"
+				:style="{ transform: `translate(${coordinates.m.x}px, ${coordinates.m.y}px)` }">
+				<svg class="c-draggable__svg" viewBox="0 0 600 600" preserveAspectRatio="xMinYMax meet" style="overflow: visible">
 					<path class="c-draggable__path c-draggable__path-m"
 						@mousedown="startAnime"
 						@mouseup="endAnime"
@@ -69,19 +66,18 @@
 					</path>
 				</svg>
 				<div class="c-draggable__coordinates" v-if="this.$route.name == 'index' && this.$store.getters.developerView">
-					<span>x : {{Math.round(coordinates.m.x)}}</span>
-					<span>y : {{Math.round(coordinates.m.y)}}</span>
+					<span>x : {{coordinates.m.x}}</span>
+					<span>y : {{coordinates.m.y}}</span>
 				</div>
-			</div>
+			</interact>
 
-			<div ref="dragA"
+			<interact data-item="a"
 				class="c-draggable__item c-draggable__item-me"
-				data-item="a"
-				style="z-index:1">
-				<svg class="c-draggable__svg"
-					viewBox="0 0 600 600"
-					preserveAspectRatio="xMinYMax meet"
-					style="overflow: visible">
+				draggable
+				:dragOption="dragOption"
+				@dragmove="dragmove"
+				:style="{ transform: `translate(${coordinates.a.x}px, ${coordinates.a.y}px)` }">
+				<svg class="c-draggable__svg" viewBox="0 0 600 600" preserveAspectRatio="xMinYMax meet" style="overflow: visible">
 					<path class="c-draggable__path c-draggable__path-a"
 						@mousedown="startAnime"
 						@mouseup="endAnime"
@@ -91,95 +87,73 @@
 					</path>
 				</svg>
 				<div class="c-draggable__coordinates" v-if="this.$route.name == 'index' && this.$store.getters.developerView">
-					<span>x : {{Math.round(coordinates.a.x)}}</span>
-					<span>y : {{Math.round(coordinates.a.y)}}</span>
+					<span>x : {{coordinates.a.x}}</span>
+					<span>y : {{coordinates.a.y}}</span>
 				</div>
-			</div>
+			</interact>
 		</div>
 	</div>
 </template>
 
 
 <script>
+import interact from "interactjs";
 
 export default {
 
-	data() {
-		return {
-			isLoaded: false,
-			coordinates: {
-				g: {
-					x: null,
-					y: null
-				},
-				o: {
-					x: null,
-					y: null
-				},
-				m: {
-					x: null,
-					y: null
-				},
-				a: {
-					x: null,
-					y: null
-				}
+	data: () => ({
+		isLoaded: false,
+		zIndex: 1,
+		dragOption: {
+			modifiers: [
+				interact.modifiers.restrictRect({
+					restriction: "parent",
+					endOnly: true
+				})
+			],
+			inertia: true,
+			inertia: {
+				resistance: 3,
+				minSpeed: 500,
+				endSpeed: 2
+			},
+		},
+		coordinates: {
+			g: {
+				x: null,
+				y: null
+			},
+			o: {
+				x: null,
+				y: null
+			},
+			m: {
+				x: null,
+				y: null
+			},
+			a: {
+				x: null,
+				y: null
 			}
 		}
-	},
+	}),
 
 	mounted: function() {
-		this.initInteract( this.$refs.dragG );
-		this.initInteract( this.$refs.dragO );
-		this.initInteract( this.$refs.dragM );
-		this.initInteract( this.$refs.dragA );
-
+		this.randomPosition();
 		this.isLoaded = true;
 	},
 
 	methods: {
-		initInteract: function(selector) {
-
-			this.randomPosition(selector);
-
-			interact(selector).draggable({
-				inertia: true,
-				inertia: {
-					resistance: 3,
-					minSpeed: 500,
-					endSpeed: 2
-				},
-				restrict: { // keep on parent
-					restriction: "parent",
-					endOnly: true,
-					elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-				},
-
-				onmove: this.dragMoveListener,
-				// onend: this.onDragEnd
-			}).styleCursor(false);
+		randomPosition() {
+			for (const pair in this.coordinates) {
+				this.coordinates[pair].x = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetWidth - document.querySelector(".c-draggable__item").offsetWidth + 1));;
+				this.coordinates[pair].y = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetHeight - document.querySelector(".c-draggable__item").offsetHeight + 1));
+			}
 		},
-
-		dragMoveListener: function(event) {
-
-			const selectorCoordinate = this.coordinates[event.target.getAttribute('data-item')];
-
-			selectorCoordinate.x = (parseFloat(event.target.getAttribute("data-x")) || 0) + event.dx;
-			selectorCoordinate.y = (parseFloat(event.target.getAttribute("data-y")) || 0) + event.dy;
-
-			this.targetUpdate(event.target, selectorCoordinate.x, selectorCoordinate.y);
+		dragmove(event) {
+			this.coordinates[event.target.dataset.item].x += Math.round(event.dx);
+			this.coordinates[event.target.dataset.item].y += Math.round(event.dy);
 		},
-
-		randomPosition: function(selector) {
-
-			const selectorCoordinate = this.coordinates[selector.getAttribute('data-item')];
-
-			selectorCoordinate.x = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetWidth - selector.offsetWidth + 1));
-			selectorCoordinate.y = Math.floor(Math.random() * (document.querySelector(".c-draggable").offsetHeight - selector.offsetHeight + 1));
-
-			this.targetUpdate(selector, selectorCoordinate.x, selectorCoordinate.y)
-		},
-
 		startAnime: function(event) {
 			this.$anime({
 				targets: event.target,
@@ -189,7 +163,6 @@ export default {
 				begin: this.targetIndex(event.target),
 			})
 		},
-
 		endAnime: function(event) {
 			this.$anime({
 				targets: event.target,
@@ -198,17 +171,9 @@ export default {
 				duration: 500,
 			})
 		},
-
 		targetIndex: function(selector) {
-			const zIndex = [];
-			document.querySelectorAll('.c-draggable__item').forEach( element => zIndex.push(element.style.zIndex ));
-			selector.closest('.c-draggable__item').style.zIndex = Math.max(...zIndex) + 1;
-		},
-
-		targetUpdate: function (selector, x, y) {
-			selector.style.transform = "translate(" + x + "px, " + y + "px)";
-			selector.setAttribute("data-x", x);
-			selector.setAttribute("data-y", y);
+			this.zIndex = ++this.zIndex;
+			selector.closest('.c-draggable__item').style.zIndex = this.zIndex;
 		}
 	}
 };

@@ -5,7 +5,7 @@ const consoleInteraction = {
 
 	install(Vue) {
 
-		console.log('%cHi there!', 'font-size: 3em; padding: 10px 10px; line-height: 1.5;');
+		console.log('%cHi there!', 'font-size: 3em; padding: 10px 10px; line-height: 1;');
 		console.log('%c ', 'background: url("http://carlosgoma.net/images/bill_murray.jpg") center no-repeat; margin: 10px 10px; padding: 125px 100px; background-size: 100% 100%;')
 		console.log('%cThis website is done with NuxtJS (A VueJS framework).', 'font-size: 1.1em; padding: 10px 10px 10px; line-height: 1.5; font-weight:bold');
 		console.group('%cThese are the libraries I\'ve used:', 'margin-left: 10px; padding: 10px; background: #caffcc; display: block; width: 600px');

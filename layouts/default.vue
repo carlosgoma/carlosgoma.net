@@ -13,7 +13,7 @@
 		</header>
 		<main>
 			<nuxt/>
-			<draggable v-if="$route.name != 'hirehim'" />
+			<draggable v-if="$route.name != 'hire-him'" />
 		</main>
 		<footer class="l-layout__footer">
 			<nav-main/>
@@ -22,27 +22,25 @@
 </template>
 
 <script>
+	export default {
+		name: "default",
 
-export default {
-	name: "default",
+		mounted () {
+			window.runDeveloperView = this.$runDeveloperView;
+			window.stopDeveloperView = this.$stopDeveloperView;
 
-	mounted () {
-		window.runDeveloperView = this.$runDeveloperView;
-		window.stopDeveloperView = this.$stopDeveloperView;
-
-		window.addEventListener('resize', this.onResize);
-		document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
-	},
-	methods: {
-		onResize() {
+			window.addEventListener('resize', this.onResize);
 			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
+		},
+		methods: {
+			onResize() {
+				document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
+			}
 		}
-	}
-};
+	};
 </script>
 
 <style lang="scss">
-
 	.l-layout {
 		&--index {
 			animation: bs-index .1s forwards;
@@ -72,7 +70,7 @@ export default {
 				100% { box-shadow: inset 0 -5px var(--blue);}
 			}
 		}
-		&--hirehim {
+		&--hire-him {
 			height: var(--windowHeight);
 			overflow: hidden;
 			position: relative;

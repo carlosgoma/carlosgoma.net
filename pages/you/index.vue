@@ -21,7 +21,7 @@
 		<div class="p-you__hiring t-section">
 			<div class="o-text">
 				<h2 class="p-you__past-title o-title o-title--secundary">Are you hiring in Ho Chi Minh City?</h2>
-				<p>I’m living here! If you are looking for a passionate front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you still need some convincing, please click <nuxt-link to="/hirehim" class="o-link" title="Do it!">here</nuxt-link>.</p>
+				<p>I’m living here! If you are looking for a passionate front-end developer that works with <cite>Vue.js</cite> or <cite>React</cite> don’t hesitate to get in touch. If you still need some convincing, please click <nuxt-link to="/hire-him" class="o-link" title="Do it!">here</nuxt-link>.</p>
 				<div class="p-you__email">
 					<span v-if="isLabelShown" ref="label" class="p-you__email-label">{{labelText}}</span>
 					<button

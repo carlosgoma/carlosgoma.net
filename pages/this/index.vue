@@ -35,6 +35,18 @@
 		data() {
 			return {
 				experiments : [
+					// {
+					// 	id: 'minorities-report',
+					// 	isOut: true,
+					// 	url: '/this/minorities-report',
+					// 	name: 'Minorities Report',
+					// 	img: {
+					// 		mobile: 'zoom1-mobile.png',
+					// 		desktop: 'zoom1-desktop.png'
+					// 	},
+					// 	year: '2021',
+					// 	info: ['D3.js', 'Vue.js']
+					// },
 					{
 						id: 'zoom1',
 						isOut: true,
@@ -48,13 +60,13 @@
 						info: ['Parallax.js', 'Snap.svg', 'Illustration']
 					},
 					{
-						id: 'anaglyph1',
+						id: 'anaglyph',
 						isOut: true,
-						url: '/this/anaglyph1',
-						name: 'Anaglyph #1',
+						url: '/this/anaglyph',
+						name: 'Anaglyph',
 						img: {
-							mobile: 'anaglyph1-mobile.png',
-							desktop: 'anaglyph1-desktop.png'
+							mobile: 'anaglyph-mobile.png',
+							desktop: 'anaglyph-desktop.png'
 						},
 						year: '2013',
 						info: ['Zoomooz.js', 'Snap.svg', 'Illustration']

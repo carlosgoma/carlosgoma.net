@@ -10,7 +10,6 @@ export const svgRotation = (event) => {
 export const svgMouseOver = (event, anime) => {
 
 	svgRotation(event)
-
 	anime({
 		targets: event.target.getElementsByTagName("path")[0],
 		d: [
@@ -28,9 +27,6 @@ export const svgMouseOver = (event, anime) => {
 export const svgMouseLeave = (event, anime) => {
 
 	svgRotation(event);
-
-	anime.running.length = 0;
-
 	anime({
 		targets: event.target.getElementsByTagName("path")[0],
 		d: [

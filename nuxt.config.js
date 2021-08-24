@@ -13,16 +13,8 @@ export default {
 			{ hid: 'description', name: 'description', content: 'The personal webpage of Carlos Gómez' },
 		],
 		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-		],
-		script: [
-			{
-				hid: 'interactjs',
-				src: '/scripts/interact.min.js',
-				defer: true
-			}
+			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
 		]
-
 	},
 
 	// -------------------------------------------------- Global CSS:
@@ -38,6 +30,7 @@ export default {
 	plugins: [
 		{ src: '~/plugins/v-toolip.js'},
 		{ src: '~/plugins/console.js'},
+		{ src: '~/plugins/interactjs.js'},
 	],
 
 	// -------------------------------------------------- Auto import components (components folder):
@@ -51,19 +44,16 @@ export default {
 	buildModules: [
 		'@nuxtjs/style-resources', // sass
 		'nuxt-animejs', // anime
-		'@nuxtjs/device',
+		'@nuxtjs/device'
 	],
-
 	device: {
 		defaultUserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36',
 		refreshOnResize: true
 	},
-
 	styleResources: {
 		scss: './assets/styles/config.scss',
 		hoistUseStatements: true  // "@use" imports sass.
 	},
-
 
 	// -- Modules
 
@@ -72,9 +62,5 @@ export default {
 	// -------------------------------------------------- Build Configuration:
 	// https://go.nuxtjs.dev/config-build
 
-	build: {
-		loaders: {
-			file: { esModule: false }
-		}
-	}
+	build: {}
 }
