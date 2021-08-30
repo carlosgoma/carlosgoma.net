@@ -29,8 +29,9 @@ export default {
 
 	plugins: [
 		{ src: '~/plugins/v-toolip.js'},
-		{ src: '~/plugins/console.js'},
+		// { src: '~/plugins/console.js'},
 		{ src: '~/plugins/interactjs.js'},
+		// { src: '~/plugins/d3.js',  mode: 'client'},
 	],
 
 	// -------------------------------------------------- Auto import components (components folder):
@@ -62,5 +63,7 @@ export default {
 	// -------------------------------------------------- Build Configuration:
 	// https://go.nuxtjs.dev/config-build
 
-	build: {}
+	build: {
+		transpile: ['d3']
+	}
 }

@@ -35,18 +35,18 @@
 		data() {
 			return {
 				experiments : [
-					// {
-					// 	id: 'minorities-report',
-					// 	isOut: true,
-					// 	url: '/this/minorities-report',
-					// 	name: 'Minorities Report',
-					// 	img: {
-					// 		mobile: 'zoom1-mobile.png',
-					// 		desktop: 'zoom1-desktop.png'
-					// 	},
-					// 	year: '2021',
-					// 	info: ['D3.js', 'Vue.js']
-					// },
+					{
+						id: 'minorities-report',
+						isOut: true,
+						url: '/this/minorities-report',
+						name: 'Minorities Report',
+						img: {
+							mobile: 'zoom1-mobile.png',
+							desktop: 'zoom1-desktop.png'
+						},
+						year: '2021',
+						info: ['D3.js', 'Vue.js']
+					},
 					{
 						id: 'zoom1',
 						isOut: true,

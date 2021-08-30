@@ -1,6 +1,5 @@
-export const map = () => {
 
-	console.log('importado');
+export const map = (d3, topojson) => {
 
 	var width = 960,
 		height = 700;
