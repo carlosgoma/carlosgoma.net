@@ -1,49 +1,96 @@
 <template>
 	<article class="p-minorities" role="article" itemscope itemtype="http://schema.org/WebPage">
 
-		<h1 class="p-minorities__title o-title--secundary"><span>Minorities Report</span></h1>
-
 		<div class="p-minorities__grid">
 
 			<div id="js-p-minorities__map" class="p-minorities__map"></div>
 
-			<section class="p-minorities__graphic">
+			<section class="p-minorities__graphic" v-show="active.type">
 				<div class="p-minorities__graphic-header">
-					<h2 class="p-minorities__graphic-title">{{donut.title}}</h2>
-					<small>{{donut.category}}</small>
+					<h2 class="p-minorities__graphic-title">{{active.value}}</h2>
+					<small>{{active.type === 'province' ? `${active.category} - ${(provincesPopulation[active.value]).toLocaleString()}` : active.category}}</small>
 				</div>
+
 				<div class="p-minorities__graphic-body">
-					<svg id="js-minorities__pie" class="p-minorities__pie" width="200" height="200" viewBox="0 0 200 200"></svg>
+					<svg id="js-minorities__pie" class="p-minorities__pie" width="180" height="180" viewBox="0 0 200 200"></svg>
+					<ul id="js-minorities__pie-leyend" class="p-minorities__pie-leyend"></ul>
+
+					<picture v-if="active.img" class="p-minorities__graphic-picture">
+						<img
+							class="p-minorities__graphic-img"
+							:src="require(`~/assets/images/minorities/${active.img}`)" :alt="active.value">
+					</picture>
 				</div>
 			</section>
 
 			<section class="p-minorities__groups">
-				<client-only placeholder="Loading...">
-					<div class="p-minorities__groups-scroll">
-						<div class="p-minorities__group" v-for="(family, i) in hierarchyData" :key="i" v-show="groupVisiblity(family)">
-
-							<h3 class="p-minorities__group-title o-title--secundary">
-								{{family[0]}}
-							</h3>
-
-							<ul class="p-minorities__ethnics">
-								<li class="p-minorities__ethnic" v-for="(ethnic, i) in family[1]" :key="i" v-show="ethnic.visible">
-									<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === ethnicActive}]"
-										@click="ethnicActivation(ethnic)">
-										{{ethnic.name}}
+				<div class="p-minorities__groups-scroll">
+					<header class="p-minorities__groups-header">
+						<h1 class="p-minorities__groups-title o-title--secundary"><span>Minorities Report</span></h1>
+						<div class="p-minorities__groups-btns">
+							<button class="p-minorities__groups-btn"
+								:disabled="active.type ? false : true"
+								@click="active = { type: '', value: '', category: ''}">Reset</button>
+							<div class="p-minorities__dropdown">
+								<button :class="['p-minorities__groups-btn p-minorities__dropdown-btn', {'is-active': isDropdownOpen }]"
+									@click.stop="isDropdownOpen = !isDropdownOpen">Sort by: {{order}}</button>
+								<div class="p-minorities__dropdown-content" v-if="isDropdownOpen">
+									<button :disabled="order === 'Family'" @click="changeOrder('Family')">
+										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Family
 									</button>
-									<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
-										<svg width="14" height="14" viewBox="0 0 24 24">
-											<use href="#use-link" />
-										</svg>
-									</a>
-								</li>
-							</ul>
+									<button :disabled="order === 'Census'" @click="changeOrder('Census')">
+										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Census
+									</button>
+								</div>
+							</div>
 						</div>
-					</div>
-				</client-only>
+					</header>
+					<client-only placeholder="Loading...">
+						<section class="p-minorities__groups-content" v-if="order === 'Family'">
+							<div class="p-minorities__group" v-for="(family, i) in hierarchyData" :key="i">
+								<h2 class="p-minorities__group-title">
+									{{family[0]}}
+								</h2>
+								<ul class="p-minorities__ethnics">
+									<li class="p-minorities__ethnic" v-for="(ethnic, i) in family[1]" :key="i">
+										<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === active.value}]"
+											@click="active = { type: 'ethnic', value: ethnic.name, category: ethnic.category, img: ethnic.img}">
+											{{ethnic.name}} <small class="p-minorities__ethnic-census" title="Census" v-if="ethnic.census">{{ (ethnic.census).toLocaleString() }}</small>
+										</button>
+										<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
+											<svg width="14" height="14" viewBox="0 0 24 24">
+												<use href="#use-link" />
+											</svg>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<section class="p-minorities__groups-content p-minorities__groups-content--census" v-else>
+
+								<ul class="p-minorities__ethnics">
+									<li class="p-minorities__ethnic" v-for="(ethnic, i) in hierarchyData" :key="i">
+										<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === active.value}]"
+											@click="active = { type: 'ethnic', value: ethnic.name, category: ethnic.category}">
+											{{ethnic.name}} <small class="p-minorities__ethnic-census" title="Census" v-if="ethnic.census">{{ (ethnic.census).toLocaleString() }}</small>
+										</button>
+										<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
+											<svg width="14" height="14" viewBox="0 0 24 24">
+												<use href="#use-link" />
+											</svg>
+										</a>
+									</li>
+								</ul>
+
+						</section>
+
+
+					</client-only>
+				</div>
 			</section>
 		</div>
+
+		<div class="p-minorities__tooltip"></div>
 
 		<svg style="display:none" width="24" height="24" viewBox="0 0 24 24"><path id="use-link" d="M13.723 18.654l-3.61 3.609c-2.316 2.315-6.063 2.315-8.378 0-1.12-1.118-1.735-2.606-1.735-4.188 0-1.582.615-3.07 1.734-4.189l4.866-4.865c2.355-2.355 6.114-2.262 8.377 0 .453.453.81.973 1.089 1.527l-1.593 1.592c-.18-.613-.5-1.189-.964-1.652-1.448-1.448-3.93-1.51-5.439-.001l-.001.002-4.867 4.865c-1.5 1.499-1.5 3.941 0 5.44 1.517 1.517 3.958 1.488 5.442 0l2.425-2.424c.993.284 1.791.335 2.654.284zm.161-16.918l-3.574 3.576c.847-.05 1.655 0 2.653.283l2.393-2.389c1.498-1.502 3.94-1.5 5.44-.001 1.517 1.518 1.486 3.959 0 5.442l-4.831 4.831-.003.002c-1.438 1.437-3.886 1.552-5.439-.002-.473-.474-.785-1.042-.956-1.643l-.084.068-1.517 1.515c.28.556.635 1.075 1.088 1.528 2.245 2.245 6.004 2.374 8.378 0l4.832-4.831c2.314-2.316 2.316-6.062-.001-8.377-2.317-2.321-6.067-2.313-8.379-.002z"/></svg>
 	</article>
@@ -53,9 +100,11 @@
 	import * as d3 from 'd3/dist/d3.min.js';
 	import Map from '~/assets/scripts/minorities/Map';
 	import Pie from '~/assets/scripts/minorities/Pie';
-	import { data } from '~/assets/scripts/minorities/ethnics';
-	import census from '~/assets/scripts/minorities/census.json';
+	import { dataEthnics } from '~/assets/scripts/minorities/ethnics';
 	import vietnam from '~/assets/scripts/minorities/vietnam.json';
+	import census from '~/assets/scripts/minorities/census.json';
+	import populationEthnics from '~/assets/scripts/minorities/populationEthnics.json';
+	import populationProvinces from '~/assets/scripts/minorities/populationProvinces.json';
 
 	export default {
 		layout: 'experiment',
@@ -75,21 +124,41 @@
 
 		data() {
 			return {
-				reloadMap: null,
-				ethnicData: data,
-				ethnicActive: '',
-				donut: {
-					title: '',
+				// reloadMap: null,
+				provincesPopulation: populationProvinces,
+				ethnicData: dataEthnics,
+				order: 'Family',
+				isDropdownOpen: false,
+				active: {
+					type: '',
+					value: '',
 					category: '',
-					census: null,
-					data: []
-				}
+					img: ''
+				},
 			}
 		},
 
 		computed: {
 			hierarchyData : function() {
-				return d3.group( this.ethnicData, d => d.family);
+				if( this.order === 'Family') {
+					return d3.group( this.ethnicData, d => d.family);
+				}
+				if( this.order === 'Census') {
+					return this.ethnicData.sort((a, b) => b.census - a.census)
+				}
+			}
+		},
+
+		watch: {
+			active: function() {
+				this.map.updateMap(this.active);
+				this.pie.updatePie(this.active);
+
+				if ( this.active.type === 'province') {
+					this.ethnicData.forEach( ethnic => ethnic.census = census[ethnic.name][this.active.value] )
+				} else {
+					this.ethnicData.forEach( ethnic => ethnic.census = populationEthnics[ethnic.name])
+				}
 			}
 		},
 
@@ -97,86 +166,41 @@
 			this.map = new Map('p-minorities__map', vietnam);
 			this.pie = new Pie('p-minorities__pie', null);
 			this.mapInteraction();
-			window.addEventListener('resize', this.windowReize);
-
+			// window.addEventListener('resize', this.windowReize);
+			document.body.addEventListener('click', this.closeDropdown)
 		},
 
 		unmounted() {
-			window.removeEventListener("resize", this.windowReize);
+			// window.removeEventListener("resize", this.windowReize);
+			document.body.removeEventListener('click', this.closeDropdown)
 		},
 
 		methods: {
 
-			ethnicActivation(ethnic) {
-				this.ethnicActive = ethnic.name;
-				this.map.provincesActivation(Object.values(ethnic.distribution))
-				this.donutUpdate(ethnic.name, ethnic.category, ethnic.census, ethnic.distribution);
+			changeOrder(order) {
+				this.order = order;
 			},
 
-			groupVisiblity: function(family) {
-				let visible = false;
-				family[1].forEach( ethnic => {
-					if ( ethnic.visible ) { visible = true }
-				})
-				return visible;
-			},
-
-			ethnicVisibility(provinceData) {
-				let provinceSelected = provinceData ? provinceData.name : null;;
-				let provinceCategory = provinceData ? provinceData.alt_types : null;
-				const dataDonut = []
-				let dataDonutEl = {};
-
-				this.ethnicData.forEach( ethnic => {
-					if ( provinceData ) {
-						ethnic.distribution.every( location => {
-							if ( location.name === provinceSelected ) {
-								ethnic.visible = true;
-								dataDonutEl['name'] = ethnic.name;
-								dataDonutEl['value'] = location.value;
-								dataDonut.push(dataDonutEl);
-							} else {
-								ethnic.visible = false;
-							}
-						})
-					} else {
-						ethnic.visible = true;
-					}
-				});
-				this.donutUpdate(provinceSelected, provinceCategory, null, dataDonut);
+			closeDropdown() {
+				this.isDropdownOpen ? this.isDropdownOpen = false : null
 			},
 
 			mapInteraction() {
 				d3.selectAll('.p-minorities__map-province').on('click', (e, d) => {
 					e.stopPropagation();
-					this.map.provincesActivation([d.properties.name])
-					this.ethnicActive = {};
-					this.ethnicVisibility(d.properties)
+					this.active = { type: 'province', value: d.properties.name, category: d.properties.alt_types, img: '' }
 				})
 				d3.select('.p-minorities__map-svg').on('click', () => {
-					this.map.provincesActivation([])
-					this.ethnicActive = {};
-					this.ethnicVisibility(null)
-					this.donutUpdate()
+					this.active = { type: '', value: '', category: '', img: ''}
 				})
 			},
 
-			donutUpdate(name = '', category = '', census = null, data = []) {
-				this.donut.title = name;
-				this.donut.category = category;
-				this.donut.census = census;
-				this.donut.data = data;
-
-				console.log(this.donut);
-				this.pie.updatePie(this.donut.data)
-			},
-
-			windowReize() {
-				clearTimeout(this.reloadMap);
-				this.reloadMap = setTimeout(() => {
-					console.log('resized');
-				}, 500);
-			}
+			// windowReize() {
+			// 	clearTimeout(this.reloadMap);
+			// 	this.reloadMap = setTimeout(() => {
+			// 		console.log('resized');
+			// 	}, 500);
+			// }
 		}
 
 	}
@@ -193,8 +217,61 @@
 		display: grid;
 		gap: space(s);
 		box-shadow: inset 20px 0 15px -15px rgba(0,0,0, .1);
-		grid-template-rows: max-content 1fr;
+		// grid-template-rows: max-content 1fr;
 		background-color: #eff3f8;
+
+		&__dropdown {
+			position: relative;
+
+			.is-active {
+				background-color: $gray-light;
+			}
+
+			&-content {
+				position: absolute;
+				z-index: 9;
+				background-color: $white;
+				border: 1px solid $gray-light;
+				box-shadow: 0 3px 8px rgba(0,0,0, .1);
+				border-radius: .2em;
+				top: calc(100% + .5em);
+				display: grid;
+				min-width: 100%;
+				button {
+					border-radius: .2em;
+					padding: .2em space(s);
+					&:hover {
+						outline: 1px solid $gray-medium;
+					}
+					svg {
+						width: 1.1em;
+						height: 1.1em;
+						fill: $gray-medium;
+						vertical-align: middle;
+						padding-right: .3em;
+						opacity: 0;
+					}
+					&:disabled {
+						pointer-events: none;
+						svg { opacity: 1;}
+					}
+				}
+			}
+		}
+
+		&__tooltip {
+			position: fixed;
+			z-index: 9;
+			pointer-events: none;
+			opacity: 0;
+			transition: opacity .1s;
+			background: $black;
+			color: #fff;
+			font-size: font-size(s);
+			line-height: 1.6;
+			padding: space(xs);
+			border-radius: .3em;
+		}
 
 		&__grid {
 			display: grid;
@@ -213,6 +290,8 @@
 
 			&-svg {
 				position: absolute;
+				width: 100%;
+				height: 100%;
 			}
 
 			&-country {
@@ -221,12 +300,6 @@
 
 			&-province {
 				cursor: pointer;
-				@for $i from 1 through 8 {
-					&[data-region="#{$i}"] {
-						fill: adjust-hue(#b7cfe0, $i * 30deg)
-					}
-				}
-
 				&.is-highlight {
 					fill: $color-hover;
 				}
@@ -237,26 +310,59 @@
 		}
 
 		&__graphic {
-			border-top: 1px solid $gray;
 			grid-row: 2;
 			grid-column: 2/3;
 			background: $white;
-			padding: space(s) space(m);
-			display: grid;
-			gap: space(s);
 
 			&-header {
 				display: flex;
 				align-items: baseline;
+				padding: space(s) space(m);
 				gap: space(s);
+				border-top: 1px solid $gray;
+				border-bottom: 1px solid $gray-light;
 			}
 			&-title {
 				font-weight: bold;
+			}
+			&-body {
+				display: grid;
+				gap: space(s);
+				padding: space(m);
+				grid-template-columns: max-content max-content 1fr;
+			}
+			&-picture {
+				margin: calc( var(--space) * -1) calc( var(--space) * -1) calc( var(--space) * -1) 0;
+				display: flex;
+				justify-content: flex-end;
+			}
+			&-img{
+				object-fit: cover;
 			}
 		}
 
 		&__pie {
 			display: block;
+			max-height: 20vh;
+			width: auto;
+
+			&-leyend {
+				font-size: font-size(xs);
+				line-height: 1.6;
+				display: grid;
+				align-items: center;
+				li {
+					display: flex;
+					justify-content: flex-end;
+					flex-direction: row-reverse;
+					gap: .5em;
+				}
+				span {
+					width: 1.3em;
+					border-radius: 50%;
+					height: 1.3em;
+				}
+			}
 		}
 
 		&__groups {
@@ -264,6 +370,40 @@
 			grid-row: 1;
 			grid-column: 2/3;
 			background-color: $white;
+
+			.client-only-placeholder {
+				padding: space(s);
+			}
+
+			&-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				padding: space(s);
+			}
+			&-content {
+				&--census {
+					padding: space(s) 0;
+				}
+			}
+
+
+			&-btns {
+				font-size: font-size(s);
+				display: flex;
+				gap: space(s);
+			}
+			&-btn {
+				padding: .1em .4em;
+				border-radius: .2em;
+				border: 1px solid transparent;
+				&:hover {
+					border-color: $gray-medium;
+				}
+				&:disabled {
+					pointer-events: none;
+				}
+			}
 			&-scroll {
 				position: absolute;
 				height: 100%;
@@ -277,6 +417,7 @@
 			display: grid;
 			gap: space(s);
 			&-title {
+				text-shadow: 0 0 0 1px;
 				display: flex;
 				align-items: center;
 				&::after {
@@ -305,6 +446,10 @@
 				text-align: left;
 				padding: space(s) space(s);
 				line-height: 1.4;
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: space(s);
 				&:hover {
 					background-color: $color-hover;
 				}
@@ -312,12 +457,16 @@
 					background-color: $color-active;
 				}
 			}
+			&-census {
+				color: $gray;
+			}
 			&-link {
 				padding: space(s) space(s);
 				display: flex;
 				align-items: center;
+				border-radius: .2em;
 				&:hover {
-					outline: 1px solid $gray;
+					box-shadow: 0 0 0 1px $gray-medium;
 				}
 			}
 

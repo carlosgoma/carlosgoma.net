@@ -5,7 +5,8 @@
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
-					<p>D3.js</p>
+					<p>This is an experiment with the last version of the library D3.js</p>
+					<p>I recollect the information from the <a href="https://www.gso.gov.vn/du-lieu-va-so-lieu-thong-ke/2020/11/ket-qua-toan-bo-tong-dieu-tra-dan-so-va-nha-o-nam-2019/" target="_blank">national census</a> and Wikipedia.</p>
 				</div>
 			</div>
 		</v-popover>

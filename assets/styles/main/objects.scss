@@ -311,13 +311,17 @@
 			padding: space(m);
 			border-radius: .4em;
 			box-shadow: 0 5px 30px rgba(black, .1);
-			max-width: 36em;
+			max-width: 97vw;
 			font-size: font-size(m);
+
+			@media ( min-width: $mobile ) {
+				max-width: 36em;
+			}
 		}
 
 		.popover-content {
 			display: grid;
-			gap: space(s);
+			gap: space(xs);
 			margin-top: $font-indent;
 			margin-bottom: $font-indent;
 		}

@@ -1,6 +1,7 @@
 import * as d3 from 'd3/dist/d3.min.js'
 import * as topojson from 'topojson-client';
-// import { ethnics } from './ethnics';
+import census from '~/assets/scripts/minorities/census.json';
+import populationEthnics from '~/assets/scripts/minorities/populationEthnics.json'
 
 
 export default class Map {
@@ -15,11 +16,16 @@ export default class Map {
 		const self = this;
 
 		// map config
-		self.width = document.querySelector(`#js-${this.name}`).offsetWidth;
-		self.height = document.querySelector(`#js-${this.name}`).offsetHeight;
+		this.width = document.querySelector(`#js-${this.name}`).offsetWidth;
+		this.height = document.querySelector(`#js-${this.name}`).offsetHeight;
+
+		// colors
+		this.colorProvinces = d3.scaleOrdinal()
+			.domain([1, 2, 3, 4, 5, 6, 7, 8])
+			.range(["#b7bbe0", "#c8b7e0", "#ddb7e0", "#e0b7cf", "#e0b7bb", "#e0c8b7", "#e0ddb7", "#cfe0b7"]);
 
 		const projectionCenter = [106.34899620666437, 16.553160650957434];
-		const projectionScale = [2500];
+		const projectionScale = [2800];
 		const projectionOffset = [self.width / 2, self.height / 2 - 20];
 		const projection = d3.geoMercator()
 			.translate(projectionOffset)
@@ -32,12 +38,13 @@ export default class Map {
 		const svg = d3.select(`#js-${this.name}`)
 			.append('svg')
 			.attr('class', `${this.name}-svg`)
-			.attr('height', self.height)
-			.attr('width', self.width)
+			.attr('height', this.width)
+			.attr('width', this.height)
 
 		// group
 		const country = svg.append("g")
 			.attr("class", `${this.name}-country`)
+			.attr('height', self.height)
 			.attr('stroke-width', 0.6);
 
 		// provinces
@@ -46,12 +53,12 @@ export default class Map {
 			.enter().append('path')
 			.attr('class', `${this.name}-province`)
 			.attr('data-name', (d) => d.properties.name)
+			.attr('fill', (d) => this.colorProvinces(d.properties.region) )
 			.attr('data-region', (d) => d.properties.region )
 			.attr('d', path)
-			.on('mouseover', (e) => d3.select(e.target).classed('is-highlight', true) )
-			.on('mouseleave', (e) => d3.select(e.target).classed('is-highlight', false) )
-			.append('title')
-			.text(d => d.properties.name)
+			.on('mouseover', (e) => onMouseOver(e) )
+			.on('mouseleave', (e) => onMouseLeave(e) )
+			.on('mousemove', (e) => onMouseMove(e) )
 
 		// free zoom
 		const dims = {
@@ -72,16 +79,64 @@ export default class Map {
 			country.attr('transform',`translate(${[t.x, t.y]})scale(${t.k})`);
 			country.attr('stroke-width', 0.6 - (t.k * 0.05) + 'px');
 		}
+
+		// Actions
+		this.tooltip = d3.select('.p-minorities__tooltip')
+
+		const onMouseOver = (e) => {
+			this.tooltip
+				.style("opacity", 1)
+				.html(
+					d3.select(e.target).attr('data-census') ?
+						d3.select(e.target).attr('data-census') == "1" ?
+							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} person`
+						:
+							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} persons`
+					:
+					`${d3.select(e.target).attr('data-name')}`
+				)
+			d3.select(e.target).classed('is-highlight', true)
+		}
+		const onMouseMove = (e) => {
+			this.tooltip
+				.style("left", `${e.x + 5}px`)
+				.style("top", `${e.y + 25}px`)
+		}
+		const onMouseLeave = (e) => {
+			this.tooltip.style("opacity", 0)
+			d3.select(e.target).classed('is-highlight', false)
+		}
 	}
 
-	provincesActivation(provinces) {
-		//reset
-		d3.selectAll(`.${this.name}-province`).classed('is-active', false);
-		//active
-		provinces.map( province => {
-			d3.select(`[data-name='${province.name}']`)
+	updateMap(active) {
+
+		d3.selectAll(`.${this.name}-province`)
+			.classed('is-active', false)
+			.attr('data-census', '')
+			.attr('fill', (d) => this.colorProvinces( d.properties.region ) )
+
+		if( active.type === 'ethnic') {
+
+			this.ethnic = active.value;
+			const censusValues = Object.values(census[this.ethnic]);
+			const maxValue = Math.max(...censusValues);
+			const colorProvinces = d3.scaleLinear()
+				.domain([1, maxValue])
+				.range(["#f9e7e5", "#ff5e41"])
+				.unknown("#ddd");
+
+			Object.entries(census[this.ethnic]).forEach(( [province, population]) => {
+				d3.select(`[data-name='${province}']`)
+					.attr('fill', () => population > 0 ? colorProvinces(population) : "#ddd")
+					.attr('data-census', population ? population.toLocaleString() : '')
+			});
+		} else {
+
+			d3.select(`[data-name='${active.value}']`)
 				.classed('is-active', true)
-		})
+		}
 	}
+
+
 }
 

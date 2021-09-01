@@ -41,8 +41,8 @@
 						url: '/this/minorities-report',
 						name: 'Minorities Report',
 						img: {
-							mobile: 'zoom1-mobile.png',
-							desktop: 'zoom1-desktop.png'
+							mobile: 'minorities-report-mobile.png',
+							desktop: 'minorities-report-desktop.png'
 						},
 						year: '2021',
 						info: ['D3.js', 'Vue.js']

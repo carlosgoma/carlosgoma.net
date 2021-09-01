@@ -28,7 +28,7 @@
 	export default {
 		data() {
 			return {
-				isExperimentPage: this.$route.name == 'this-anaglyph1' || this.$route.name == 'this-zoom1'
+				isExperimentPage: this.$route.name == 'this-anaglyph1' || this.$route.name == 'this-zoom1' || this.$route.name == 'this-minorities-report'
 			}
 		},
 		methods: {
@@ -87,7 +87,7 @@
 				top: calc(100% + var(--space) / 2);
 				writing-mode: vertical-lr;
 				transform: translateY(20px);
-				@media (min-width: $mobile) {
+				@media (max-width: $mobile) {
 					display: none;
 				}
 
