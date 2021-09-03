@@ -29,7 +29,7 @@ export default {
 
 	plugins: [
 		{ src: '~/plugins/v-toolip.js'},
-		// { src: '~/plugins/console.js'},
+		{ src: '~/plugins/console.js'},
 		{ src: '~/plugins/interactjs.js'},
 		// { src: '~/plugins/d3.js',  mode: 'client'},
 	],

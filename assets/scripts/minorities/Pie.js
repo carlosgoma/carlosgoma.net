@@ -34,7 +34,7 @@ export default class Pie {
 
 	 	// markup
 		this.svg = d3
-			.select(`#js-minorities__pie`)
+			.select('#js-pie-svg')
 
 		this.g = this.svg
 			.append("g")
@@ -56,7 +56,7 @@ export default class Pie {
 			}
 		}
 
-		this.color = d3.scaleOrdinal(["#9099BA", "#98ABC5", "#7BC1DD", "#58D8DD", "#69EAC3", "#A9F698"]);
+		this.color = d3.scaleOrdinal(["#ff5e41", "#ffa071", "#ffe57d", "#709FBA", "#3C7FA6"]);
 
 		// Actions
 		this.tooltip = d3.select('.p-minorities__tooltip')
@@ -99,12 +99,12 @@ export default class Pie {
 			Object.entries(census).forEach(([ethnic, populationData])   => {
 				activeCensus[ethnic] = populationData[active.value]
 			})
-			txtOthers = 'Other ethnics';
+			txtOthers = 'Other ethnicities';
 		}
 
 		Object.entries(activeCensus).sort(([,a],[,b]) => b-a).forEach(([key, population], index) => {
 			if ( population ) {
-				if( index < 5 ) {
+				if( index < 4 ) {
 					nTotal += +population
 					data.push({name: key, value: population})
 				} else {
@@ -134,6 +134,7 @@ export default class Pie {
 					const pathEnter = enter
 						.append('path')
 						.attr('data-name', (d) => d.data.name)
+						.attr('stroke', '#fff')
 						.attr('data-percentage', (d) => (d.data.value * 100 / nTotal).toFixed(2) )
 						.attr('d', (d, i) => this.arc(this.noSlice(i)))
 					return pathEnter;
@@ -155,7 +156,7 @@ export default class Pie {
 
 		// LEYEND
 
-		d3.select('#js-minorities__pie-leyend')
+		d3.select('#js-pie-leyend')
 			.html('')
 			.selectAll('li')
 			.data(newData, d => d.data.name)

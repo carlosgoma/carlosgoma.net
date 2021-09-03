@@ -20,6 +20,10 @@
 			window.addEventListener('resize', this.onResize);
 			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
 		},
+		unmounted() {
+			document.body.removeEventListener('resize', this.onResize)
+		},
+
 		methods: {
 			onResize() {
 				document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
@@ -32,6 +36,7 @@
 	.l-layout-experiment {
 		display: grid;
 		min-height: 100%;
+		overflow: hidden;
 		grid-template-rows: 1fr max-content;
 		@media (orientation: landscape ) {
 			grid-template-rows: initial;
@@ -40,7 +45,10 @@
 
 		.l-layout-experiment__footer {
 			box-sizing: border-box;
+			min-height: 6em;
 			@media (orientation: landscape ) {
+				min-height: none;
+				min-width: 6em;
 				grid-column: 1;
 				grid-row: 1;
 			}

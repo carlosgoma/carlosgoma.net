@@ -1,8 +1,6 @@
 import * as d3 from 'd3/dist/d3.min.js'
 import * as topojson from 'topojson-client';
 import census from '~/assets/scripts/minorities/census.json';
-import populationEthnics from '~/assets/scripts/minorities/populationEthnics.json'
-
 
 export default class Map {
 	constructor(_name, _data) {
@@ -16,8 +14,8 @@ export default class Map {
 		const self = this;
 
 		// map config
-		this.width = document.querySelector(`#js-${this.name}`).offsetWidth;
-		this.height = document.querySelector(`#js-${this.name}`).offsetHeight;
+		this.width = document.getElementById('js-map-svg').clientWidth;
+		this.height = document.getElementById('js-map-svg').clientHeight;
 
 		// colors
 		this.colorProvinces = d3.scaleOrdinal()
@@ -25,7 +23,7 @@ export default class Map {
 			.range(["#b7bbe0", "#c8b7e0", "#ddb7e0", "#e0b7cf", "#e0b7bb", "#e0c8b7", "#e0ddb7", "#cfe0b7"]);
 
 		const projectionCenter = [106.34899620666437, 16.553160650957434];
-		const projectionScale = [2800];
+		const projectionScale = [this.height * 3.4];
 		const projectionOffset = [self.width / 2, self.height / 2 - 20];
 		const projection = d3.geoMercator()
 			.translate(projectionOffset)
@@ -35,16 +33,11 @@ export default class Map {
 		const path = d3.geoPath().projection(projection);
 
 		// svg
-		const svg = d3.select(`#js-${this.name}`)
-			.append('svg')
-			.attr('class', `${this.name}-svg`)
-			.attr('height', this.width)
-			.attr('width', this.height)
+		const svg = d3.select(`#js-map-svg`).html('')
 
 		// group
 		const country = svg.append("g")
 			.attr("class", `${this.name}-country`)
-			.attr('height', self.height)
 			.attr('stroke-width', 0.6);
 
 		// provinces
@@ -64,8 +57,8 @@ export default class Map {
 		const dims = {
 			width: self.width,
 			height: self.height,
-			svg_dx: 100,
-			svg_dy: 100
+			svg_dx: 0,
+			svg_dy: 0
 		};
 		const zoom = d3.zoom()
 			.extent([[dims.svg_dx, dims.svg_dy], [dims.width-(dims.svg_dx*2), dims.height-dims.svg_dy]])
@@ -91,7 +84,7 @@ export default class Map {
 						d3.select(e.target).attr('data-census') == "1" ?
 							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} person`
 						:
-							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} persons`
+							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} people`
 					:
 					`${d3.select(e.target).attr('data-name')}`
 				)

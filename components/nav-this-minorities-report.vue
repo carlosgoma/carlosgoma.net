@@ -1,12 +1,17 @@
 <template>
 	<nav class="c-nav c-nav--experiment" :class="$device.isDesktop ? 'c-nav--desktop' : 'c-nav--mobile'">
 
+		<button class="c-nav__minorities-action" v-if="$device.isMobile" @click="showList()">
+			Map <span :class="['o-switch', {'is-active': isListVisible}]"></span> List
+		</button>
+
 		<v-popover :placement="popoverPlacement">
 			<button class="c-nav__info t-fade">Info</button>
 			<div slot="popover">
 				<div class="popover-content">
-					<p>This is an experiment with the last version of the library D3.js</p>
-					<p>I recollect the information from the <a href="https://www.gso.gov.vn/du-lieu-va-so-lieu-thong-ke/2020/11/ket-qua-toan-bo-tong-dieu-tra-dan-so-va-nha-o-nam-2019/" target="_blank">national census</a> and Wikipedia.</p>
+					<p>This is an experiment in data visualization with the library <cite>D3.js</cite> (v.7).</p>
+					<p>Here you are an interactive map with the census of the 54 recognized ethnic groups in Vietnam.</p>
+					<p>I recollected the information from the <a href="https://www.gso.gov.vn/du-lieu-va-so-lieu-thong-ke/2020/11/ket-qua-toan-bo-tong-dieu-tra-dan-so-va-nha-o-nam-2019/" target="_blank">national census</a> and Wikipedia.</p>
 				</div>
 			</div>
 		</v-popover>
@@ -31,7 +36,8 @@
 	export default {
 		data() {
 			return {
-				popoverPlacement : 'top'
+				popoverPlacement : 'top',
+				isListVisible: false
 			}
 		},
 		mounted() {
@@ -47,6 +53,15 @@
             mouseleave(event) {
 				const anime = this.$anime;
 				svgMouseLeave(event, anime);
+			},
+
+			showList() {
+				this.isListVisible ?
+					document.querySelector('.p-minorities__grid').classList.remove("p-minorities__grid--show-list")
+				:
+					document.querySelector('.p-minorities__grid').classList.add("p-minorities__grid--show-list");
+
+				this.isListVisible = !this.isListVisible;
 			}
 		}
 	}
@@ -109,6 +124,48 @@
 		&:hover {
 			text-decoration: underline;
 		}
+	}
+
+	&__minorities-action {
+		margin-left: auto;
+
+		@media (orientation: landscape) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin: 0;
+			.o-switch {
+				margin: .3em;
+			}
+		}
+	}
+}
+
+.o-switch {
+	display: inline-block;
+	height: 1em;
+	width: 2em;
+	background: $gray-medium;
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, .3), inset 0 0 0 1px rgba(0, 0, 0, .2);
+	position: relative;
+	margin: 0 .4em;
+	vertical-align: middle;
+	border-radius: .5em;
+	&::before {
+		content: '';
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		left: 0;
+		background: $white;
+		box-shadow: 0 0 0 1px $gray;
+		border-radius: 50%;
+		transition: left .2s;
+		will-change: left;
+
+	}
+	&.is-active:before {
+		left: 1em;
 	}
 }
 

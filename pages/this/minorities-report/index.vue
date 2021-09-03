@@ -3,17 +3,23 @@
 
 		<div class="p-minorities__grid">
 
-			<div id="js-p-minorities__map" class="p-minorities__map"></div>
+			<div class="p-minorities__map">
+				<svg id="js-map-svg" class="p-minorities__map-svg"></svg>
+			</div>
 
 			<section class="p-minorities__graphic" v-show="active.type">
 				<div class="p-minorities__graphic-header">
 					<h2 class="p-minorities__graphic-title">{{active.value}}</h2>
-					<small>{{active.type === 'province' ? `${active.category} - ${(provincesPopulation[active.value]).toLocaleString()}` : active.category}}</small>
+					<small>{{active.type === 'province' ? `${active.category}` : active.category}}</small>
+					<small v-if="active.type === 'province'" class="p-minorities__graphic-population">{{`Population: ${(provincesPopulation[active.value]).toLocaleString()}`}}</small>
 				</div>
 
 				<div class="p-minorities__graphic-body">
-					<svg id="js-minorities__pie" class="p-minorities__pie" width="180" height="180" viewBox="0 0 200 200"></svg>
-					<ul id="js-minorities__pie-leyend" class="p-minorities__pie-leyend"></ul>
+
+					<div class="p-minorities__pie">
+						<svg id="js-pie-svg" class="p-minorities__pie-svg" width="180" height="180" viewBox="0 0 200 200"></svg>
+						<ul id="js-pie-leyend" class="p-minorities__pie-leyend"></ul>
+					</div>
 
 					<picture v-if="active.img" class="p-minorities__graphic-picture">
 						<img
@@ -24,9 +30,11 @@
 			</section>
 
 			<section class="p-minorities__groups">
-				<div class="p-minorities__groups-scroll">
+				<div class="p-minorities__groups-scroll" ref="scroll">
 					<header class="p-minorities__groups-header">
-						<h1 class="p-minorities__groups-title o-title--secundary"><span>Minorities Report</span></h1>
+						<div>
+							<h1 class="p-minorities__groups-title o-title--secundary"><span>Minorities Report</span></h1>
+						</div>
 						<div class="p-minorities__groups-btns">
 							<button class="p-minorities__groups-btn"
 								:disabled="active.type ? false : true"
@@ -35,17 +43,18 @@
 								<button :class="['p-minorities__groups-btn p-minorities__dropdown-btn', {'is-active': isDropdownOpen }]"
 									@click.stop="isDropdownOpen = !isDropdownOpen">Sort by: {{order}}</button>
 								<div class="p-minorities__dropdown-content" v-if="isDropdownOpen">
-									<button :disabled="order === 'Family'" @click="changeOrder('Family')">
-										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Family
-									</button>
 									<button :disabled="order === 'Census'" @click="changeOrder('Census')">
-										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Census
+										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Population census
+									</button>
+									<button :disabled="order === 'Family'" @click="changeOrder('Family')">
+										<svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"/></svg> Language family
 									</button>
 								</div>
 							</div>
 						</div>
 					</header>
 					<client-only placeholder="Loading...">
+						<small class="p-minorities__groups-th">{{active.type === 'province' ? `Number of people in ${active.value}` : 'Number of people'}}</small>
 						<section class="p-minorities__groups-content" v-if="order === 'Family'">
 							<div class="p-minorities__group" v-for="(family, i) in hierarchyData" :key="i">
 								<h2 class="p-minorities__group-title">
@@ -54,8 +63,11 @@
 								<ul class="p-minorities__ethnics">
 									<li class="p-minorities__ethnic" v-for="(ethnic, i) in family[1]" :key="i">
 										<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === active.value}]"
-											@click="active = { type: 'ethnic', value: ethnic.name, category: ethnic.category, img: ethnic.img}">
-											{{ethnic.name}} <small class="p-minorities__ethnic-census" title="Census" v-if="ethnic.census">{{ (ethnic.census).toLocaleString() }}</small>
+											@click="ethnicInteraction(ethnic)">
+											{{ethnic.name}}
+											<small class="p-minorities__ethnic-census" :title="active.type === 'province' ? `Number of people in ${active.value}` :`Number of people`" v-if="ethnic.census">
+												{{ (ethnic.census).toLocaleString() }}
+											</small>
 										</button>
 										<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
 											<svg width="14" height="14" viewBox="0 0 24 24">
@@ -67,21 +79,22 @@
 							</div>
 						</section>
 						<section class="p-minorities__groups-content p-minorities__groups-content--census" v-else>
-
-								<ul class="p-minorities__ethnics">
-									<li class="p-minorities__ethnic" v-for="(ethnic, i) in hierarchyData" :key="i">
-										<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === active.value}]"
-											@click="active = { type: 'ethnic', value: ethnic.name, category: ethnic.category}">
-											{{ethnic.name}} <small class="p-minorities__ethnic-census" title="Census" v-if="ethnic.census">{{ (ethnic.census).toLocaleString() }}</small>
-										</button>
-										<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
-											<svg width="14" height="14" viewBox="0 0 24 24">
-												<use href="#use-link" />
-											</svg>
-										</a>
-									</li>
-								</ul>
-
+							<ul class="p-minorities__ethnics">
+								<li class="p-minorities__ethnic" v-for="(ethnic, i) in hierarchyData" :key="i" :data-ethnicity="ethnic.name">
+									<button :class="['p-minorities__ethnic-btn', {'is-active': ethnic.name === active.value}]"
+										@click="ethnicInteraction(ethnic)">
+										{{ethnic.name}}
+										<small class="p-minorities__ethnic-census" :title="active.type === 'province' ? `Number of people in ${active.value}` :`Number of people`" v-if="ethnic.census">
+											{{ (ethnic.census).toLocaleString() }}
+										</small>
+									</button>
+									<a :href="ethnic.url" target="_blank" class="p-minorities__ethnic-link" :title="`${ethnic.name} - Wikipedia`">
+										<svg width="14" height="14" viewBox="0 0 24 24">
+											<use href="#use-link" />
+										</svg>
+									</a>
+								</li>
+							</ul>
 						</section>
 
 
@@ -124,10 +137,10 @@
 
 		data() {
 			return {
-				// reloadMap: null,
+				reloadMap: null,
 				provincesPopulation: populationProvinces,
 				ethnicData: dataEthnics,
-				order: 'Family',
+				order: 'Census',
 				isDropdownOpen: false,
 				active: {
 					type: '',
@@ -163,16 +176,21 @@
 		},
 
 		mounted() {
+			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
+			document.body.addEventListener('click', this.closeDropdown)
+
 			this.map = new Map('p-minorities__map', vietnam);
 			this.pie = new Pie('p-minorities__pie', null);
 			this.mapInteraction();
-			// window.addEventListener('resize', this.windowReize);
-			document.body.addEventListener('click', this.closeDropdown)
+			window.addEventListener('resize', this.windowReize);
+			// window.addEventListener('orientationchange', this.windowReize);
 		},
 
 		unmounted() {
-			// window.removeEventListener("resize", this.windowReize);
 			document.body.removeEventListener('click', this.closeDropdown)
+			window.removeEventListener("resize", this.windowReize);
+			// window.removeEventListener('orientationchange', this.windowReize);
+
 		},
 
 		methods: {
@@ -185,6 +203,17 @@
 				this.isDropdownOpen ? this.isDropdownOpen = false : null
 			},
 
+			ethnicInteraction(ethnic) {
+				let isNecesaryScroll = this.active.type === 'province' ? true : false
+				this.active = { type: 'ethnic', value: ethnic.name, category: ethnic.category, img: ethnic.img}
+
+				if( isNecesaryScroll && this.order === 'Census') {
+					setTimeout( ()=> {
+						document.querySelector(`[data-ethnicity='${ethnic.name}']`).scrollIntoView({behavior: "smooth", block: "center"});
+					}, 100)
+				}
+			},
+
 			mapInteraction() {
 				d3.selectAll('.p-minorities__map-province').on('click', (e, d) => {
 					e.stopPropagation();
@@ -195,12 +224,14 @@
 				})
 			},
 
-			// windowReize() {
-			// 	clearTimeout(this.reloadMap);
-			// 	this.reloadMap = setTimeout(() => {
-			// 		console.log('resized');
-			// 	}, 500);
-			// }
+			windowReize() {
+				clearTimeout(this.reloadMap);
+				this.reloadMap = setTimeout(() => {
+					this.map.initMap();
+					this.mapInteraction();
+					this.map.updateMap(this.active)
+				}, 500);
+			}
 		}
 
 	}
@@ -213,12 +244,19 @@
 		$color-hover: lighten($color-active, 15%);
 
 		height: 100%;
-		padding: space(m);
 		display: grid;
 		gap: space(s);
 		box-shadow: inset 20px 0 15px -15px rgba(0,0,0, .1);
-		// grid-template-rows: max-content 1fr;
 		background-color: #eff3f8;
+		max-width: 100vw;
+		overflow: hidden;
+
+		@media (orientation: portrait) {
+			box-shadow: inset 0 -20px 15px -15px rgba(0,0,0, .1);
+		}
+		@media (min-width: $mobile) {
+			padding: space(m);
+		}
 
 		&__dropdown {
 			position: relative;
@@ -237,18 +275,25 @@
 				top: calc(100% + .5em);
 				display: grid;
 				min-width: 100%;
+				right: 0;
+				white-space: nowrap;
+
 				button {
 					border-radius: .2em;
-					padding: .2em space(s);
+					padding: space(s);
 					&:hover {
 						outline: 1px solid $gray-medium;
 					}
+					@media (min-width: $mobile) {
+						padding: .4em space(s);
+					}
+
 					svg {
 						width: 1.1em;
 						height: 1.1em;
 						fill: $gray-medium;
 						vertical-align: middle;
-						padding-right: .3em;
+						transform: translateX(-0.3em);
 						opacity: 0;
 					}
 					&:disabled {
@@ -277,16 +322,46 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 1fr max-content;
+			width: 200vw;
+			transition: transform .2s;
+			will-change: transform;
+			width: auto;
 			border: 1px solid $gray;
+
+			&--show-list {
+				transform: translateX(-100vw);
+			}
+
+			@media (max-width: $mobile) {
+				width: 200vw;
+				border: none;
+
+				@media (orientation: landscape) {
+					width: calc( 200vw - 12em);
+
+					&--show-list {
+						transform: translateX(calc( -100vw + 6em));
+					}
+				}
+			}
+
+			@media (min-width: $mobile) {
+				width: auto;
+				border: 1px solid $gray;
+			}
 		}
 
 		&__map {
 			grid-row: 1/3;
 			width: 100%;
 			height: 100%;
-			outline: 1px solid $gray;
 			position: relative;
 			z-index: 2;
+
+			@media (min-width: $mobile) {
+				outline: 1px solid $gray;
+				padding-left: 0;
+			}
 
 			&-svg {
 				position: absolute;
@@ -325,26 +400,45 @@
 			&-title {
 				font-weight: bold;
 			}
+			&-population {
+				margin-left: auto;
+			}
 			&-body {
 				display: grid;
-				gap: space(s);
-				padding: space(m);
-				grid-template-columns: max-content max-content 1fr;
+				grid-template-columns: max-content 1fr;
 			}
 			&-picture {
-				margin: calc( var(--space) * -1) calc( var(--space) * -1) calc( var(--space) * -1) 0;
-				display: flex;
-				justify-content: flex-end;
+				position: relative;
 			}
 			&-img{
+				position: absolute;
+				right: 0;
+				height: 100%;
 				object-fit: cover;
 			}
 		}
 
 		&__pie {
-			display: block;
-			max-height: 20vh;
-			width: auto;
+			display: grid;
+			grid-template-columns: max-content max-content;
+			padding: space(s);
+			gap: space(s);
+
+			@media (min-width: $mobile) {
+				padding: space(m);
+			}
+
+			&-svg {
+				max-height: 14vh;
+				width: auto;
+
+				@media (min-width: $mobile) {
+					max-height: 20vh;
+				}
+			}
+			&-svg {
+				align-self: center;
+			}
 
 			&-leyend {
 				font-size: font-size(xs);
@@ -377,16 +471,35 @@
 
 			&-header {
 				display: flex;
-				justify-content: space-between;
 				align-items: baseline;
 				padding: space(s);
+				flex-wrap: wrap;
+				gap: space(s);
+				justify-content: space-between;
+
+				@media (max-width: $mobile) {
+					justify-content: flex-end;
+					margin-left: 5em;
+				}
+			}
+			&-th {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				padding-top: space(s);
+				color: $gray-medium;
+				&::after {
+					content: '';
+					width: calc(var(--space) + .7em);
+					border-bottom: 1px solid $gray-light;
+					margin: 0 space(s);
+				}
 			}
 			&-content {
 				&--census {
-					padding: space(s) 0;
+					padding: space(s);
 				}
 			}
-
 
 			&-btns {
 				font-size: font-size(s);
@@ -408,8 +521,12 @@
 				position: absolute;
 				height: 100%;
 				width: 100%;
-				padding: space(s);
+				padding: space(s) 0;
 				overflow-y: scroll;
+
+				@media (min-width: $mobile) {
+					padding: space(s);
+				}
 			}
 		}
 		&__group {
@@ -457,9 +574,6 @@
 					background-color: $color-active;
 				}
 			}
-			&-census {
-				color: $gray;
-			}
 			&-link {
 				padding: space(s) space(s);
 				display: flex;
@@ -467,6 +581,10 @@
 				border-radius: .2em;
 				&:hover {
 					box-shadow: 0 0 0 1px $gray-medium;
+				}
+				svg {
+					width: .7em;
+					height: .7em;
 				}
 			}
 

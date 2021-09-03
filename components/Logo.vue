@@ -1,5 +1,5 @@
 <template>
-	<div :class="['c-logo', 'c-logo--' + $route.name]" v-on:mouseenter="startAnime">
+	<div class="c-logo" :class="$device.isDesktop ? 'c-logo--' + $route.name : ''" v-on:mouseenter="startAnime">
 		<nuxt-link class="c-logo__link" to="/" active-class="" exact-active-class="c-logo__link--active">
 				<svg class="c-logo__svg"
 					x="0px" y="0px"
@@ -141,6 +141,40 @@
 				.c-logo__svg-o {
 					transition: transform .5s;
 					transform: translate(37%, 2%) scale(0.5);
+				}
+			}
+		}
+		&--this-minorities-report {
+			position: relative;
+			&::before {
+				content: '';
+				position: absolute;
+				width: 0;
+				height: 0;
+				left: 75%;
+				bottom: 80%;
+				border-left: 1px solid $white;
+				border-bottom: 1px solid $white;
+				opacity: 0;
+			}
+			&:hover::before {
+				opacity: 1;
+				width: 1em;
+				height: 1em;
+				transition: height .3s .3s linear, width .3s .4s linear;
+			}
+
+			.c-logo__svg-o {
+					transform: translate(37.5%, 12%) scale(0.5);
+					stroke: #000;
+					fill: $white;
+					stroke-width: 5.2em;
+			}
+			&:hover {
+				.c-logo__svg-o {
+					transition: .3s;
+					transform: translate(25%, 0%) scale(0.7);
+					stroke-width: 3em;
 				}
 			}
 		}
