@@ -82,9 +82,9 @@ export default class Map {
 				.html(
 					d3.select(e.target).attr('data-census') ?
 						d3.select(e.target).attr('data-census') == "1" ?
-							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} person`
+							`${d3.select(e.target).attr('data-name')}<span>${d3.select(e.target).attr('data-census')} ${this.ethnic} person</span>`
 						:
-							`${d3.select(e.target).attr('data-name')}<br>${d3.select(e.target).attr('data-census')} ${this.ethnic} people`
+							`${d3.select(e.target).attr('data-name')}<span>${d3.select(e.target).attr('data-census')} ${this.ethnic} people</span>`
 					:
 					`${d3.select(e.target).attr('data-name')}`
 				)

@@ -1,5 +1,5 @@
 <template>
-	<div class="c-logo" :class="$device.isDesktop ? 'c-logo--' + $route.name : ''" v-on:mouseenter="startAnime">
+	<div class="c-logo" :class="'c-logo--' + $route.name" v-on:mouseenter="startAnime">
 		<nuxt-link class="c-logo__link" to="/" active-class="" exact-active-class="c-logo__link--active">
 				<svg class="c-logo__svg"
 					x="0px" y="0px"
@@ -12,7 +12,7 @@
 					<polygon class="c-logo__svg-m" points="70,140 0,140 0,70 35,105 70,70 "/>
 					<polygon class="c-logo__svg-a" points="105,70 70,140 140,140 "/>
 				</svg>
-				<div :class="['c-logo__title',  isExperimentPage ? 'c-logo__title--vertical': 'c-logo__title--horizontal']">
+				<div :class="['c-logo__title', isExperimentPage ? 'c-logo__title--vertical': 'c-logo__title--horizontal']">
 					<h1 v-if="this.$route.name == 'index'">
 						carlosgoma.net
 					</h1>
@@ -28,7 +28,7 @@
 	export default {
 		data() {
 			return {
-				isExperimentPage: this.$route.name == 'this-anaglyph1' || this.$route.name == 'this-zoom1' || this.$route.name == 'this-minorities-report'
+				isExperimentPage: (this.$route.name).includes('this-')
 			}
 		},
 		methods: {
@@ -57,7 +57,7 @@
 		position: relative;
 		z-index: 3;
 		pointer-events: auto;
-		width: 3.2em;
+		width: 3em;
 
 		@media ( min-width: $mobile ) {
 			width: 3.4em;
@@ -102,7 +102,7 @@
 				transform: translateX(1em);
 
 				.c-logo:hover & {
-					transition: .6s;
+					transition: .9s;
 					opacity: 1;
 					transform: translateX(0);
 					animation: .3s bounce .9s;
@@ -120,64 +120,76 @@
 		}
 
 		&--this-anaglyph {
-			&:hover {
-				.c-logo__svg-o {
-					transition: .3s ease-out;
-					transform: translateY(-20px);
-					filter: drop-shadow(9px 9px $blue);
-					fill: #ed1c24;
-				}
-			}
-
 			@media (orientation: portrait) {
 				color: $white;
-				svg {
+				.c-logo__svg {
 					fill: $white
 				}
 			}
 		}
-		&--this-zoom1 {
-			&:hover {
-				.c-logo__svg-o {
-					transition: transform .5s;
-					transform: translate(37%, 2%) scale(0.5);
-				}
-			}
-		}
-		&--this-minorities-report {
-			position: relative;
-			&::before {
-				content: '';
-				position: absolute;
-				width: 0;
-				height: 0;
-				left: 75%;
-				bottom: 80%;
-				border-left: 1px solid $white;
-				border-bottom: 1px solid $white;
-				opacity: 0;
-			}
-			&:hover::before {
-				opacity: 1;
-				width: 1em;
-				height: 1em;
-				transition: height .3s .3s linear, width .3s .4s linear;
-			}
 
-			.c-logo__svg-o {
-					transform: translate(37.5%, 12%) scale(0.5);
-					stroke: #000;
-					fill: $white;
-					stroke-width: 5.2em;
+		@media (min-width: $mobile) {
+
+			&--this-anaglyph {
+				&:hover {
+					.c-logo__svg-o {
+						transition: .3s ease-out;
+						transform: translateY(-20px);
+						filter: drop-shadow(9px 9px $blue);
+						fill: #ed1c24;
+					}
+				}
+				@media (orientation: portrait) {
+					color: $white;
+					.c-logo__svg {
+						fill: $white
+					}
+				}
 			}
-			&:hover {
+			&--this-zoom1 {
+				&:hover {
+					.c-logo__svg-o {
+						transition: transform .5s;
+						transform: translate(37%, 2%) scale(0.5);
+					}
+				}
+			}
+			&--this-minorities-report {
+				position: relative;
+				&::before {
+					content: '';
+					position: absolute;
+					width: 0;
+					height: 0;
+					left: 75%;
+					bottom: 80%;
+					border-left: 1px solid $white;
+					border-bottom: 1px solid $white;
+					opacity: 0;
+				}
+				&:hover::before {
+					opacity: 1;
+					width: 1em;
+					height: 1em;
+					transition: height .3s .3s linear, width .3s .4s linear;
+				}
+
 				.c-logo__svg-o {
-					transition: .3s;
-					transform: translate(25%, 0%) scale(0.7);
-					stroke-width: 3em;
+						transform: translate(37.5%, 12%) scale(0.5);
+						stroke: #000;
+						fill: $white;
+						stroke-width: 5.2em;
+				}
+				&:hover {
+					.c-logo__svg-o {
+						transition: .3s;
+						transform: translate(25%, 0%) scale(0.7);
+						stroke-width: 3em;
+					}
 				}
 			}
 		}
+
 	}
 
 </style>

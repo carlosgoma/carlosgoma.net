@@ -19,8 +19,8 @@
 		</div>
 
 		<span class="p-me__divisor t-section">
-			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'All the design\'s measures depend on the font size or the screen size in order to improve the accessibility and the responsive design. I encourage you to try changing your browser font size.' }">
-				dV
+			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'All the design\'s measures depend on the font size and/or the screen size in order to improve the accessibility and the responsive design. I encourage you to try changing your browser font size.' }">
+				i
 			</button>
 		</span>
 

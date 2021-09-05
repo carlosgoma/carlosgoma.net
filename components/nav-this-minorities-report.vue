@@ -76,6 +76,20 @@
 	justify-content: flex-end;
 	flex-direction: row-reverse;
 	gap: space(s);
+	position: relative;
+
+	@media (orientation: portrait) {
+		&::before{
+			content: "";
+			position: absolute;
+			top: 0.7em;
+			width: 3em;
+			background-color: #ddd;
+			border-radius: .1em;
+			height: .3em;
+			left: calc(50% - 1.5em);
+		}
+	}
 
 	@media (orientation: landscape) {
 		flex-direction: column;

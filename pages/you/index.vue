@@ -14,7 +14,7 @@
 
 		<span class="p-you__divisor t-section">
 			<button v-if="this.$store.getters.developerView" class="o-toolip-trigger--developer-view" v-tooltip="{ content: 'I\'m going to be a bit controversial: Vue.js is much better than React... feel free to threaten me via email if you feel the need to.' }">
-				dV
+				i
 			</button>
 		</span>
 

@@ -34,7 +34,7 @@
             </li>
         </ul>
 
-		<svg style="display: none">
+		<svg class="p-this__experiment-filter" width="0" height="0">
 			<defs>
 				<filter :id="`filter-${experiment.id}`">
 					<feTurbulence type="turbulence" :baseFrequency="randomInterval(0.002, 0.005)" numOctaves="4" :result="`feTurbulence-${experiment.id}`" :id="`feTurbulence-${experiment.id}`"/>
@@ -122,7 +122,15 @@
             grid-template-columns: max-content 1fr;
             grid-template-rows: max-content max-content;
             gap: space(xs);
-            background-color: $white;
+
+			@media (min-width: $mobile) {
+				background-color: $white;
+			}
+		}
+
+		&-filter {
+			position: absolute;
+			pointer-events: none;
 		}
 
         &-title {
@@ -132,7 +140,7 @@
             margin-top: indentation(1.3);
             margin-bottom: indentation(1.3);
 
-            .is-desktop & {
+			@media (min-width: $mobile) {
 				grid-row: 1;
                 margin-top: space(s);
 				position: relative;
@@ -155,14 +163,14 @@
         &-figure {
             grid-row: 2/4;
             grid-column: 2;
-            .is-desktop & {
+            @media (min-width: $mobile) {
                 grid-row: 1/4;
                 transition: filter .1s ease;
                 filter: grayscale(1);
-            }
-            .is-desktop a:hover & {
-                transition: filter .3s ease;
-                filter: grayscale(0);
+				a:hover & {
+					transition: filter .3s ease;
+					filter: grayscale(0);
+				}
             }
         }
 
@@ -171,7 +179,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-			filter: url(#f-turbulence)
+			@media (max-width: $mobile) {
+				filter: none!important;
+			}
         }
         &-arrow {
             grid-column: 1;

@@ -6,7 +6,7 @@
 			'is-developer-view': this.$store.getters.developerView
 		}]">
 		<div class="l-layout__view-tag" v-if="this.$store.getters.developerView">
-			dV = developer view
+			<b>i</b> · Developer view
 		</div>
 		<header class="l-layout__header">
 			<logo/>
@@ -28,14 +28,6 @@
 		mounted () {
 			window.runDeveloperView = this.$runDeveloperView;
 			window.stopDeveloperView = this.$stopDeveloperView;
-
-			window.addEventListener('resize', this.onResize);
-			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
-		},
-		methods: {
-			onResize() {
-				document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
-			}
 		}
 	};
 </script>
@@ -71,7 +63,6 @@
 			}
 		}
 		&--hire-him {
-			height: var(--windowHeight);
 			overflow: hidden;
 			position: relative;
 			main {
@@ -80,7 +71,7 @@
 		}
 
 		background-color: $white;
-		min-height: var(--windowHeight);
+		min-height: 100%;
 		display: grid;
 		grid-template-rows: max-content 1fr max-content;
 		box-shadow: inset 0 -5px transparent;
@@ -88,11 +79,13 @@
 		&__header {
 			padding-top: space(s);
 			padding-left: space(s);
+			padding-right: space(s);
 			pointer-events: none;
 
 			@media (min-width: $mobile) {
 				padding-top: space(m);
 				padding-left: space(m);
+				padding-right: space(m);
 			}
 		}
 

@@ -30,8 +30,7 @@ export default {
 	plugins: [
 		{ src: '~/plugins/v-toolip.js'},
 		{ src: '~/plugins/console.js'},
-		{ src: '~/plugins/interactjs.js'},
-		// { src: '~/plugins/d3.js',  mode: 'client'},
+		{ src: '~/plugins/interactjs.js'}
 	],
 
 	// -------------------------------------------------- Auto import components (components folder):
@@ -48,7 +47,8 @@ export default {
 		'@nuxtjs/device'
 	],
 	device: {
-		defaultUserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36',
+		// defaultUserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36',
+		// defaultUserAgent: 'Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Mobile Safari/537.36',
 		refreshOnResize: true
 	},
 	styleResources: {

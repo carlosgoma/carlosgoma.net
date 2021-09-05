@@ -196,16 +196,15 @@
 }
 
 .o-toolip-trigger--developer-view {
-	width: 3em;
-	height: 3em;
+	width: 2.5em;
+	height: 2.5em;
 	background-color: $black;
 	color: $white;
-	font-size: font-size(s);
 	border-radius: 50%;
 	position: absolute;
 
 	[class*=__divisor] & {
-		top: -1.5em;
+		top: -1.25em;
 		left: space(m);
 	}
 }
@@ -314,6 +313,9 @@
 			max-width: 97vw;
 			font-size: font-size(m);
 
+			@media ( orientation: landscape ) {
+				max-width: calc(90vw - 6em);
+			}
 			@media ( min-width: $mobile ) {
 				max-width: 36em;
 			}

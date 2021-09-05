@@ -10,6 +10,7 @@
 				enable-background="new 0 0 1300 900"
 				xml:space="preserve">
 
+				<g>
 				<g id="grupo_fondo">
 					<!-- Estrellas -->
 					<defs>
@@ -53,9 +54,11 @@
 						<stop  offset="1" style="stop-color:#000000"/>
 					</radialGradient>
 				</g>
+				</g>
 
-				<g id="grupo_esfera">
-					<g class="layer" data-depth="0.3">
+				<!-- <g id="grupo_esfera"> -->
+				<g class="layer" data-depth="0.07">
+					<g id="grupo_esfera">
 						<!-- Esferas en 3D -->
 						<g class="anaglifo esfera">
 							<circle class="rojo fill" cx="253.704" cy="383.694" r="155.421"/>
@@ -75,57 +78,66 @@
 					</g>
 				</g>
 
-				<g id="grupo_triangulo">
-					<!-- Se define el triangulo -->
-					<defs>
-						<polygon id="triangulo" points="850.139,769.997 577.421,620.362 304.704,470.729 570.649,309.365 836.596,148.002 843.366,459"/>
-					</defs>
-					<!-- Se hace la mascara del triangulo -->
-					<clipPath id="recorte-triangulo">
-						<use xlink:href="#triangulo" overflow="visible"/>
-					</clipPath>
-					<!-- Se define la maya -->
-					<defs>
-						<g id="rayas" stroke-width="3">
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="457.311"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="372.068"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="286.826"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="201.584"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="116.342"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="31.1"/>
-							<line x1="-294.484" y1="457.311" x2="1594.484" y2="-54.143"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="542.551"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="627.793"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="713.035"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="798.277"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="883.52"/>
-							<line x1="-294.484" y1="457.309" x2="1594.484" y2="968.762"/>
-						</g>
-					</defs>
-					<!-- Creamos triangulo original -->
-					<g class="layer" data-depth="0.6">
-						<g clip-path="url(#recorte-triangulo)" stroke="#77f9f5" fill="none">
-						<use xlink:href="#rayas"/>
-						<use xlink:href="#rayas" transform="rotate(90 750 350)"/>
-						</g>
-						<use xlink:href="#triangulo" id="trianguloborde" stroke-width="7" stroke="#77f9f5" fill="none"/>
-						<use xlink:href="#triangulo" id="trianguloblur" stroke-width="7" stroke="#77f9f5" fill="none" />
+
+				<!-- Se define el triangulo -->
+				<defs>
+					<polygon id="triangulo" points="850.139,769.997 577.421,620.362 304.704,470.729 570.649,309.365 836.596,148.002 843.366,459"/>
+				</defs>
+				<!-- Se hace la mascara del triangulo -->
+				<clipPath id="recorte-triangulo">
+					<use xlink:href="#triangulo" overflow="visible"/>
+				</clipPath>
+				<!-- Se define la maya -->
+				<defs>
+					<g id="rayas" stroke-width="3">
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="457.311"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="372.068"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="286.826"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="201.584"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="116.342"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="31.1"/>
+						<line x1="-294.484" y1="457.311" x2="1594.484" y2="-54.143"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="542.551"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="627.793"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="713.035"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="798.277"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="883.52"/>
+						<line x1="-294.484" y1="457.309" x2="1594.484" y2="968.762"/>
 					</g>
-					<!-- Creamos triangulo 3d -->
-					<g class="anaglifo triangulo layer" data-depth="0.4">
-						<g class="rojo">
-							<g clip-path="url(#recorte-triangulo)">
-								<use xlink:href="#rayas" />
-								<use xlink:href="#rayas" transform="rotate(90 750 350)" />
+				</defs>
+
+				<g class="layer" data-depth="0.2">
+					<g id="grupo_triangulo1">
+						<!-- Creamos triangulo original -->
+						<g >
+							<g clip-path="url(#recorte-triangulo)" stroke="#77f9f5" fill="none">
+							<use xlink:href="#rayas"/>
+							<use xlink:href="#rayas" transform="rotate(90 750 350)"/>
 							</g>
-							<use xlink:href="#triangulo" stroke-width="7" fill="none"/>
+							<use xlink:href="#triangulo" id="trianguloborde" stroke-width="7" stroke="#77f9f5" fill="none"/>
+							<use xlink:href="#triangulo" id="trianguloblur" stroke-width="7" stroke="#77f9f5" fill="none" />
 						</g>
-						<g class="azul" >
-							<g clip-path="url(#recorte-triangulo)">
-								<use xlink:href="#rayas" />
-								<use xlink:href="#rayas" transform="rotate(90 750 350)" />
+					</g>
+				</g>
+
+				<g class="layer" data-depth="0.3">
+					<g id="grupo_triangulo2">
+						<!-- Creamos triangulo 3d -->
+						<g class="anaglifo triangulo">
+							<g class="rojo">
+								<g clip-path="url(#recorte-triangulo)">
+									<use xlink:href="#rayas" />
+									<use xlink:href="#rayas" transform="rotate(90 750 350)" />
+								</g>
+								<use xlink:href="#triangulo" stroke-width="7" fill="none"/>
 							</g>
-							<use xlink:href="#triangulo" stroke-width="7" fill="none"/>
+							<g class="azul" >
+								<g clip-path="url(#recorte-triangulo)">
+									<use xlink:href="#rayas" />
+									<use xlink:href="#rayas" transform="rotate(90 750 350)" />
+								</g>
+								<use xlink:href="#triangulo" stroke-width="7" fill="none"/>
+							</g>
 						</g>
 					</g>
 				</g>
@@ -135,12 +147,14 @@
 					<polygon id="cuadrado_rosa" points="1041.889,487.68 578.374,479.875 593.934,169.536 1057.446,177.343"/>
 				</defs>
 				<!-- Creamos cuadrado rosa -->
-				<use xlink:href="#cuadrado_rosa" opacity="0.8" fill="#E79DF9" class="layer" data-depth="1"/>
+				<use xlink:href="#cuadrado_rosa" opacity="0.8" fill="#E79DF9" class="layer" data-depth="0.9"/>
 				<!-- Creamos cuadrado 3d -->
-				<g class="anaglifo cuadrado layer" data-depth="0.9">
+				<g class="anaglifo cuadrado layer" data-depth="1">
 					<use xlink:href="#cuadrado_rosa" class="rojo fill" />
 					<use xlink:href="#cuadrado_rosa" class="azul fill" />
 				</g>
+
+
 				<!-- Zig Zag -->
 				<polygon class="zig_zag layer" data-depth="0.3" fill="#ED1C24" points="462.432,610.326 443.353,591.247 473.835,560.765 431.918,518.849 420.5,530.266 451,560.765 420.515,591.244 420.518,591.247 420.5,591.265 451.014,621.744 420.515,652.243 431.932,663.66 473.849,621.744 	"/>
 
@@ -178,7 +192,7 @@
 							<circle id="amarillo" fill="#F4F45D" stroke="#000011" stroke-width="4" cx="671.508" cy="446.998" r="96.614"/>
 							<path id="raya-iris_1" fill="none" stroke="#000011" stroke-width="4" stroke-linecap="round" d="M590.165,446.17c0-44.924,36.419-81.343,81.344-81.343c44.924,0,81.343,36.419,81.343,81.343"/>
 							<path id="raya-iris" fill="none" stroke="#000011" stroke-width="4" stroke-linecap="round" d="M671.509,512.155c-36.443,0-65.986-29.542-65.986-65.985c0-36.442,29.543-65.986,65.986-65.986c36.442,0,65.985,29.543,65.985,65.986"/>
-							<circle id="pupila" fill="#000011" cx="671.508" cy="446.17" r="51.61"/>
+							<circle @click="blink" id="pupila" fill="#000011" cx="671.508" cy="446.17" r="51.61"/>
 							<circle id="luz_pupila" fill="#F4F45D" cx="641.558" cy="457.17" r="8.648"/>
 						</g>
 					</g>
@@ -310,11 +324,11 @@
 
 		<div class="p-anaglyph__advertisement">
 			<samp class="p-anaglyph__advertisement-background"></samp>
-			<img class="p-anaglyph__advertisement-img" src="~/static/images/glasses.png" alt="Anaglyph glasses">
+			<img class="p-anaglyph__advertisement-img" src="~/assets/images/glasses.png" alt="Anaglyph glasses">
 			<h2 class="p-anaglyph__advertisement-title">Glasses needed!</h2>
 		</div>
 
-		<img class="p-anaglyph__woman-crying" src="~/static/images/cry.gif">
+		<img class="p-anaglyph__woman-crying" src="~/assets/images/cry.gif">
 	</article>
 </template>
 
@@ -337,7 +351,7 @@
 						hid: 'anaglyph',
 						src: '/scripts/anaglyph.js',
 						defer: true,
-						callback: () => { this.isScriptLoaded = true; }
+						callback: () => this.init()
 					}
 				]
 			}
@@ -345,9 +359,133 @@
 
 		data() {
 			return {
-				isScriptLoaded: false
+				time: null
 			}
 		},
+		destroyed() {
+			clearTimeout(this.time);
+			// $(document).off('click', "#js-action", actionButton )
+		},
+		methods: {
+
+			blink() {
+				const ojocontorno = Snap.select("#contorno");
+				const ojoforma = Snap.select("#forma_ojo");
+				const ojosombra = Snap.select("#sombra_superior");
+				const cejaizq = Snap.select("#ceja_izq");
+				const cejader = Snap.select("#ceja_der");
+				const ojocerrado = "M409.896,465.162l261.612,0.001l261.613-0.001l-261.613,0.001L409.896,465.162z M409.896,465.162h-35.046 M968.167,465.162h-35.045";
+				const ojoabierto = "M409.896,465.162l261.612,108.983l261.613-108.983L671.509,356.181L409.896,465.162z M409.896,465.162h-52.893 M986.014,465.162h-52.892";
+				ojocontorno.animate ({ d: ojocerrado }, 400, mina.easeout, function() {
+				ojocontorno.animate ({ d: ojoabierto }, 600, mina.elastic );
+				});
+				ojoforma.animate ({ d: ojocerrado }, 400, mina.easeout, function() {
+				ojoforma.animate ({ d: ojoabierto }, 600, mina.elastic );
+				});
+				ojosombra.animate ({ d: 'M885.335,465.163l47.787-0.001l-261.613,0.001l-261.612-0.001l269.808,0.001H885.335z' }, 400, mina.easeout, function() {
+				ojosombra.animate ({ d: 'M885.335,485.068l47.787-19.906L671.509,356.181L409.896,465.162l269.808-86.729L885.335,485.068z' }, 600, mina.elastic );
+				});
+				cejaizq.animate ({ transform: 'r15,471.755,396.394' }, 400, mina.easeout, function() {
+				cejaizq.animate ({ transform: 'r0,471.755,396.394' }, 400, mina.elastic );
+				});
+				cejader.animate ({ transform: 'r-15,871.263,396.394' }, 400, mina.easeout, function() {
+				cejader.animate ({ transform: 'r0,871.263,396.394' }, 400, mina.elastic );
+				});
+			},
+
+			init() {
+
+				const self = this;
+
+				// Lista de variables.
+				const svg = Snap.select("#space");
+				const trianguloblur = Snap.select("#trianguloblur");
+				const estrellas2 = Snap.select("#estrellas2");
+				const estrellas3 = Snap.select("#estrellas3");
+				const estrellas4 = Snap.select("#estrellas4");
+				const fondo = Snap.select("#grupo_fondo");
+				const esferas = Snap.select("#grupo_esfera");
+				const triangulos1 = Snap.select("#grupo_triangulo1");
+				const triangulos2 = Snap.select("#grupo_triangulo2");
+
+				// Paralax.js
+				const scene = $('#space').get(0);
+				const $parallax = new Parallax(scene);
+				$parallax.disable();
+
+				// Filtro desenfoque
+				const desenfoque = svg.filter(Snap.filter.blur(10, 10));
+				trianguloblur.attr({ filter: desenfoque });
+
+				// Posicionamiento galaxias
+				estrellas2.transform('r-40,750,350');
+				estrellas3.transform('r48,800,450s1.15');
+				estrellas4.transform('r-120,750,400s1,750,400');
+
+				// Movimiento infinito del grupo Estrellas3
+				function estrella3mov() {
+					estrellas3.stop().animate({transform:'r408,800,450'}, 200000, function() {
+					estrellas3.attr({ transform: 'rotate(48 800 450)'});
+					estrella3mov();
+					});
+				} estrella3mov();
+				// Movimiento infinito del grupo Estrellas4
+				function estrella4mov() {
+					estrellas4.stop().animate({transform:'r-300,750,400s0.8,750,400'}, 100000, function() {
+					estrellas4.animate({transform:'r-480,750,400s1,750,400'}, 100000, function() {
+						estrellas4.transform('r-120,750,400s1,750,400');
+						estrella4mov();
+					});
+					});
+				} estrella4mov();
+
+				$("#js-action").on('click', actionButton )
+				// Función de desactivar y activar
+				function actionButton() {
+					if (!$(".p-anaglyph").hasClass("is-active") ) {
+						$(".p-anaglyph").addClass("is-active");
+						$("#js-action").addClass("is-active");
+						$("#js-action").attr('title', 'Switch off');
+						$parallax.enable();
+						estrellas3.stop();
+						estrellas4.stop();
+						fondo.animate({ 'transform': 's0.7, 750, 350'}, 2000, mina.backout );
+						esferas.animate({ 'transform': 's0.8, 750, 350'}, 1500, mina.backout );
+						triangulos1.animate({ 'transform': 's.9, 750, 350'}, 1000, mina.backout );
+						triangulos2.animate({ 'transform': 's.9, 750, 350'}, 1000, mina.backout );
+						self.time = setInterval(rayosAnime, 1000);
+					} else {
+						$(".p-anaglyph").removeClass("is-active");
+						$("#js-action").removeClass("is-active");
+						$("#js-action").attr('title', 'Switch on');
+						$parallax.disable();
+						estrella3mov();
+						estrella4mov();
+						fondo.animate({ 'transform': 's1, 750, 350'}, 500, mina.bounce);
+						esferas.animate({ 'transform': 's1, 750, 350'}, 500, mina.bounce);
+						triangulos1.animate({ 'transform': 's1, 750, 350'}, 500, mina.bounce);
+						triangulos2.animate({ 'transform': 's1, 750, 350'}, 500, mina.bounce);
+						clearInterval(self.time);
+					}
+				};
+
+				// Rayos
+				function rayosAnime(){
+					var chance = 2;  // Probabilidad entre 1 de aparecer
+					var myArray = ["#rayo-1", "#rayo-2", "#rayo-3"];
+					$.each(myArray, function (index, value) {
+						var rand = Math.floor(Math.random()*chance)+1;
+						if(rand == 1) {
+							$(value).addClass('activa');
+							setTimeout(function () {
+								$(value).removeClass('activa');
+							}, 1000);
+						};
+					});
+				};
+			}
+		}
+
 	}
 </script>
 
@@ -458,10 +596,9 @@
 	width: 100%;
 	height: 100%;
 
-
-
 	#pupila {
 		cursor: pointer;
+		pointer-events: auto;
 	}
 
 	#rayos line {

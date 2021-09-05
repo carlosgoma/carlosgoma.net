@@ -1,17 +1,7 @@
 <template>
 	<nav class="c-nav c-nav--experiment" :class="$device.isDesktop ? 'c-nav--desktop' : 'c-nav--mobile'">
 
-		<v-popover :placement="popoverPlacement">
-			<button class="c-nav__info t-fade">Info</button>
-			<div slot="popover">
-				<div class="popover-content">
-					<p>Inspired by Istvan Banyai’s comic book <cite>Zoom</cite>. It’s a funny effect with a lot of surprising potential.</p>
-					<p>I drew it and made the zoom out effect with the <cite>Zoomooz.js</cite> library.</p>
-					<p><cite>Snap.svg</cite> helps me with the svg animations and <cite>Snow.js</cite> with the snow simulation.</p>
-				</div>
-			</div>
-		</v-popover>
-		<div class="t-fade">
+		<div class="c-nav__controls t-fade">
 			<button class="c-nav__link c-nav__control zoomButton" title="Zoom in" data-type="next" data-root=".zoomViewport" disabled>
 				<svg class="c-nav__control-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 					width="20" height="20"
@@ -25,9 +15,7 @@
 					</svg>
 				</span>
 			</button>
-		</div>
-		<div class="t-fade">
-			<button class="c-nav__link c-nav__control zoomButton" title="Zoom out" data-type="prev" data-root=".zoomViewport">
+			<button class="c-nav__link c-nav__control zoomButton" title="Zoom out" data-type="prev" data-root=".zoomViewport" disabled>
 				<svg class="c-nav__control-svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 					width="20" height="20"
 					viewBox="0 0 20 20" xml:space="preserve">
@@ -40,6 +28,17 @@
 				</span>
 			</button>
 		</div>
+
+		<v-popover :placement="popoverPlacement">
+			<button class="c-nav__info t-fade">Info</button>
+			<div slot="popover">
+				<div class="popover-content">
+					<p>Inspired by Istvan Banyai’s comic book <cite>Zoom</cite>. It’s a funny effect with a lot of surprising potential.</p>
+					<p>I drew it and made the zoom out effect with the <cite>Zoomooz.js</cite> library.</p>
+					<p><cite>Snap.svg</cite> helps me with the svg animations and <cite>Snow.js</cite> with the snow simulation.</p>
+				</div>
+			</div>
+		</v-popover>
 		<nuxt-link class="c-nav__link"
 			to="/this"
 			active-class=""
@@ -91,7 +90,20 @@
 	justify-content: flex-end;
 	flex-direction: row-reverse;
 	gap: space(s);
+	position: relative;
 
+	@media (orientation: portrait) {
+		&::before{
+			content: "";
+			position: absolute;
+			top: 0.7em;
+			width: 3em;
+			background-color: #ddd;
+			border-radius: .1em;
+			height: .3em;
+			left: calc(50% - 1.5em);
+		}
+	}
 
 	@media (orientation: landscape) {
 		flex-direction: column;
@@ -101,7 +113,31 @@
 		padding: space(m) space(s);
 	}
 
+	&__controls {
+		display: flex;
+		gap: space(s);
+		flex-direction: column;
+
+		@media (max-width: $mobile) {
+			@media ( orientation: portrait ) {
+				margin-left: auto;
+			}
+			[data-type=next] {
+				display: none;
+			}
+			&--back {
+				[data-type=next] {
+					display: flex;
+				}
+				[data-type=prev] {
+					display: none;
+				}
+			}
+		}
+	}
+
 	&__control {
+		flex: 0 0 auto;
 
 		&-svg {
 			position: relative;

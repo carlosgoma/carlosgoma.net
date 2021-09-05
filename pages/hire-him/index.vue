@@ -139,6 +139,7 @@
 			const self = this;
 			this.chatAnimation = this.$anime.timeline({
 				easing: 'linear',
+				delay: 2000,
 				complete: function() {
 					self.isChatAnimationFinished = true
 				}
@@ -333,6 +334,7 @@
 		&__svg {
 			height: 100%;
 			will-change: transform;
+			transform-origin: center;
 
 			animation: rotate 10s infinite linear;
 			@keyframes rotate {

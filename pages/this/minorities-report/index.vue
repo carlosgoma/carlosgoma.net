@@ -1,5 +1,5 @@
 <template>
-	<article class="p-minorities" role="article" itemscope itemtype="http://schema.org/WebPage">
+	<article class="p-minorities" role="article" ref="content" itemscope itemtype="http://schema.org/WebPage">
 
 		<div class="p-minorities__grid">
 
@@ -137,7 +137,7 @@
 
 		data() {
 			return {
-				reloadMap: null,
+				setTimeout: null,
 				provincesPopulation: populationProvinces,
 				ethnicData: dataEthnics,
 				order: 'Census',
@@ -176,21 +176,17 @@
 		},
 
 		mounted() {
-			document.querySelector(':root').style.setProperty('--windowHeight', window.innerHeight + "px" );
-			document.body.addEventListener('click', this.closeDropdown)
-
 			this.map = new Map('p-minorities__map', vietnam);
 			this.pie = new Pie('p-minorities__pie', null);
 			this.mapInteraction();
-			window.addEventListener('resize', this.windowReize);
-			// window.addEventListener('orientationchange', this.windowReize);
+
+			window.addEventListener('click', this.closeDropdown)
+			window.addEventListener('resize', this.reloadMap);
 		},
 
-		unmounted() {
-			document.body.removeEventListener('click', this.closeDropdown)
-			window.removeEventListener("resize", this.windowReize);
-			// window.removeEventListener('orientationchange', this.windowReize);
-
+		destroyed() {
+			window.removeEventListener('click', this.closeDropdown)
+			window.removeEventListener("resize", this.reloadMap);
 		},
 
 		methods: {
@@ -224,13 +220,13 @@
 				})
 			},
 
-			windowReize() {
-				clearTimeout(this.reloadMap);
-				this.reloadMap = setTimeout(() => {
+			reloadMap() {
+				clearTimeout(this.setTimeout);
+				this.setTimeout = setTimeout(() => {
 					this.map.initMap();
 					this.mapInteraction();
 					this.map.updateMap(this.active)
-				}, 500);
+				}, 400);
 			}
 		}
 
@@ -316,6 +312,12 @@
 			line-height: 1.6;
 			padding: space(xs);
 			border-radius: .3em;
+			span {
+				display: none;
+				@media (min-width: $mobile) {
+					display: block;
+				}
+			}
 		}
 
 		&__grid {
@@ -323,7 +325,7 @@
 			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 1fr max-content;
 			width: 200vw;
-			transition: transform .2s;
+			transition: transform .4s;
 			will-change: transform;
 			width: auto;
 			border: 1px solid $gray;
@@ -487,7 +489,7 @@
 				justify-content: flex-end;
 				align-items: center;
 				padding-top: space(s);
-				color: $gray-medium;
+				color: $gray;
 				&::after {
 					content: '';
 					width: calc(var(--space) + .7em);
@@ -515,6 +517,7 @@
 				}
 				&:disabled {
 					pointer-events: none;
+					color: $gray
 				}
 			}
 			&-scroll {
@@ -587,7 +590,6 @@
 					height: .7em;
 				}
 			}
-
 		}
 	}
 
