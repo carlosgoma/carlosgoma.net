@@ -236,8 +236,8 @@
 			font-weight: bolder;
 			font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
 			display: block;
-			animation: hellotitle 8s infinite linear alternate;
-			@keyframes hellotitle {
+			animation: toggleSpiralTitle 8s infinite linear alternate;
+			@keyframes toggleSpiralTitle {
 				0% {
 					opacity: 0;
 				}
@@ -336,8 +336,8 @@
 			will-change: transform;
 			transform-origin: center;
 
-			animation: rotate 10s infinite linear;
-			@keyframes rotate {
+			animation: rotateSpiral 11s infinite linear;
+			@keyframes rotateSpiral {
 				100% { transform: rotate(360deg);}
 			}
 
